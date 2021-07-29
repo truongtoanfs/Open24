@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: "Helvetical Neue";
+        src: url("/fonts/HelveticalNeue/helveticanewe.otf") format("otf"),
+            url("/fonts/HelveticalNeue/helveticanewe.ttf") format("ttf");
+    }
+}
+
+@layer utilities {
+    .font-13 {
+        font-size: 13px;
+    }
+    .flex-cover {
+        flex: 1;
+    }
+    .text-333 {
+        color: #333;
+    }
+    .font-helvetical {
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    }
+}
