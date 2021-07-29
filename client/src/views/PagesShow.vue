@@ -14,21 +14,17 @@
             const route = useRoute();
             const router = useRouter();
             
-            const pageName = ref({
-                text: "Tổng quan",
-                url: "/tongQuan",
-            })
-
             const linksList = [
                 {
                 text: "Tổng quan",
-                url: "/tongQuan",
+                url: "/",
                 },
                 {
                 text: "Bàn làm việc",
                 url: "/banLamViec",
                 },
             ]
+            const pageName = ref(linksList[0]);
     
             navbarItems.forEach(navbarItem => {
                 const navsList =  navbarItem.navList.map(list => {
@@ -43,7 +39,8 @@
                 pageName.value = linksList.find(link => {
                     return link.url === `/${newValue}`
                 })
-            })
+                console.log(pageName.value);
+            }, {immediate: true})
             
             return {
                 pageName,

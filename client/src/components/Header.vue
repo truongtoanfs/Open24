@@ -15,13 +15,13 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </span>
-                        <a href="/tongQuan" @click="isOpenSideNav = false">
+                        <a href="/" @click="isOpenSideNav = false">
                             <img class="h-7 cursor-pointer relative top-px" src="../assets/images/logo-open24.png" alt="open24 logo">
                         </a>
                     </div>
 
                     <div class=" px-1 pb-1 xl:p-0">     
-                        <router-link @click="isOpenSideNav = false" to="/tongQuan" class="flex items-center h-9 my-0.5 xl:h-full xl:my-0 xl:hover:bg-black xl:hover:bg-opacity-30 xl:px-2">
+                        <router-link @click="isOpenSideNav = false" to="/" class="flex items-center h-9 my-0.5 xl:h-full xl:my-0 xl:hover:bg-black xl:hover:bg-opacity-30 xl:px-2">
                             <span class="flex items-center mb-px"><i class="fas fa-laptop text-base w-8 text-center mx-1 xl:w-6 xl:ml-0"></i>Tổng Quan</span>
                         </router-link>
                     </div>
