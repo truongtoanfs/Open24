@@ -8,13 +8,18 @@ module.exports = {
       },
       boxShadow: {
         separate: '0px 0px 6px 0 rgba(0, 0, 0, 0.2)',
+      },
+      spacing: {
+        '150': '37.5rem',
       }
     },
   },
   variants: {
     extend: {
       display: ['group-hover', 'group-focus'],
-      outline: ['hover']
+      visibility: ['group-hover'],
+      outline: ['hover'],
+      backgroundColor: ['active'],
     },
   },
   plugins: [],

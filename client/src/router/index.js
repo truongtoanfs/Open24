@@ -8,6 +8,11 @@ const routes = [
     component: Dashboard,
   },
   {
+    path: '/danhSachXe',
+    name: 'danhSachXe',
+    component: () => import('../views/DanhSachXe.vue'),
+  },
+  {
     path: '/:slug',
     name: 'pages.show',
     component: () => import('../views/PagesShow.vue'),

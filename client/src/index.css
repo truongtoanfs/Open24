@@ -1,5 +1,7 @@
 @tailwind base;
+
 @tailwind components;
+
 @tailwind utilities;
 
 @layer base {
@@ -7,6 +9,29 @@
         font-family: "Helvetical Neue";
         src: url("/fonts/HelveticalNeue/helveticanewe.otf") format("otf"),
             url("/fonts/HelveticalNeue/helveticanewe.ttf") format("ttf");
+    }
+
+    ::-webkit-scrollbar {
+        @apply w-2;
+    }
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gray-400 rounded-lg;
+    }
+}
+
+@layer components {
+    .hover-circle:hover {
+        @apply bg-black bg-opacity-20 rounded-full;
+    }
+    .hover-circle:active {
+        @apply bg-white bg-opacity-10 rounded-full;
+    }
+
+    .input {
+        @apply w-full px-3 h-8 leading-6 border border-solid border-gray-300 focus:outline-none focus:border-blue-500 focus:shadow-md rounded;
+    }
+    .input:focus {
+        @apply focus:outline-none focus:border-blue-500 focus:shadow-md rounded;
     }
 }
 
@@ -22,5 +47,14 @@
     }
     .font-helvetical {
         font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    }
+    .button-min-width {
+        min-width: 42px;
+    }
+    .bg-inherit {
+        background: inherit;
+    }
+    .bg-primary {
+        background-color: #1374AD;
     }
 }

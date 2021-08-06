@@ -1,20 +1,20 @@
 <template>
     <nav class=" text-white font-medium" :style="{background: primaryColor}">
         <div class="flex justify-between items-center">
-            <div class="py-2 px-3 xl:hidden cursor-pointer" @click="isOpenSideNav = !isOpenSideNav">
+            <button class="py-2 px-3 xl:hidden" @click="isOpenSideNav = !isOpenSideNav">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-            </div>
+            </button>
 
             <div id="side-nav">
-                <div :class="isOpenSideNav ? 'block' : 'hidden'" :style="{background: primaryColor}" class="side-nav__content fixed inset-y-0 left-0 z-20 overflow-auto xl:static xl:flex xl:overflow-visible">
+                <div :class="isOpenSideNav ? 'block' : 'hidden'" :style="{background: primaryColor}" class="side-nav-width fixed inset-y-0 left-0 z-20 overflow-auto xl:static xl:flex xl:overflow-visible">
                     <div class="flex items-center px-3 pt-1.5 pb-2 xl:py-1.5 xl:mx-3.5">
-                        <span @click="isOpenSideNav = !isOpenSideNav" class="mr-9 cursor-pointer xl:hidden">
+                        <button @click="isOpenSideNav = !isOpenSideNav" class="mr-9 xl:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
-                        </span>
+                        </button>
                         <a href="/" @click="isOpenSideNav = false">
                             <img class="h-7 cursor-pointer relative top-px" src="../assets/images/logo-open24.png" alt="open24 logo">
                         </a>
@@ -37,7 +37,7 @@
                             <span class="flex items-center mb-px"><i class="w-8 text-center mx-1 xl:hidden" :class="navbarItem.symbolIcon"></i>{{ navbarItem.name }}</span>
                             <i class="fas fa-angle-down pl-1 pt-0.5"></i>
                         </div>
-                        <div :style="{background: primaryColor}" class="nav-item__list hidden xl:group-hover:block xl:absolute xl:left-0 xl:top-full xl:w-48 xl:rounded-b xl:shadow-separate">
+                        <div :style="{background: primaryColor}" class="nav-item__list hidden xl:group-hover:block xl:absolute xl:left-0 xl:top-full xl:z-50 xl:w-48 xl:rounded-b xl:shadow-separate">
                             <router-link @click="isOpenSideNav = false, closeNavActivation()" :to="navItem.url" class="flex items-center px-6 py-1 xl:px-1.5 xl:hover:bg-black xl:hover:bg-opacity-20" v-for="(navItem, index) in navbarItem.navList" :key="index">
                                 <i class="text-base w-6 text-center mr-1" :class="navItem.icon"></i> <span class="xl:mb-px">{{ navItem.text }}</span>
                             </router-link>
@@ -52,7 +52,7 @@
                         <i class="fas fa-map-marker-alt text-lg pr-1"></i> <span>{{ selectedBranch.name }}</span>
                     </ListboxButton>
                     <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-                        <ListboxOptions class="absolute top-full right-0 w-56 p-1 bg-white text-gray-600 shadow-md focus:outline-none border border-solid border-gray-400 rounded-b">
+                        <ListboxOptions class="absolute top-full right-0 z-50 w-56 p-1 bg-white text-gray-600 shadow-md focus:outline-none border border-solid border-gray-400 rounded-b">
                             <div class="relative mb-1">
                                 <input type="text" v-model="branchInput" class="w-full py-1.5 pl-3 pr-5 rounded border border-solid border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400 shadow-sm" placeholder="Tìm kiếm chi nhánh">
                                 <span class="absolute top-1/2 transform -translate-y-2/4 right-3">
@@ -74,7 +74,7 @@
                     <div class="px-2 cursor-pointer" @click="isOpenNotify = !isOpenNotify">
                         <i class="fas fa-bell text-lg"></i>
                     </div>
-                    <div v-if="isOpenNotify" class="fixed inset-0 z-10" @click="isOpenNotify = false"></div>
+                    <div v-if="isOpenNotify" class="fixed inset-0 z-50" @click="isOpenNotify = false"></div>
                     <div v-show="isOpenNotify" class="navbar__notify absolute top-full right-0 z-20 bg-white text-333 w-96 px-2.5 border-l border-solid border-gray-400 border-opacity-50">
                         <div class="flex items-center justify-between border-b border-solid border-gray-400 border-opacity-50 pt-0.5">
                             <h6 class="font-bold px-2">Thông báo</h6>
@@ -111,7 +111,7 @@
                         <i class="fas fa-question-circle text-lg"></i>
                     </MenuButton>
                     <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-                    <MenuItems :style="{background: primaryColor}" class="absolute z-20 top-full right-0 w-56 p-1 text-sm shadow-separate focus:outline-none">
+                    <MenuItems :style="{background: primaryColor}" class="absolute z-50 top-full right-0 w-56 p-1 text-sm shadow-separate focus:outline-none">
                         <div class="py-1">
                         <MenuItem v-slot="{ active }">
                             <a href="" :class="active ? 'bg-black bg-opacity-30' : ''" class="flex items-center px-2.5 py-1.5 rounded">
@@ -142,40 +142,34 @@
                     </MenuItems>
                     </transition>
                 </Menu>
-                <div v-if="isOpenDeleteData">
-                    <div class="fixed inset-0 bg-black opacity-30" />
-                    <div class="fixed inset-0 z-10 flex items-start justify-center">
-                        <div class="modal-width mt-16 rounded bg-white">
-                            <div :style="{background: primaryColor}" class="flex items-center justify-between text-white text-lg pl-4">
-                                <h2 class="font-medium">Xóa dữ liệu hệ thống</h2>
-                                <span class="px-4 py-1.5 cursor-pointer" @click="isOpenDeleteData = false"><i class="fas fa-times"></i></span>
-                            </div>
-                            <div class="px-4 pt-5 pb-3 font-medium text-sm text-333">
-                                <div class="relative flex">
-                                    <label class="w-32">Mật khẩu</label>
-                                    <input type="text" class="flex-cover px-2 py-1 border border-solid border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-200 shadow-sm">
-                                    <i class="fas fa-info-circle absolute top-1/2 transform -translate-y-1/2 right-0 pr-2" title="Mật khẩu đăng nhập phần mềm"></i>
-                                </div>
-                                <label class="flex items-center py-0.5 mt-2.5">
-                                    <input type="checkbox" name="" id="" class="mr-2 h-4 w-4"> Giữ lại danh mục Hàng hóa
-                                </label>
-                                <label class="flex items-center py-0.5">
-                                    <input type="checkbox" name="" id="" class="mr-2 h-4 w-4"> Giữ lại danh mục Khách hàng
-                                </label>
-                            </div>
-                            <div class="p-4 text-right">
-                                <button @click="isOpenDeleteData = false" class="bg-red-500 hover:bg-red-400 text-white text-sm px-2 py-2 rounded mr-2.5"><i class="fas fa-ban mr-0.5"></i> Hủy bỏ</button>
-                                <button @click="isOpenDeleteData = false" class="bg-blue-500 hover:bg-blue-400 text-white text-sm px-2 rounded py-2"><i class="far fa-check-square mr-0.5"></i> Đồng ý</button>
-                            </div>
+                
+                <BaseModal v-if="isOpenDeleteData" @closeModal="isOpenDeleteData = false">
+                    <template v-slot:modal-title>Xóa dữ liệu hệ thống</template>
+                    <template v-slot:modal-content>
+                        <div class="relative flex">
+                            <label class="w-32">Mật khẩu</label>
+                            <input type="text" class="flex-cover px-2 py-1 border border-solid border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-200 shadow-sm">
+                            <i class="fas fa-info-circle absolute top-1/2 transform -translate-y-1/2 right-0 pr-2" title="Mật khẩu đăng nhập phần mềm"></i>
                         </div>
-                    </div>
-                </div>
+                        <label class="flex items-center py-0.5 mt-2.5">
+                            <input type="checkbox" name="" id="" class="mr-2 h-4 w-4"> Giữ lại danh mục Hàng hóa
+                        </label>
+                        <label class="flex items-center py-0.5">
+                            <input type="checkbox" name="" id="" class="mr-2 h-4 w-4"> Giữ lại danh mục Khách hàng
+                        </label>
+                    </template>
+                    <template v-slot:modal-footer>
+                        <button @click="isOpenDeleteData = false" class="bg-red-500 hover:bg-red-400 text-white text-sm px-2 py-2 rounded mr-2.5"><i class="fas fa-ban mr-0.5"></i> Hủy bỏ</button>
+                        <button @click="isOpenDeleteData = false" class="bg-blue-500 hover:bg-blue-400 text-white text-sm px-2 rounded py-2"><i class="far fa-check-square mr-0.5"></i> Đồng ý</button>
+                    </template>
+                </BaseModal>
+
                 <Menu as="div" class="relative h-10 flex items-center">
                     <MenuButton as="div" class="px-3 cursor-pointer">
                         <img class="rounded-full w-7 h-7" src="../assets/images/men-user.png" alt="">
                     </MenuButton>
                     <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-                        <MenuItems :style="{background: primaryColor}" class="absolute top-full right-0 shadow-separate w-56 px-2 py-0.5 focus:outline-none">
+                        <MenuItems :style="{background: primaryColor}" class="absolute top-full right-0 z-50 shadow-separate w-56 px-2 py-0.5 focus:outline-none">
                             <MenuItem v-slot="{ active }">
                                 <a href="" :class="active ? 'bg-black bg-opacity-30' : ''" class="flex items-center py-1.5 px-1.5 rounded border-b border-dotted border-gray-100">
                                     <i class="fas fa-user text-base w-5 text-center mr-2"></i> Test
@@ -236,6 +230,10 @@
             </div>
         </div>
     </nav>
+    <!-- something to improve
+        + background color
+        + 
+     -->
 </template>
 
 <script>
@@ -244,11 +242,13 @@
     import { navbarItems } from '../mixins/navbarItems';
     import { themes } from '../mixins/themes';
     import { Listbox, ListboxButton, ListboxOptions, ListboxOption, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue'
+    import BaseModal from './BaseModal.vue';
     export default {
         name: "Header",
         components: {
             Listbox, ListboxButton, ListboxOptions, ListboxOption,
             Menu, MenuButton, MenuItem, MenuItems,
+            BaseModal, 
         },
         setup() {
             let branches = [
@@ -310,6 +310,10 @@
                 })
             })
 
+            function closeModal() {
+                console.log('close modal');
+            }
+
             return {
                 ...toRefs(primaryTheme),
                 navbarItems,
@@ -321,23 +325,17 @@
                 branchFilter,
                 selectedBranch,
                 branchInput,
+                closeModal,
             }
         }
     }
 </script>
 
 <style scoped>
-    .side-nav__content {
+    .side-nav-width {
         width: 230px;
-        box-shadow: 1px 1px 3px rgb(0 0 0 / 15%);
     }
-    .side-nav__content::-webkit-scrollbar {
-        width: 6px;
-    }
-    .side-nav__content::-webkit-scrollbar-thumb {
-    background: #1cabfd; 
-    border-radius: 10px;
-    }
+    
 
     .modal-width {
         width: 600px;
@@ -352,9 +350,8 @@
     }
 
     @media screen and (min-width: 1280px) {
-        .side-nav__content {
+        .side-nav-width {
             width: 100%;
-            box-shadow: none;
         }
     }
 </style>

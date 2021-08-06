@@ -36,10 +36,12 @@
                 linksList.push(...navsList);
             })
             watch( () => route.params.slug, (newValue, oldValue) => {
-                pageName.value = linksList.find(link => {
-                    return link.url === `/${newValue}`
-                })
-                console.log(pageName.value);
+                if (newValue !== 'danhSachXe' && newValue !== '') {
+                    pageName.value = linksList.find(link => {
+                        return link.url === `/${newValue}`
+                    })
+                    console.log(pageName.value);
+                }
             }, {immediate: true})
             
             return {
