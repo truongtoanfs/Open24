@@ -7,7 +7,7 @@
                 <p>Tải về mẫu <a href="#" class="text-blue-400 underline" :download="`FileImport_${sectionName}_2003`">Excel 2003</a> hoặc <a href="#" class="text-blue-400 underline" :download="`FileImport_${sectionName}`">bản cao hơn</a></p>
                 
                 <div class="mt-6 mb-5">
-                    <label class="bg-blue-500 text-white p-1.5 rounded cursor-pointer">
+                    <label class="bg-open24-main bg-open24-main-gradient text-white p-1.5 rounded cursor-pointer">
                         Chọn file dữ liệu
                         <input type="file" class="hidden">
                     </label>

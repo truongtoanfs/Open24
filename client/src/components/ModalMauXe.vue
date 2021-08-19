@@ -3,9 +3,9 @@
         <template v-slot:modal-title>{{ modalTitle }}</template>
         <template v-slot:modal-content>
             <BaseInputGroup class="mb-1.5" label="Tên mẫu xe" />
-            <BaseInputGroupSelect class="mb-1.5" label="Hãng xe" placeholderText="Chọn hãng xe" :selectList="hangxeList" />
-            <BaseInputGroupSelect class="mb-1.5" label="Loại xe" placeholderText="Chọn loại xe" :selectList="loaixeList" />
-            <BaseInputGroup label="Ghi chú" />
+            <BaseInputGroupSelect @openModalAddNew="$emit('openModalHangXe')" class="mb-1.5" label="Hãng xe" placeholderText="Chọn hãng xe" :selectList="hangxeList" />
+            <BaseInputGroupSelect @openModalAddNew="$emit('openModalLoaiXe')" class="mb-1.5" label="Loại xe" placeholderText="Chọn loại xe" :selectList="loaixeList" />
+            <BaseTextareaGroup label="Ghi chú" />
         </template>
         <template v-slot:modal-footer>
             <slot name="modal-footer"></slot>
@@ -17,12 +17,14 @@
     import BaseModal from './BaseModal.vue';
     import BaseInputGroup from './BaseInputGroup.vue';
     import BaseInputGroupSelect from './BaseInputGroupSelect.vue';
+    import BaseTextareaGroup from './BaseTextareaGroup.vue';
 
     export default {
         components: {
             BaseModal,
             BaseInputGroup,
             BaseInputGroupSelect,
+            BaseTextareaGroup,
         },
         props: {
             modalTitle: String,
@@ -30,7 +32,7 @@
             hangxeList: Array,
             loaixeList: Array,
         },
-        emits: ["closeModal"],
+        emits: ["closeModal", "openModalHangXe", "openModalLoaiXe"],
 
         
     }

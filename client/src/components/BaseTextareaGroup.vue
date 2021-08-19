@@ -1,6 +1,6 @@
 <template>
     <div class="flex">
-        <label class="w-28 text-gray-600">{{ label }}</label>
+        <label class="form-group__label">{{ label }}</label>
         <textarea rows="2" :placeholder="placeholderText" class="flex-cover input h-auto"></textarea>
     </div>
 </template>

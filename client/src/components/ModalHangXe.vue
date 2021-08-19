@@ -1,15 +1,15 @@
 <template>
-    <BaseModal @closeModal="$emit('closeModal')" modalSize="md">
+    <BaseModal @closeModal="$emit('closeModal')" modalSize="md" class="z-30">
         <template v-slot:modal-title>{{ modalTitle }}</template>
         <template v-slot:modal-content>
             <BaseInputGroup label="Mã hãng xe" placeholderText="Mã tự động" class="mb-1.5" />
             <BaseInputGroup label="Tên hãng xe"/>
             <div class="flex justify-center mt-2">
-                <img class="border border-dashed border-gray-300 py-5 px-2 max-h-28" :src="logoURL ? logoURL : '/src/assets/images/logo-open24-blue.png'" alt="logo hãng xe">
+                <img class="border border-dashed border-gray-300 h-28 w-32 p-1.5 object-contain" :src="logoURL ? logoURL : '/src/assets/images/logo-open24-blue.png'" alt="logo hãng xe">
             </div>
             <div class="flex justify-center mt-2">
-                <input type="file" id="choose-logo" class="hidden" @change="previewLogo($event)">
-                <label for="choose-logo" class="cursor-pointer block w-60 text-center py-1.5 rounded bg-primary text-white">Chọn logo</label>
+                <input type="file" id="choose-logo" class="hidden" @change="updateLogo($event)">
+                <label for="choose-logo" class="cursor-pointer block w-60 text-center py-1.5 rounded bg-open24-main bg-open24-main-gradient text-white">Chọn logo</label>
             </div>
         </template>
         <template v-slot:modal-footer>
@@ -21,6 +21,7 @@
 <script>
     import BaseModal from './BaseModal.vue';
     import BaseInputGroup from './BaseInputGroup.vue';
+    import usePreviewImage from '../composables/usePreviewImage.js';
     import { ref } from 'vue';
 
     export default {
@@ -34,15 +35,13 @@
         setup() {
             const logoURL = ref('');
 
-            function previewLogo(event) {
-                const file = event.target.files[0];
-                logoURL.value = URL.createObjectURL(file);
-                console.log(logoURL);
+            function updateLogo(event) {
+                logoURL.value = usePreviewImage(event)[0];
             }
 
             return {
                 logoURL,
-                previewLogo,
+                updateLogo,
             }
         },
         emits: ["closeModal"],

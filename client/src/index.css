@@ -1,21 +1,78 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
 @layer base {
-    @font-face {
-        font-family: "Helvetical Neue";
-        src: url("/fonts/HelveticalNeue/helveticanewe.otf") format("otf"),
-            url("/fonts/HelveticalNeue/helveticanewe.ttf") format("ttf");
+    :root {
+        --color-text-accent: #ffffff;
+        --color-text-base: #000000;
+        --color-base: #ffffff;
     }
 
+    .blue-theme {
+        --color-main: 19, 116, 173;
+    }
+    .sky-theme {
+        --color-main: 10, 173, 221;
+    }
+    .green-theme {
+        --color-main: 87, 187, 73;
+    }
+    .red-theme {
+        --color-main: 166, 12, 18;
+    }
+    .orange-theme {
+        --color-main: 179, 71, 0;
+    }
+    .pink-theme {
+        --color-main: 212, 57, 104;
+    }
+    .brown-theme {
+        --color-main: 198, 128, 57;
+    }
+    .grey-theme {
+        --color-main: 102, 102, 102;
+    }
+    .sky-gradient-theme {
+        --color-main-gradient: linear-gradient(60deg, rgba(37,128,179,1.0) 0%, rgba(203,186,204,1.0) 100%);
+        --color-main: 37, 128, 179;
+    }
+    .pink-gradient-theme {
+        --color-main-gradient: linear-gradient(60deg, rgba(252,93,174,1) 0%, rgba(253,155,120,1) 100%);
+        --color-main: 252, 93, 174;
+    }
+    .cyan-gradient-theme {
+        --color-main-gradient: linear-gradient(60deg, rgba(0,8,81,1.0) 0%, rgba(28,181,224,1.0) 100%);
+        --color-main: 28, 181, 224;
+    }
+    .indigo-gradient-theme {
+        --color-main-gradient: linear-gradient(90deg, rgba(75,108,183,1.0) 0%, rgba(24,40,72,1.0) 100%);
+        --color-main: 75, 108, 183;
+    }
+    .rose-gradient-theme {
+        --color-main-gradient: linear-gradient(60deg, rgba(135,0,0,1.0) 0%, rgba(25,10,5,1.0) 100%);
+        --color-main: 135, 0, 0;
+    }
+
+    .checkbox-size {
+        @apply h-4 w-4;
+    }
+
+    @font-face {
+        font-family: "Helvetical Neue";
+        src: url("/fonts/HelveticalNeue/helveticanewe.otf") format("otf"), url("/fonts/HelveticalNeue/helveticanewe.ttf") format("ttf");
+    }
     ::-webkit-scrollbar {
-        @apply w-2;
+        @apply w-1 h-1;
     }
     ::-webkit-scrollbar-thumb {
         @apply bg-gray-400 rounded-lg;
+    }
+
+    @media screen and (min-width: 1280px) {
+        ::-webkit-scrollbar {
+            @apply w-1.5 h-2;
+        }
     }
 }
 
@@ -26,12 +83,14 @@
     .hover-circle:active {
         @apply bg-white bg-opacity-10 rounded-full;
     }
-
     .input {
         @apply w-full px-3 h-8 leading-6 border border-solid border-gray-300 focus:outline-none focus:border-blue-500 focus:shadow-md rounded;
     }
     .input:focus {
         @apply focus:outline-none focus:border-blue-500 focus:shadow-md rounded;
+    }
+    .form-group__label {
+        @apply w-28 text-gray-600 sm:w-32;
     }
 }
 
@@ -56,5 +115,9 @@
     }
     .bg-primary {
         background-color: #1374AD;
+    }
+
+    .overlay {
+        @apply fixed inset-0 z-10;
     }
 }

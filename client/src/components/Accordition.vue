@@ -26,7 +26,7 @@
     .accordion-enter-active,
     .accordion-leave-active {
         will-change: height, opacity;
-        transition: height 0.5s, opacity 0.5s;
+        transition: height 0.4s, opacity 0.4s;
         overflow: hidden;
     }
 

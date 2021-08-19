@@ -1,9 +1,8 @@
 <template>
-    <BaseModal @closeModal="$emit('closeModal')" modalSize="md" class="z-30">
+    <BaseModal @closeModal="$emit('closeModal')" modalSize="md" class="z-20">
         <template v-slot:modal-title>{{ modalTitle }}</template>
         <template v-slot:modal-content>
-            <BaseInputGroup label="Mã loại xe" placeholderText="Mã tự động" class="mb-1.5" />
-            <BaseInputGroup label="Tên loại xe"/>
+            <BaseInputGroup label="Tên Trạng thái" :required="true" />
         </template>
         <template v-slot:modal-footer>
             <slot name="modal-footer"></slot>

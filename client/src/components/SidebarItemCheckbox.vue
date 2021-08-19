@@ -13,25 +13,29 @@
 </template>
 
 <script>
-import { reactive, toRefs } from '@vue/reactivity';
+import { ref } from 'vue';
 import Accordition from './Accordition.vue';
 
     export default {
         props: {
             headerText: String,
+            isCollapseAll: Boolean,
         },
         components: {
             Accordition
         },
-        setup() {
-            const sidebarItemsState = reactive({
-                isCollapseItem: true,
-            })
+        setup({ isCollapseAll }) {
+            const isCollapseItem = ref(isCollapseAll);
             
             return {
-                ...toRefs(sidebarItemsState),
+                isCollapseItem,
             }
-        }
+        },
+        watch: {
+            isCollapseAll(val, oldVal) {
+                this.isCollapseItem = val;
+            },
+        },
     }
 </script>
 

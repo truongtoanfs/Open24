@@ -2,14 +2,15 @@
     <div>
         <div @click="isCollapseItem = !isCollapseItem"  class="flex items-center justify-between text-sm  bg-gray-400 bg-opacity-60">
             <div class="flex items-center">
-                <span class="text-base pl-3"><slot name="header-icon"></slot></span>
+                <span class="text-base pl-3">
+                    <slot name="header-icon"></slot>
+                </span>
                 <h4 class="font-semibold px-2 select-none">{{ headerText }}</h4>
             </div>
-            <span @click.stop="$emit('openModal')" class="py-1.5 px-3 cursor-pointer text-blue-600">
+            <span @click.stop="$emit('openModal')" class="py-1.5 px-3 cursor-pointer text-open24-main">
                 <i class="fas fa-plus"></i>
             </span>
         </div>
-        <slot name="modal-add-new"></slot>
         <Accordition>
             <div v-if="isCollapseItem" class="mx-3">
                 <div class="relative border-b border-solid border-gray-300 mt-0.5">
@@ -25,53 +26,60 @@
                 </ul>
             </div>
         </Accordition>
-        <slot name="modal-update"></slot>
     </div>
     <!--
         Tìm kiếm hãng xe:
-            + liều có thể tìm kiếm theo nhiều hãng đc k?
+            + Tìm kiếm theo nhiều hãng, lọc các trường còn lại
             + có thể highlight những hãng xe dã chọn được không
      -->    
 </template>
 
 <script>
-import { reactive, ref, toRefs } from '@vue/reactivity'
-import { watch } from '@vue/runtime-core';
+import { ref } from '@vue/reactivity'
+import { onBeforeUpdate, watch } from '@vue/runtime-core';
 import Accordition from './Accordition.vue';
+import removeAccents from '../composables/useRemoveAccents';
+
 
     export default {
         props: {
             headerText: String,
             searchLabel: String,
             filterData: Array,
+            isCollapseAll: Boolean,
         },
         components: {
             Accordition,
         },
         emits: ['openModalUpdate', 'openModal'],
-        setup(props) {
-            const sidebarItemsState = reactive({
-                isCollapseItem: true,
-            })  
+        setup({ filterData, isCollapseAll }) {
+            let isCollapseItem = ref(isCollapseAll);
             const filterInput = ref('');
             const carList = ref([]);
             
             watch(filterInput, (newValue, oldValue) => {
                 if(newValue.length === 0) {
-                    carList.value = props.filterData;
+                    carList.value = filterData;
                 } else {
-                    carList.value = props.filterData.filter(car => {
-                        return car.name.toUpperCase().includes(newValue.toUpperCase());
+                    carList.value = filterData.filter(car => {
+                        const carNameNoAccents = removeAccents(car.name);
+                        const inputNoAccents = removeAccents(newValue);
+                        return carNameNoAccents.toUpperCase().includes(inputNoAccents.toUpperCase());
                     })
                 }
             }, {immediate: true})
 
             return {
-                ...toRefs(sidebarItemsState),
+                isCollapseItem,
                 filterInput,
                 carList,
             }
-        }
+        },
+        watch: {
+            isCollapseAll(val, oldVal) {
+                this.isCollapseItem = val;
+            },
+        },
     }
 </script>
 
