@@ -1,5 +1,5 @@
 <template>
-    <BaseButton class="bg-open24-main bg-open24-main-gradient hover:bg-none"><i class="fas fa-check mr-1"></i>Đồng ý</BaseButton>
+    <BaseButton class="bg-open24-main bg-open24-main-gradient hover:bg-none"><i class="fas fa-edit mr-1"></i>Sửa đổi</BaseButton>
 </template>
 
 <script>

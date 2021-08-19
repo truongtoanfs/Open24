@@ -1,32 +1,38 @@
 <template>
-  <Header />
-    <router-view/>
+    <TheHeader @changeTheme="changeTheme" :class="primaryTheme" />
+    <router-view :class="primaryTheme" />
 </template>
 
 <script>
-import { onBeforeMount } from '@vue/runtime-core';
-import Header from './components/Header.vue';
+import { onBeforeMount, ref } from "@vue/runtime-core";
+import TheHeader from "./components/TheHeader.vue";
 export default {
-  setup() {
-    const primaryTheme = {
-      name: 'indigo',
-      primaryColor: '#1374ad',
-      secondaryColor: '#19669a',
-    };
+    components: {
+        TheHeader,
+    },
+    setup() {
+        let primaryTheme = ref("blue-theme");
 
-    onBeforeMount(() => {
-      if (!localStorage.primaryTheme) {
-        localStorage.setItem('primaryTheme', JSON.stringify(primaryTheme));
-      }
-    })
+        onBeforeMount(() => {
+            if (!localStorage.primaryTheme) {
+                localStorage.setItem("primaryTheme", primaryTheme.value);
+            } else {
+                primaryTheme.value = localStorage.getItem('primaryTheme');
+            }
+        });
 
-  },
-  components: {
-    Header,
-  }
-}
+        function changeTheme(theme) {
+            primaryTheme.value = theme;
+            localStorage.setItem("primaryTheme", theme);
+        }
+        return {
+            primaryTheme,
+            changeTheme
+        }
+    },
+    
+};
 </script>
 
 <style>
-  
 </style>

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
+import DanhSachXe from '../views/DanhSachXe.vue';
 
 const routes = [
   {
@@ -10,7 +11,7 @@ const routes = [
   {
     path: '/danhSachXe',
     name: 'danhSachXe',
-    component: () => import('../views/DanhSachXe.vue'),
+    component: DanhSachXe,
   },
   {
     path: '/:slug',

@@ -2,31 +2,30 @@
     <div class="flex">
         <label class="form-group__label">{{ label }}</label>
         <div class="relative flex-cover">
-
             <div class="relative">
-                <input ref="input" @click="isOpenList = true, highlightText($event)" type="text" class="input" :placeholder="placeholderText" v-model="filterInput">
+                <input ref="input" type="text" class="input" @click="isOpenList = true" v-model="filterInput" :placeholder="placeholderText">
                 <span v-if="requiredPlus" @click="$emit('openModalAddNew')" class="absolute top-0 right-0 w-8 h-8 flex items-center justify-center cursor-pointer hover:bg-gray-300 rounded-full">
                     <i class="fas fa-plus font-13"></i>
                 </span>
             </div>
 
             <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-                <ul v-click-outside="{ exclude: ['input'], handler: 'closeDropdown' }" v-if="isOpenList" class="absolute z-10 mt-1 py-1 w-full max-h-56 overflow-auto rounded-md bg-white shadow-lg text-sm font-normal divide-y divide-gray-300">
-                    <li @click ="filterInput = item.name, closeDropdown()" v-for="(item, index) in filterList" :key="index" class="relative py-1.5 px-2 cursor-default select-none">
-                        <span>
-                            {{ item.name }}
-                        </span>
-                        <span v-if="filterInput === item.name" class="absolute inset-y-0 right-0 flex items-center pr-4">
-                            <i class="fas fa-check text-blue-600" />
-                        </span>
+                <ul v-click-outside="{ exclude: ['input'], handler: 'closeDropdown' }" v-if="isOpenList" class="absolute z-10 mt-1 py-1 w-full max-h-56 overflow-auto rounded-md bg-white shadow-lg text-sm divide-y divide-gray-300">
+                    <li @click ="filterInput = item.name, closeDropdown()" v-for="(item, index) in filterList" :key="index" class="relative py-1.5 px-2 cursor-default select-none font-normal hover:bg-gray-300">
+                        <div class="flex items-center justify-between text-blue-400">
+                            <span>{{ item.code }}</span>
+                            <span>{{ item.phoneNumber }}</span>
+                        </div>
+                        <span>{{ item.name }}</span>
                     </li>
                 </ul>
             </transition>
         </div>
     </div>
 </template>
+
 <script>
-import { onMounted, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import removeAccents from '../composables/useRemoveAccents';
 
 
@@ -37,11 +36,11 @@ export default {
         selectList: Array,
         requiredPlus: {
             type: Boolean,
-            default: true,
+            default: false,
         },
     },
     emits: ['openModalAddNew'],
-    setup(props) {
+    setup({ selectList }) {
         const isOpenList = ref(false);
         const filterInput = ref('');
 
@@ -49,29 +48,28 @@ export default {
             isOpenList.value = false;
         }
 
-        const filterList = ref([]);
+        const filterList = ref(selectList);
         watch(filterInput, (newValue, oldValue) => {
             if(newValue.length === 0) {
-                filterList.value = props.selectList;
+                filterList.value = selectList;
             } else {
-                filterList.value = props.selectList.filter(item => {
+                filterList.value = selectList.filter(item => {
                     const itemNameNoAccents = removeAccents(item.name);
+                    const itemCode = item.code;
+                    const itemPhoneNumber = item.phoneNumber;
                     const inputNoAccents = removeAccents(newValue);
-                    return itemNameNoAccents.toUpperCase().includes(inputNoAccents.toUpperCase());
+                    return itemNameNoAccents.toUpperCase().includes(inputNoAccents.toUpperCase())
+                    || itemCode.toUpperCase().includes(inputNoAccents.toUpperCase())
+                    || itemPhoneNumber.includes(inputNoAccents);
                 })
             }
-        }, {immediate: true})
-
-        function highlightText(event) {
-            event.currentTarget.select();
-        }
+        })
         
         return {
             isOpenList,
             filterInput,
             closeDropdown,
             filterList,
-            highlightText,
         }
     }
 }
