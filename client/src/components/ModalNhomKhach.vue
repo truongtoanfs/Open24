@@ -11,8 +11,8 @@
                 <BaseInputGroupToggle label="giảm giá" class="mb-2" />
                 <div class="flex mb-2">
                     <label class="form-group__label">Chi nhánh</label>
-                    <div class="relative flex-cover">
-                        <div ref="brachesOutput" @click="isOpenBranchList = !isOpenBranchList" class="w-full min-h-8 leading-6 font-13 font-normal border border-solid border-gray-300 rounded">
+                    <div v-click-outside="closeDropdown" class="relative flex-cover">
+                        <div ref="brachesOutput" @click.stop="isOpenBranchList = !isOpenBranchList" class="w-full min-h-8 leading-6 font-13 font-normal border border-solid border-gray-300 rounded">
                             <ul class="flex flex-wrap items-center h-full">
                                 <li v-if="selectedBranchesList.length === 0" class="bg-gray-200 h-full leading-7 mx-px my-0.5 rounded flex items-center">
                                     <span class="px-4">Tất cả</span>
@@ -23,7 +23,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div v-click-outside="{ exclude: ['brachesOutput'], handler: 'closeBranchList'}" v-if="isOpenBranchList" class="absolute z-20 py-1 px-2 w-full max-h-56 overflow-auto rounded-md bg-white shadow-lg text-sm font-normal">
+                        <div v-if="isOpenBranchList" class="absolute z-20 py-1 px-2 w-full max-h-56 overflow-auto rounded-md bg-white shadow-lg text-sm font-normal">
                             <div class="relative border-b border-solid border-gray-300 mt-0.5">
                                 <span class="absolute inset-y-0 left-0 flex items-center text-sm"><i class="fas fa-search text-gray-700"></i></span>
                                 <input placeholder="Tìm kiếm chi nhánh" v-model="brachFilterInput" type="text" class="w-full h-8 pl-6 border-0 focus:outline-none placeholder-gray-500">

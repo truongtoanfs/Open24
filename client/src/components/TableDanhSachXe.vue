@@ -14,7 +14,7 @@
                     <tr @click="expandTable(rowIndex)" class="border-t border-gray-300 group">
                         <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-for="(element, cellIndex) in object.data" :key="cellIndex">{{ element }}</td>
                     </tr>
-                    <tr v-if="activedRowIndex === rowIndex" class="">
+                    <tr v-if="activedRowIndex === rowIndex">
                         <td :colspan="columnList.length" class="bg-gray-200">
                             <div>
                                 <button @click="activedTab = 'info'" :class="activedTab === 'info' ? 'bg-open24-base' : ''" class="px-3 py-2 rounded font-medium">Thông tin</button>

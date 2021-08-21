@@ -5,6 +5,7 @@ import DanhSachXe from '../views/DanhSachXe.vue';
 const routes = [
   {
     path: '/',
+    alias: '/tongQuan',
     name: 'dashboard',
     component: Dashboard,
   },

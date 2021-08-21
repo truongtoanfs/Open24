@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div @click="isCollapseItem = !isCollapseItem"  class="flex items-center justify-between text-sm  bg-gray-400 bg-opacity-60">
+        <div @click="isCollapseItem = !isCollapseItem"  class="flex items-center justify-between text-sm bg-gray-400 bg-opacity-60">
             <div class="flex items-center">
                 <span class="text-base pl-3">
                     <slot name="header-icon"></slot>
@@ -12,12 +12,12 @@
             </span>
         </div>
         <Accordition>
-            <div v-if="isCollapseItem" class="mx-3">
-                <div class="relative border-b border-solid border-gray-300 mt-0.5">
+            <div v-if="!isCollapseItem" class="mx-3">
+                <div class="relative border-b border-gray-300 mt-0.5">
                     <span class="absolute inset-y-0 left-0 flex items-center text-sm"><i class="fas fa-search text-gray-700"></i></span>
                     <input v-model="filterInput" :placeholder="searchLabel" type="text" class="w-full h-8 pl-6 border-0 focus:outline-none placeholder-gray-500">
                 </div>
-                <button class="font-medium px-3 py-1 rounded border-b border-solid border-gray-200 hover:bg-gray-200">TẤT CẢ</button>
+                <button class="font-medium px-3 py-1 rounded border-b border-gray-200 hover:bg-gray-200">TẤT CẢ</button>
                 <ul class="max-h-28 overflow-y-auto">
                     <li v-for="car in carList" :key="car.id" class="flex items-center justify-between group cursor-default hover:bg-gray-200 pl-3 rounded-sm">
                         <span class="font-medium leading-6">{{ car.name }}</span>
@@ -76,7 +76,7 @@ import removeAccents from '../composables/useRemoveAccents';
             }
         },
         watch: {
-            isCollapseAll(val, oldVal) {
+            isCollapseAll(val) {
                 this.isCollapseItem = val;
             },
         },

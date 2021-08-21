@@ -1,25 +1,14 @@
 let handleOutsideClick;
 export default {
-    beforeMount: (el, binding, vnode) => {
-        handleOutsideClick = (e) => {
-            e.stopPropagation();
-            const { handler, exclude } = binding.value
-            let clickedOnExcludedEl = false
-            exclude.forEach(refName => {
-                if (!clickedOnExcludedEl) {
-                    const excludedEl = binding.instance.$refs[refName]
-                    clickedOnExcludedEl = excludedEl.contains(e.target)
-                }
-            })
-            if (!el.contains(e.target) && !clickedOnExcludedEl) {
-                binding.instance[handler]()
-            }
-        }
-        document.addEventListener('click', handleOutsideClick)
-        document.addEventListener('touchstart', handleOutsideClick)
+    beforeMount: (el, binding) => {
+        el.clickOutsideEvent = event => {
+          if (!(el == event.target || el.contains(event.target))) {
+            binding.value();
+          }
+        };
+        document.addEventListener("click", el.clickOutsideEvent);
     },
-    unmounted() {
-        document.removeEventListener('click', handleOutsideClick)
-        document.removeEventListener('touchstart', handleOutsideClick)
-    }
+    unmounted: el => {
+        document.removeEventListener("click", el.clickOutsideEvent);
+    },
 }

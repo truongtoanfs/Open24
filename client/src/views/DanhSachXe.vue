@@ -1,36 +1,34 @@
 <template>
     <div class="p-3.5 xl:flex xl:pl-0">
-        <div :class="isOpenSidebar ? 'block' : 'hidden'" class="xl:block xl:mr-1.5">
-            <TheSidebar @closeSidebar="isOpenSidebar = false" :isCollapseAll="isCollapseAll" @collapseAll="isCollapseAll = !isCollapseAll">
-                <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalHangXe = true" @openModalUpdate="isOpenModalUpdateHangXe = true" headerText="Hãng xe" searchLabel="Tìm kiếm hãng xe" :filterData="hangxeList">
-                    <template v-slot:header-icon>
-                        <i class="fab fa-fort-awesome"></i>
-                    </template>
-                </SidebarItemSearch>
+        <TheSidebar :class="[isOpenSidebar ? 'block' : 'hidden', 'xl:block xl:mr-1.5']" @closeSidebar="isOpenSidebar = false" :isCollapseAll="isCollapseAll" @collapseAll="isCollapseAll = !isCollapseAll">
+            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalHangXe = true" @openModalUpdate="isOpenModalUpdateHangXe = true" headerText="Hãng xe" searchLabel="Tìm kiếm hãng xe" :filterData="hangxeList">
+                <template v-slot:header-icon>
+                    <i class="fab fa-fort-awesome"></i>
+                </template>
+            </SidebarItemSearch>
 
-                <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalLoaiXe = true" @openModalUpdate="isOpenModalUpdateLoaiXe = true" headerText="Loại xe" searchLabel="Tìm kiếm loại xe" :filterData="loaixeList">
-                    <template v-slot:header-icon>
-                        <i class="fas fa-truck-pickup"></i>
-                    </template>
-                </SidebarItemSearch>
+            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalLoaiXe = true" @openModalUpdate="isOpenModalUpdateLoaiXe = true" headerText="Loại xe" searchLabel="Tìm kiếm loại xe" :filterData="loaixeList">
+                <template v-slot:header-icon>
+                    <i class="fas fa-truck-pickup"></i>
+                </template>
+            </SidebarItemSearch>
 
-                <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalMauXe = true" @openModalUpdate="isOpenModalUpdateMauXe = true" headerText="Mẫu xe" searchLabel="Tìm kiếm mẫu xe" :filterData="mauxeList">
-                    <template v-slot:header-icon>
-                        <i class="fas fa-car-side"></i>
-                    </template>
-                </SidebarItemSearch>
+            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalMauXe = true" @openModalUpdate="isOpenModalUpdateMauXe = true" headerText="Mẫu xe" searchLabel="Tìm kiếm mẫu xe" :filterData="mauxeList">
+                <template v-slot:header-icon>
+                    <i class="fas fa-car-side"></i>
+                </template>
+            </SidebarItemSearch>
 
-                <SidebarItemCheckbox :isCollapseAll="isCollapseAll" class="mb-0.5" headerText="Trạng thái">
-                    <template v-slot:header-icon>
-                        <i class="far fa-stop-circle"></i>
-                    </template>
-                    <template v-slot:content>
-                        <BaseCheckbox label="Đang sử dụng" class="py-1" />
-                        <BaseCheckbox label="Hủy" class="py-1" />
-                    </template>
-                </SidebarItemCheckbox>
-            </TheSidebar>
-        </div>
+            <SidebarItemCheckbox :isCollapseAll="isCollapseAll" class="mb-0.5" headerText="Trạng thái">
+                <template v-slot:header-icon>
+                    <i class="far fa-stop-circle"></i>
+                </template>
+                <template v-slot:content>
+                    <BaseCheckbox label="Đang sử dụng" class="py-1" />
+                    <BaseCheckbox label="Hủy" class="py-1" />
+                </template>
+            </SidebarItemCheckbox>
+        </TheSidebar>
         <div class="w-full">
             <h1 class="text-xl font-bold mb-2.5">Danh mục Xe</h1>
             <div class="md:flex md:justify-between">
@@ -572,7 +570,7 @@ export default {
         })
         const isOpenSidebar = ref(false);
         const isOpenDropdownColumn = ref(false);
-        const isCollapseAll = ref(true);
+        const isCollapseAll = ref(false);
         function previewLogo(event) {
             const file = event.target.files[0];
             logoURL.value = URL.createObjectURL(file);

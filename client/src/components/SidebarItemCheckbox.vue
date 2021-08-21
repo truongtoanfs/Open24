@@ -5,7 +5,7 @@
             <h4 class="font-semibold px-2 select-none">{{ headerText }}</h4>
         </div>
         <Accordition>
-            <div v-if="isCollapseItem" class="pt-1 px-6">
+            <div v-if="!isCollapseItem" class="pt-1 px-6">
                 <slot name="content"></slot>
             </div>
         </Accordition>
@@ -32,7 +32,7 @@ import Accordition from './Accordition.vue';
             }
         },
         watch: {
-            isCollapseAll(val, oldVal) {
+            isCollapseAll(val) {
                 this.isCollapseItem = val;
             },
         },

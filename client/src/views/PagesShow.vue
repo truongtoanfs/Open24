@@ -17,7 +17,7 @@
             const linksList = [
                 {
                 text: "Tổng quan",
-                url: "/",
+                url: "/tongQuan",
                 },
                 {
                 text: "Bàn làm việc",

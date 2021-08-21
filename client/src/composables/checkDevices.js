@@ -14,4 +14,4 @@ function isPrefix(breakpoint) {
     return screenWidth > checkValue ? true : false;
 }
 
-export { isPrefix };
+export default isPrefix;

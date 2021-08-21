@@ -15,13 +15,13 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </button>
-                        <router-link to="/" @click="isOpenSideNav = false">
+                        <router-link to="/tongQuan" @click="isOpenSideNav = false">
                             <img class="h-7 cursor-pointer relative top-px" src="../assets/images/logo-open24.png" alt="open24 logo">
                         </router-link>
                     </div>
 
                     <div class="px-1 pb-1 xl:p-0">     
-                        <router-link @click="isOpenSideNav = false" to="/" class="flex items-center h-9 my-0.5 xl:h-full xl:my-0 xl:hover:bg-black xl:hover:bg-opacity-30 xl:px-2">
+                        <router-link @click="isOpenSideNav = false" to="/tongQuan" class="flex items-center h-9 my-0.5 xl:h-full xl:my-0 xl:hover:bg-black xl:hover:bg-opacity-30 xl:px-2">
                             <span class="flex items-center mb-px"><i class="fas fa-laptop text-base w-8 text-center mx-1 xl:w-6 xl:ml-0"></i>Tổng Quan</span>
                         </router-link>
                     </div>
@@ -51,8 +51,9 @@
                     <div @click="isOpenBranch = !isOpenBranch" class="flex items-center px-2 cursor-pointer">
                         <i class="fas fa-map-marker-alt text-lg pr-1"></i> <span>{{ selectedBranch }}</span>
                     </div>
+                    <div class="overlay"  v-if="isOpenBranch" @click="isOpenBranch = false"></div>
                     <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-                        <div v-if="isOpenBranch" class="absolute top-full right-0 z-50 w-56 p-1 bg-white text-gray-600 shadow-md border border-solid border-gray-400 rounded-b">
+                        <div v-if="isOpenBranch" class="absolute top-full right-0 z-50 w-56 p-1 bg-open24-base text-gray-600 shadow-md border border-gray-400 rounded-b">
                             <div class="relative mt-0.5 mb-1">
                                 <input type="text" v-model="branchInput" class="input" placeholder="Tìm kiếm chi nhánh" autofocus>
                                 <span class="absolute top-1/2 transform -translate-y-2/4 right-3">
@@ -60,45 +61,44 @@
                                 </span>
                             </div>
                             <ul v-for="branch in branchFilter" :key="branch.id">
-                                <li @click="changeBranch(branch.name)" class="relative p-1.5 rounded-sm cursor-default select-none hover:bg-blue-100 hover:text-gray-900" :data-branch="branch.name">
+                                <li @click="changeBranch(branch.name)" class="relative p-1.5 rounded-sm cursor-default select-none hover:bg-blue-100 hover:text-gray-900">
                                     {{ branch.name }}
                                     <span v-if="selectedBranch === branch.name" class="absolute inset-y-0 right-0 pr-4 flex items-center">
-                                        <i class="fas fa-check text-blue-600" aria-hidden="true" />
+                                        <i class="fas fa-check text-open24-main" aria-hidden="true" />
                                     </span>
                                 </li>
                             </ul>
                         </div>
                     </transition>
-                    <div class="overlay"  v-if="isOpenBranch" @click="isOpenBranch = false"></div>
                 </div>
                 <div class="h-10 flex items-center">
                     <div class="px-2 cursor-pointer" @click="isOpenNotify = !isOpenNotify">
                         <i class="fas fa-bell text-lg"></i>
                     </div>
                     <div v-if="isOpenNotify" class="overlay" @click="isOpenNotify = false"></div>
-                    <div v-if="isOpenNotify" class="navbar__notify absolute top-full right-0 z-20 bg-white text-333 w-96 px-2.5 border-l border-solid border-gray-400 border-opacity-50">
-                        <div class="flex items-center justify-between border-b border-solid border-gray-400 border-opacity-50 pt-0.5">
+                    <div v-if="isOpenNotify" class="navbar-notify-height absolute top-full right-0 z-20 bg-open24-base text-333 w-96 px-2.5 border-l border-gray-400 border-opacity-50">
+                        <div class="flex items-center justify-between border-b border-gray-400 border-opacity-50 pt-0.5">
                             <h6 class="font-bold px-2">Thông báo</h6>
                             <div class="flex items-center relative">
-                                <span class="text-blue-800 cursor-pointer">Đánh dấu dã đọc</span><i class="fas fa-cog px-2 pt-2 pb-1 cursor-pointer text-base text-blue-800" @click="isOpenSettingNotify = !isOpenSettingNotify"></i>
+                                <span class="text-open24-main cursor-pointer">Đánh dấu dã đọc</span><i class="fas fa-cog px-2 pt-2 pb-1 cursor-pointer text-base text-open24-main" @click="isOpenSettingNotify = !isOpenSettingNotify"></i>
                                 <div v-if="isOpenSettingNotify" class="overlay" @click="isOpenSettingNotify = false"></div>
-                                <div v-if="isOpenSettingNotify" class="absolute z-20 top-full right-0 border border-solid border-blue-800 rounded-sm py-1 px-3 w-40 bg-white ">
-                                    <div class="flex items-center py-1">
-                                        <input type="checkbox" id="checkbox-ton-kho" class="w-4 h-4 mr-1.5">
-                                        <label class="cursor-pointer" for="checkbox-ton-kho">Tồn kho</label>
-                                    </div>
-                                    <div class="flex items-center py-1">
-                                        <input type="checkbox" id="checkbox-dieu-chuyen" class="w-4 h-4 mr-1.5">
-                                        <label class="cursor-pointer" for="checkbox-dieu-chuyen">Điều chuyển</label>
-                                    </div>
-                                    <div class="flex items-center py-1">
-                                        <input type="checkbox" id="checkbox-lo-hang" class="w-4 h-4 mr-1.5">
-                                        <label class="cursor-pointer" for="checkbox-lo-hang">Lô hàng</label>
-                                    </div>
-                                    <div class="flex items-center py-1">
-                                        <input type="checkbox" id="checkbox-sinh-nhat" class="w-4 h-4 mr-1.5">
-                                        <label class="cursor-pointer" for="checkbox-sinh-nhat">Sinh nhật</label>
-                                    </div>
+                                <div v-if="isOpenSettingNotify" class="absolute z-20 top-full right-0 border border-open24-main rounded-sm py-1 px-3 w-40 bg-open24-base ">
+                                    <label class="flex items-center py-1 cursor-pointer">
+                                        <input type="checkbox" class="w-4 h-4 mr-1.5">
+                                        <span>Tồn kho</span>
+                                    </label>
+                                    <label class="flex items-center py-1 cursor-pointer">
+                                        <input type="checkbox" class="w-4 h-4 mr-1.5">
+                                        <span>Điều chuyển</span>
+                                    </label>
+                                    <label class="flex items-center py-1 cursor-pointer">
+                                        <input type="checkbox" class="w-4 h-4 mr-1.5">
+                                        <span>Lô hàng</span>
+                                    </label>
+                                    <label class="flex items-center py-1 cursor-pointer">
+                                        <input type="checkbox" class="w-4 h-4 mr-1.5">
+                                        <span>Sinh nhật</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="hidden xl:flex relative h-10 items-center">
+                <div class="hidden relative h-10 xl:flex xl:items-center">
                     <div @click="isOpenHelper = !isOpenHelper" class="px-2 cursor-pointer">
                         <i class="fas fa-question-circle text-lg"></i>
                     </div>
@@ -118,7 +118,7 @@
                                 <a v-if="!helper.isDeleteSystem" :href="helper.link" class="flex items-center px-2.5 py-1.5 rounded hover:bg-black hover:bg-opacity-30">
                                     <img class="w-4 h-4 mr-2" :src="helper.iconUrl" alt="application icon"> <span>{{ helper.name }}</span>
                                 </a>
-                                <a v-if="helper.isDeleteSystem" :href="helper.link" @click="isOpenModalDeleteSystem = true" class="flex items-center px-2.5 py-1.5 rounded hover:bg-black hover:bg-opacity-30">
+                                <a v-if="helper.isDeleteSystem" :href="helper.link" @click="isOpenModalDeleteSystem = true, isOpenHelper = false" class="flex items-center px-2.5 py-1.5 rounded hover:bg-black hover:bg-opacity-30">
                                     <img class="w-4 h-4 mr-2" :src="helper.iconUrl" alt="application icon"> <span>{{ helper.name }}</span>
                                 </a>
                             </template>
@@ -139,16 +139,16 @@
                     </template>
                     <template v-slot:modal-footer>
                         <ButtonCancel @click="isOpenModalDeleteSystem = false" class="mr-2.5" />
-                        <ButtonAgree @click="isOpenModalDeleteSystem = false" class="" />
+                        <ButtonAgree @click="isOpenModalDeleteSystem = false" />
                     </template>
                 </BaseModal>
 
                 <div class="relative h-10 flex items-center">
                     <div @click="isOpenSetting = !isOpenSetting" class="px-3 cursor-pointer">
-                        <img class="rounded-full w-7 h-7" src="../assets/images/men-user.png" alt="">
+                        <img class="rounded-full w-7 h-7" src="../assets/images/men-user.png" alt="user logo">
                     </div>
                     <div class="overlay" v-if="isOpenSetting" @click="isOpenSetting = false"></div>
-                        <div v-if="isOpenSetting" class="absolute top-full right-0 z-50 shadow-separate w-56 px-2 py-0.5 rounded-bl bg-open24-main bg-open24-main-gradient focus:outline-none">
+                        <div v-if="isOpenSetting" class="absolute top-full right-0 z-50 shadow-separate w-56 px-2 py-0.5 rounded-bl bg-open24-main bg-open24-main-gradient">
                             <template v-for="setting in settingList" :key="setting.id">
                                 <a v-if="!setting.isContainThemes" href="#" :class="setting.borderBottom ? 'border-b border-dotted border-gray-100' : ''" class="flex items-center py-1.5 px-1.5 rounded hover:bg-black hover:bg-opacity-30">
                                     <i :class="setting.icon" class="text-base w-5 text-center mr-2"></i> {{ setting.name }}
@@ -156,7 +156,7 @@
                                 <a v-if="setting.isContainThemes" href="javascript:void(0)" :class="setting.borderBottom ? 'border-b border-dotted border-gray-100' : ''" class="flex items-center group relative py-1.5 px-1.5 rounded hover:bg-black hover:bg-opacity-30">
                                     <i :class="setting.icon" class="fas fa-palette text-base w-5 text-center mr-2"></i> {{ setting.name }}
                                     <ul class="hidden absolute top-0 right-full w-36 p-1.5 group-hover:grid grid-cols-3 gap-2 bg-open24-main bg-open24-main-gradient shadow-separate rounded sm:w-60 sm:grid-cols-4 sm:gap-2.5 sm:p-2.5">
-                                        <li class="w-10 h-10 bg-open24-main border border-solid border-gray-100 hover:outline-highlight sm:w-12 sm:h-12" v-for="(theme, index) in themeList" :key="index" :class="[theme.includes('gradient') ? 'bg-open24-main-gradient' : '', theme]" @click="$emit('changeTheme', theme)"></li>
+                                        <li class="w-10 h-10 bg-open24-main border border-gray-100 hover:outline-highlight sm:w-12 sm:h-12" v-for="(theme, index) in themeList" :key="index" :class="[theme.includes('gradient') ? 'bg-open24-main-gradient' : '', theme]" @click="$emit('changeTheme', theme)"></li>
                                     </ul>
                                 </a>
                             </template>
@@ -169,9 +169,8 @@
 
 <script>
     import { ref, reactive, toRefs, watch } from 'vue';
-    import * as Device from '../mixins/checkDevices';
+    import Device from '../composables/checkDevices';
     import { navbarItems } from '../mixins/navbarItems';
-    import { themes } from '../mixins/themes';
     import BaseModal from './BaseModal.vue';
     import BaseInputGroup from './BaseInputGroup.vue';
     import ButtonAgree from './ButtonAgree.vue';
@@ -183,11 +182,6 @@
         },
         emits: ['changeTheme'],
         setup(props, context) {
-
-            function test() {
-                alert("i'm here!");
-            }
-
             const helperList = [
                 {
                     id: 1,
@@ -215,7 +209,7 @@
                     name: 'Xóa dữ liệu hệ thống',
                     link: 'javascript:void(0)',
                     iconUrl: '/src/assets/images/xoa-du-lieu.png',
-                    isDeleteSystem: false,
+                    isDeleteSystem: true,
                 },
                 {
                     id: 5,
@@ -352,7 +346,6 @@
             'sky-gradient-theme', 'pink-gradient-theme', 'cyan-gradient-theme', 'indigo-gradient-theme', 'rose-gradient-theme'];
 
             return {
-                test,
                 navbarItems,
                 themeList,
                 ...toRefs(showStates),
@@ -378,7 +371,7 @@
         background: rgba(0, 0, 0, 0.3);
     }
 
-    .navbar__notify {
+    .navbar-notify-height {
         height: calc(100vh - 40px);
     }
 

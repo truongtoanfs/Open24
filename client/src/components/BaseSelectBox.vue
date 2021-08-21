@@ -1,14 +1,14 @@
 <template>
     <div class="relative" :class="inputWidth">
         <div class="relative">
-            <input ref="input" @click="isOpenList = true" type="text" class="input" :placeholder="placeholderText" v-model="filterInput">
+            <input ref="input" @click="isOpenList = true, highlightText($event)" type="text" class="input" :placeholder="placeholderText" v-model="filterInput">
             <span v-if="requiredPlus" @click="$emit('openModalAddNew')" class="absolute top-0 right-0 w-8 h-8 flex items-center justify-center cursor-pointer hover:bg-gray-300 rounded-full">
                 <i class="fas fa-plus font-13"></i>
             </span>
         </div>
 
         <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-            <ul v-click-outside="{ exclude: ['input'], handler: 'closeDropdown' }" v-if="isOpenList" class="absolute z-10 mt-1 py-1 w-full max-h-56 overflow-auto rounded-md bg-white shadow-lg text-sm font-normal divide-y divide-gray-300">
+            <ul v-if="isOpenList" class="v-click-outside absolute z-10 mt-1 py-1 w-full max-h-56 overflow-auto rounded-md bg-white shadow-lg text-sm font-normal divide-y divide-gray-300">
                 <li @click ="filterInput = item, closeDropdown()" v-for="(item, index) in filterList" :key="index" class="relative py-1.5 px-2 cursor-default select-none">
                     <span>
                         {{ item }}
@@ -67,11 +67,17 @@ export default {
             }
         })
         
+        function highlightText(event) {
+            event.currentTarget.select();
+            filterList.value = props.selectList;
+        }
+
         return {
             isOpenList,
             filterInput,
             closeDropdown,
             filterList,
+            highlightText,
         }
     }
 }
