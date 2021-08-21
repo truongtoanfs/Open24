@@ -1,4 +1,4 @@
-# Open24: những phần e đã hoàn thành
+# Open24:
 + header responsive
 + Dùng vueRouter để chuyển trang
 + Dùng headlessui/vue cho phép sử dụng keyboard ở các mục: chọn chi nhánh, trợ giúp, user
