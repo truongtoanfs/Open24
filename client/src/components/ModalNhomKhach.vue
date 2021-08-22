@@ -11,7 +11,7 @@
                 <BaseInputGroupToggle label="giảm giá" class="mb-2" />
                 <div class="flex mb-2">
                     <label class="form-group__label">Chi nhánh</label>
-                    <div v-click-outside="closeDropdown" class="relative flex-cover">
+                    <div v-click-outside="closeBranchList" class="relative flex-cover">
                         <div ref="brachesOutput" @click.stop="isOpenBranchList = !isOpenBranchList" class="w-full min-h-8 leading-6 font-13 font-normal border border-solid border-gray-300 rounded">
                             <ul class="flex flex-wrap items-center h-full">
                                 <li v-if="selectedBranchesList.length === 0" class="bg-gray-200 h-full leading-7 mx-px my-0.5 rounded flex items-center">

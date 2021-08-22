@@ -1,6 +1,6 @@
 // using breakpoint in tailwind https://tailwindcss.com/docs/responsive-design
 
-function isPrefix(breakpoint) {
+export function isPrefix(breakpoint) {
     const screenWidth = screen.width;
     const prefix = {
         "sm": 640,
@@ -14,4 +14,3 @@ function isPrefix(breakpoint) {
     return screenWidth > checkValue ? true : false;
 }
 
-export default isPrefix;

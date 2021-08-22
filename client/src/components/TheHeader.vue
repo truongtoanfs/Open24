@@ -169,7 +169,7 @@
 
 <script>
     import { ref, reactive, toRefs, watch } from 'vue';
-    import Device from '../composables/checkDevices';
+    import * as Device from '../composables/checkDevices';
     import { navbarItems } from '../mixins/navbarItems';
     import BaseModal from './BaseModal.vue';
     import BaseInputGroup from './BaseInputGroup.vue';
