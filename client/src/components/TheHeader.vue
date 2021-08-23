@@ -20,29 +20,25 @@
                         </router-link>
                     </div>
 
-                    <div class="px-1 pb-1 xl:p-0">     
-                        <router-link @click="isOpenSideNav = false" to="/tongQuan" class="flex items-center h-9 my-0.5 xl:h-full xl:my-0 xl:hover:bg-black xl:hover:bg-opacity-30 xl:px-2">
-                            <span class="flex items-center mb-px"><i class="fas fa-laptop text-base w-8 text-center mx-1 xl:w-6 xl:ml-0"></i>Tổng Quan</span>
-                        </router-link>
-                    </div>
-
-                    <div class=" px-1 pb-1 xl:p-0">     
-                        <router-link @click="isOpenSideNav = false" to="/banLamViec" class="flex items-center h-9 my-0.5 xl:h-full xl:my-0 xl:hover:bg-black xl:hover:bg-opacity-30 xl:px-2">
-                            <span class="flex items-center mb-px"><i class="fas fa-car text-lg w-8 text-center mx-1 xl:w-6 xl:ml-0"></i>Bàn làm việc</span>
-                        </router-link>
-                    </div>
-
-                    <div class="nav-item px-1 pb-1 xl:p-0 xl:relative group" v-for="(navbarItem, index) in navbarItems" :key="index">      
-                        <div @click="collapseNav($event)" class="nav-item__label flex items-center justify-between h-9 my-0.5 pr-1.5 rounded cursor-pointer xl:group-hover:bg-black xl:group-hover:bg-opacity-30 xl:h-full xl:my-0 xl:rounded-none xl:px-2">
-                            <span class="flex items-center mb-px"><i class="w-8 text-center mx-1 xl:hidden" :class="navbarItem.symbolIcon"></i>{{ navbarItem.name }}</span>
-                            <i class="fas fa-angle-down pl-1 pt-0.5"></i>
-                        </div>
-                        <div class="nav-item__list hidden bg-open24-main bg-open24-main-gradient xl:group-hover:block xl:absolute xl:left-0 xl:top-full xl:z-50 xl:w-48 xl:rounded-b xl:shadow-separate">
-                            <router-link @click="isOpenSideNav = false, closeNavActivation()" :to="navItem.url" class="flex items-center px-6 py-1 xl:px-1.5 xl:hover:bg-black xl:hover:bg-opacity-20" v-for="(navItem, index) in navbarItem.navList" :key="index">
-                                <i class="text-base w-6 text-center mr-1" :class="navItem.icon"></i> <span class="xl:mb-px">{{ navItem.text }}</span>
+                    <template v-for="navItem in menuHeader" :key="navItem.ID">
+                        <div v-if="navItem.SubMenu.length === 0" class="px-1 pb-1 xl:p-0">     
+                            <router-link @click="isOpenSideNav = false" :to="navItem.url" class="flex items-center h-9 my-0.5 xl:h-full xl:my-0 xl:hover:bg-black xl:hover:bg-opacity-30 xl:px-2">
+                                <span class="flex items-center mb-px"><i :class="[navItem.ClassName, navItem.url === 'DashBoard' ? 'text-base' : 'text-lg']" class="w-8 text-center mx-1 xl:w-6 xl:ml-0"></i>{{ navItem.Title }}</span>
                             </router-link>
                         </div>
-                    </div>
+                        <div v-else class="nav-item px-1 pb-1 xl:p-0 xl:relative group">      
+                            <div @click="collapseNav($event)" class="nav-item__label flex items-center justify-between h-9 my-0.5 pr-1.5 rounded cursor-pointer xl:group-hover:bg-black xl:group-hover:bg-opacity-30 xl:h-full xl:my-0 xl:rounded-none xl:px-2">
+                                <span class="flex items-center mb-px"><i class="text-lg w-8 text-center mx-1 xl:hidden" :class="navItem.ClassName"></i>{{ navItem.Title }}</span>
+                                <i class="fas fa-angle-down pl-1 pt-0.5"></i>
+                            </div>
+                            <div class="nav-item__list hidden bg-open24-main bg-open24-main-gradient xl:group-hover:block xl:absolute xl:left-0 xl:top-full xl:z-50 xl:w-48 xl:rounded-b xl:shadow-separate">
+                                <router-link v-for="subNavItem in navItem.SubMenu" :key="subNavItem.ID" @click="isOpenSideNav = false, closeNavActivation()" :to="subNavItem.url" class="flex items-center px-6 py-1 xl:px-1.5 xl:hover:bg-black xl:hover:bg-opacity-20">
+                                    <i class="text-base w-6 text-center mr-1" :class="subNavItem.ClassName"></i> <span class="xl:mb-px">{{ subNavItem.Title }}</span>
+                                </router-link>
+                            </div>
+                        </div>
+                    </template>
+
                 </div>
                 <div class="overlay bg-black bg-opacity-60"  v-if="isOpenSideNav" @click="isOpenSideNav = false"></div>
             </div>
@@ -170,7 +166,7 @@
 <script>
     import { ref, reactive, toRefs, watch } from 'vue';
     import * as Device from '../composables/checkDevices';
-    import { navbarItems } from '../mixins/navbarItems';
+    import { InitHeaderMenu } from '../data';
     import BaseModal from './BaseModal.vue';
     import BaseInputGroup from './BaseInputGroup.vue';
     import ButtonAgree from './ButtonAgree.vue';
@@ -182,6 +178,8 @@
         },
         emits: ['changeTheme'],
         setup(props, context) {
+            const menuHeader = InitHeaderMenu.dataSoure.Menu;
+            console.log(menuHeader);
             const helperList = [
                 {
                     id: 1,
@@ -346,7 +344,7 @@
             'sky-gradient-theme', 'pink-gradient-theme', 'cyan-gradient-theme', 'indigo-gradient-theme', 'rose-gradient-theme'];
 
             return {
-                navbarItems,
+                menuHeader,
                 themeList,
                 ...toRefs(showStates),
                 collapseNav,
