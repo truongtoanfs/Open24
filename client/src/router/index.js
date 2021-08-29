@@ -1,18 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
 import DanhSachXe from '../views/DanhSachXe.vue';
+import PhieuTiepNhan from '../views/PhieuTiepNhan.vue';
+import BaoGiaSuaChua from '../views/BaoGiaSuaChua.vue';
+import HoaDonSuaChua from '../views/HoaDonSuaChua.vue';
 
 const routes = [
   {
     path: '/',
-    alias: '/tongQuan',
-    name: 'dashboard',
+    alias: '/Dashboard',
     component: Dashboard,
   },
   {
-    path: '/danhSachXe',
+    path: '/DanhSachXe',
     name: 'danhSachXe',
     component: DanhSachXe,
+  },
+  {
+    path: '/DanhSachPhieuTiepNhan',
+    name: 'phieuTiepNhan',
+    component: PhieuTiepNhan,
+  },
+  {
+    path: '/Quotation',
+    name: 'baoGiaSuaChua',
+    component: BaoGiaSuaChua,
+  },
+  {
+    path: '/HoaDonSuaChua',
+    name: 'hoaDonSuaChua',
+    component: HoaDonSuaChua,
   },
   {
     path: '/:slug',

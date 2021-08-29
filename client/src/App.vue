@@ -1,6 +1,6 @@
 <template>
     <TheHeader @changeTheme="changeTheme" :class="primaryTheme" />
-    <router-view :class="primaryTheme" />
+    <router-view :class="[primaryTheme, 'mt-10']" />
 </template>
 
 <script>
@@ -12,14 +12,11 @@ export default {
     },
     setup() {
         let primaryTheme = ref("blue-theme");
-
-        onBeforeMount(() => {
-            if (!localStorage.primaryTheme) {
-                localStorage.setItem("primaryTheme", primaryTheme.value);
-            } else {
-                primaryTheme.value = localStorage.getItem('primaryTheme');
-            }
-        });
+        if (!localStorage.primaryTheme) {
+            localStorage.setItem("primaryTheme", primaryTheme.value);
+        } else {
+            primaryTheme.value = localStorage.getItem('primaryTheme');
+        }
 
         function changeTheme(theme) {
             primaryTheme.value = theme;

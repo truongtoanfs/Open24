@@ -19,19 +19,15 @@
                 </div>
                 <button class="font-medium px-3 py-1 rounded border-b border-gray-200 hover:bg-gray-200">TẤT CẢ</button>
                 <ul class="max-h-28 overflow-y-auto">
-                    <li v-for="car in carList" :key="car.id" class="flex items-center justify-between group cursor-default hover:bg-gray-200 pl-3 rounded-sm">
-                        <span class="font-medium leading-6">{{ car.name }}</span>
-                        <span @click="$emit('openModalUpdate')" class="invisible group-hover:visible cursor-pointer text-blue-500 hover:text-blue-700 text-base px-2 py-0.5"><i class="far fa-edit"></i></span>
+                    <li v-for="(item, index) in filterList" :key="index" class="flex items-center justify-between group cursor-default hover:bg-gray-200 pl-3 rounded-sm">
+                        <span class="font-medium leading-6">{{ item[keywordFilter]}}</span>
+                        <span @click="$emit('openModalUpdate', index)" class="invisible group-hover:visible cursor-pointer text-blue-500 hover:text-blue-700 text-base px-2 py-0.5"><i class="far fa-edit"></i></span>
+                        <slot name="update-modal" :updateData="item" :activedItemIndex="index"></slot>
                     </li>
                 </ul>
             </div>
         </Accordition>
     </div>
-    <!--
-        Tìm kiếm hãng xe:
-            + Tìm kiếm theo nhiều hãng, lọc các trường còn lại
-            + có thể highlight những hãng xe dã chọn được không
-     -->    
 </template>
 
 <script>
@@ -40,46 +36,46 @@ import { onBeforeUpdate, watch } from '@vue/runtime-core';
 import Accordition from './Accordition.vue';
 import removeAccents from '../composables/useRemoveAccents';
 
-
-    export default {
-        props: {
-            headerText: String,
-            searchLabel: String,
-            filterData: Array,
-            isCollapseAll: Boolean,
-        },
-        components: {
-            Accordition,
-        },
-        emits: ['openModalUpdate', 'openModal'],
-        setup({ filterData, isCollapseAll }) {
-            let isCollapseItem = ref(isCollapseAll);
-            const filterInput = ref('');
-            const carList = ref([]);
-            
-            watch(filterInput, (newValue, oldValue) => {
-                if(newValue.length === 0) {
-                    carList.value = filterData;
-                } else {
-                    carList.value = filterData.filter(car => {
-                        const carNameNoAccents = removeAccents(car.name);
-                        const inputNoAccents = removeAccents(newValue);
-                        return carNameNoAccents.toUpperCase().includes(inputNoAccents.toUpperCase());
-                    })
-                }
-            }, {immediate: true})
-
-            return {
-                isCollapseItem,
-                filterInput,
-                carList,
+export default {
+    props: {
+        headerText: String,
+        searchLabel: String,
+        filterData: Array,
+        keywordFilter: String,
+        isCollapseAll: Boolean,
+    },
+    components: {
+        Accordition,
+    },
+    emits: ['openModalUpdate', 'openModal'],
+    setup({ filterData , keywordFilter, isCollapseAll }) {
+        let isCollapseItem = ref(isCollapseAll);
+        const filterInput = ref('');
+        const filterList = ref([]);
+        
+        watch(filterInput, (newValue, oldValue) => {
+            if(newValue.length === 0) {
+                filterList.value = filterData;
+            } else {
+                filterList.value = filterData.filter(item => {
+                    const itemNameNoAccents = removeAccents(item[keywordFilter]);
+                    const inputNoAccents = removeAccents(newValue);
+                    return itemNameNoAccents.toUpperCase().includes(inputNoAccents.toUpperCase());
+                })
             }
+        }, {immediate: true})
+
+        return {
+            isCollapseItem,
+            filterInput,
+            filterList,
+        }
+    },
+    watch: {
+        isCollapseAll(val) {
+            this.isCollapseItem = val;
         },
-        watch: {
-            isCollapseAll(val) {
-                this.isCollapseItem = val;
-            },
-        },
-    }
+    },
+}
 </script>
 

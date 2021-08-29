@@ -1,7 +1,7 @@
 <template>
-    <nav class="font-medium text-open24-accent bg-open24-main bg-open24-main-gradient">
+    <nav class="fixed top-0 inset-x-0 z-50 font-medium text-open24-accent bg-open24-main bg-open24-main-gradient">
         <div class="flex items-center justify-between">
-            <button class="py-2 px-3 xl:hidden" @click="isOpenSideNav = !isOpenSideNav">
+            <button class="py-2 px-3 xl:hidden" @click="isOpenSideNav = true">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -10,39 +10,34 @@
             <div id="side-nav">
                 <div :class="isOpenSideNav ? 'block' : 'hidden'" class="side-nav-width fixed inset-y-0 left-0 z-20 overflow-auto bg-open24-main bg-open24-main-gradient xl:static xl:flex xl:overflow-visible xl:bg-none xl:bg-opacity-0">
                     <div class="flex items-center px-3 pt-1.5 pb-2 xl:py-1.5 xl:mx-3.5">
-                        <button @click="isOpenSideNav = !isOpenSideNav" class="mr-9 xl:hidden">
+                        <button @click="isOpenSideNav = false" class="mr-9 xl:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </button>
-                        <router-link to="/tongQuan" @click="isOpenSideNav = false">
+                        <router-link to="/DashBoard" @click="isOpenSideNav = false">
                             <img class="h-7 cursor-pointer relative top-px" src="../assets/images/logo-open24.png" alt="open24 logo">
                         </router-link>
                     </div>
 
-                    <div class="px-1 pb-1 xl:p-0">     
-                        <router-link @click="isOpenSideNav = false" to="/tongQuan" class="flex items-center h-9 my-0.5 xl:h-full xl:my-0 xl:hover:bg-black xl:hover:bg-opacity-30 xl:px-2">
-                            <span class="flex items-center mb-px"><i class="fas fa-laptop text-base w-8 text-center mx-1 xl:w-6 xl:ml-0"></i>Tổng Quan</span>
-                        </router-link>
-                    </div>
-
-                    <div class=" px-1 pb-1 xl:p-0">     
-                        <router-link @click="isOpenSideNav = false" to="/banLamViec" class="flex items-center h-9 my-0.5 xl:h-full xl:my-0 xl:hover:bg-black xl:hover:bg-opacity-30 xl:px-2">
-                            <span class="flex items-center mb-px"><i class="fas fa-car text-lg w-8 text-center mx-1 xl:w-6 xl:ml-0"></i>Bàn làm việc</span>
-                        </router-link>
-                    </div>
-
-                    <div class="nav-item px-1 pb-1 xl:p-0 xl:relative group" v-for="(navbarItem, index) in navbarItems" :key="index">      
-                        <div @click="collapseNav($event)" class="nav-item__label flex items-center justify-between h-9 my-0.5 pr-1.5 rounded cursor-pointer xl:group-hover:bg-black xl:group-hover:bg-opacity-30 xl:h-full xl:my-0 xl:rounded-none xl:px-2">
-                            <span class="flex items-center mb-px"><i class="w-8 text-center mx-1 xl:hidden" :class="navbarItem.symbolIcon"></i>{{ navbarItem.name }}</span>
-                            <i class="fas fa-angle-down pl-1 pt-0.5"></i>
-                        </div>
-                        <div class="nav-item__list hidden bg-open24-main bg-open24-main-gradient xl:group-hover:block xl:absolute xl:left-0 xl:top-full xl:z-50 xl:w-48 xl:rounded-b xl:shadow-separate">
-                            <router-link @click="isOpenSideNav = false, closeNavActivation()" :to="navItem.url" class="flex items-center px-6 py-1 xl:px-1.5 xl:hover:bg-black xl:hover:bg-opacity-20" v-for="(navItem, index) in navbarItem.navList" :key="index">
-                                <i class="text-base w-6 text-center mr-1" :class="navItem.icon"></i> <span class="xl:mb-px">{{ navItem.text }}</span>
+                    <template v-for="navItem in menuHeader" :key="navItem.ID">
+                        <div v-if="navItem.SubMenu.length === 0" class="px-1 pb-1 xl:p-0">     
+                            <router-link :to="navItem.url" @click="isOpenSideNav = false" class="flex items-center h-9 my-0.5 xl:h-full xl:my-0 xl:hover:bg-black xl:hover:bg-opacity-30 xl:px-2">
+                                <span class="flex items-center mb-px"><i :class="[navItem.ClassName, navItem.url === 'DashBoard' ? 'text-base' : 'text-lg']" class="w-8 text-center mx-1 xl:w-6 xl:ml-0"></i>{{ navItem.Title }}</span>
                             </router-link>
                         </div>
-                    </div>
+                        <div v-else class="nav-item px-1 pb-1 xl:p-0 xl:relative group">      
+                            <div @click="collapseNav($event)" class="nav-item__label flex items-center justify-between h-9 my-0.5 pr-1.5 rounded cursor-pointer xl:group-hover:bg-black xl:group-hover:bg-opacity-30 xl:h-full xl:my-0 xl:rounded-none xl:px-2">
+                                <span class="flex items-center mb-px"><i class="text-lg w-8 text-center mx-1 xl:hidden" :class="navItem.ClassName"></i>{{ navItem.Title }}</span>
+                                <i class="fas fa-angle-down pl-1 pt-0.5"></i>
+                            </div>
+                            <div class="nav-item__list hidden bg-open24-main bg-open24-main-gradient xl:group-hover:block xl:absolute xl:left-0 xl:top-full xl:z-50 xl:w-48 xl:rounded-b xl:shadow-separate">
+                                <router-link v-for="subNavItem in navItem.SubMenu" :key="subNavItem.ID" @click="isOpenSideNav = false, closeNavActivation()" :to="subNavItem.url" class="flex items-center px-6 py-1 xl:px-1.5 xl:hover:bg-black xl:hover:bg-opacity-20">
+                                    <i class="text-base w-6 text-center mr-1" :class="subNavItem.ClassName"></i> <span class="xl:mb-px">{{ subNavItem.Title }}</span>
+                                </router-link>
+                            </div>
+                        </div>
+                    </template>
                 </div>
                 <div class="overlay bg-black bg-opacity-60"  v-if="isOpenSideNav" @click="isOpenSideNav = false"></div>
             </div>
@@ -51,7 +46,7 @@
                     <div @click="isOpenBranch = !isOpenBranch" class="flex items-center px-2 cursor-pointer">
                         <i class="fas fa-map-marker-alt text-lg pr-1"></i> <span>{{ selectedBranch }}</span>
                     </div>
-                    <div class="overlay"  v-if="isOpenBranch" @click="isOpenBranch = false"></div>
+                    <div class="overlay" v-if="isOpenBranch" @click="isOpenBranch = false"></div>
                     <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
                         <div v-if="isOpenBranch" class="absolute top-full right-0 z-50 w-56 p-1 bg-open24-base text-gray-600 shadow-md border border-gray-400 rounded-b">
                             <div class="relative mt-0.5 mb-1">
@@ -61,9 +56,9 @@
                                 </span>
                             </div>
                             <ul v-for="branch in branchFilter" :key="branch.id">
-                                <li @click="changeBranch(branch.name)" class="relative p-1.5 rounded-sm cursor-default select-none hover:bg-blue-100 hover:text-gray-900">
-                                    {{ branch.name }}
-                                    <span v-if="selectedBranch === branch.name" class="absolute inset-y-0 right-0 pr-4 flex items-center">
+                                <li @click="changeBranch(branch.TenDonVi), isOpenBranch = false" class="relative p-1.5 rounded-sm cursor-default select-none hover:bg-blue-100 hover:text-gray-900">
+                                    {{ branch.TenDonVi }}
+                                    <span v-if="selectedBranch === branch.TenDonVi" class="absolute inset-y-0 right-0 pr-4 flex items-center">
                                         <i class="fas fa-check text-open24-main" aria-hidden="true" />
                                     </span>
                                 </li>
@@ -72,15 +67,16 @@
                     </transition>
                 </div>
                 <div class="h-10 flex items-center">
-                    <div class="px-2 cursor-pointer" @click="isOpenNotify = !isOpenNotify">
+                    <div class="relative px-2 cursor-pointer" @click="isOpenNotify = !isOpenNotify">
                         <i class="fas fa-bell text-lg"></i>
+                        <span v-if="numberOfNotify > 0" class="absolute -top-1 -right-2 block notify-badge-width px-1 h-5 text-center rounded-full text-open24-accent bg-red-500">{{ numberOfNotify }}</span>
                     </div>
                     <div v-if="isOpenNotify" class="overlay" @click="isOpenNotify = false"></div>
                     <div v-if="isOpenNotify" class="navbar-notify-height absolute top-full right-0 z-20 bg-open24-base text-333 w-96 px-2.5 border-l border-gray-400 border-opacity-50">
                         <div class="flex items-center justify-between border-b border-gray-400 border-opacity-50 pt-0.5">
                             <h6 class="font-bold px-2">Thông báo</h6>
                             <div class="flex items-center relative">
-                                <span class="text-open24-main cursor-pointer">Đánh dấu dã đọc</span><i class="fas fa-cog px-2 pt-2 pb-1 cursor-pointer text-base text-open24-main" @click="isOpenSettingNotify = !isOpenSettingNotify"></i>
+                                <span @click="readAllNotify()" class="text-open24-main cursor-pointer hover:underline">Đánh dấu dã đọc</span><i class="fas fa-cog px-2 pt-2 pb-1 cursor-pointer text-base text-open24-main" @click="isOpenSettingNotify = !isOpenSettingNotify"></i>
                                 <div v-if="isOpenSettingNotify" class="overlay" @click="isOpenSettingNotify = false"></div>
                                 <div v-if="isOpenSettingNotify" class="absolute z-20 top-full right-0 border border-open24-main rounded-sm py-1 px-3 w-40 bg-open24-base ">
                                     <label class="flex items-center py-1 cursor-pointer">
@@ -99,11 +95,27 @@
                                         <input type="checkbox" class="w-4 h-4 mr-1.5">
                                         <span>Sinh nhật</span>
                                     </label>
+                                    <label class="flex items-center py-1 cursor-pointer">
+                                        <input type="checkbox" class="w-4 h-4 mr-1.5">
+                                        <span>Bảo dưỡng xe</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <h6 class="text-center py-2">Không có thông báo</h6>
+                            <h6 v-if="listNotify.length === 0" class="hidden text-center py-2">Không có thông báo</h6>
+                            <ul v-else class="py-2 max-h-content-notify">
+                                <li v-for="(notify, notifyIndex) in listNotify" :key="notifyIndex" :class="notify.DaDoc ? '' : 'bg-green-200 bg-opacity-30'" class="flex items-center p-1 py-2.5 mb-3">
+                                    <div class="w-14 flex-shrink-0 mr-1.5"><img class="mx-auto" src="../assets/images/hetkho.png" style="height: 30px;"></div>
+                                    <div>
+                                        <p v-html="notify.NoiDungThongBao"></p>
+                                        <span class="date-notifi">{{ notify.NgayTao }}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="absolute inset-x-0 bottom-0 text-center py-3 mx-2.5 border-t border-gray-400">
+                            <button class="text-sm mb-1 font-medium hover:underline">Xem thêm</button>
                         </div>
                     </div>
                 </div>
@@ -148,19 +160,19 @@
                         <img class="rounded-full w-7 h-7" src="../assets/images/men-user.png" alt="user logo">
                     </div>
                     <div class="overlay" v-if="isOpenSetting" @click="isOpenSetting = false"></div>
-                        <div v-if="isOpenSetting" class="absolute top-full right-0 z-50 shadow-separate w-56 px-2 py-0.5 rounded-bl bg-open24-main bg-open24-main-gradient">
-                            <template v-for="setting in settingList" :key="setting.id">
-                                <a v-if="!setting.isContainThemes" href="#" :class="setting.borderBottom ? 'border-b border-dotted border-gray-100' : ''" class="flex items-center py-1.5 px-1.5 rounded hover:bg-black hover:bg-opacity-30">
-                                    <i :class="setting.icon" class="text-base w-5 text-center mr-2"></i> {{ setting.name }}
-                                </a>
-                                <a v-if="setting.isContainThemes" href="javascript:void(0)" :class="setting.borderBottom ? 'border-b border-dotted border-gray-100' : ''" class="flex items-center group relative py-1.5 px-1.5 rounded hover:bg-black hover:bg-opacity-30">
-                                    <i :class="setting.icon" class="fas fa-palette text-base w-5 text-center mr-2"></i> {{ setting.name }}
-                                    <ul class="hidden absolute top-0 right-full w-36 p-1.5 group-hover:grid grid-cols-3 gap-2 bg-open24-main bg-open24-main-gradient shadow-separate rounded sm:w-60 sm:grid-cols-4 sm:gap-2.5 sm:p-2.5">
-                                        <li class="w-10 h-10 bg-open24-main border border-gray-100 hover:outline-highlight sm:w-12 sm:h-12" v-for="(theme, index) in themeList" :key="index" :class="[theme.includes('gradient') ? 'bg-open24-main-gradient' : '', theme]" @click="$emit('changeTheme', theme)"></li>
-                                    </ul>
-                                </a>
-                            </template>
-                        </div>
+                    <div v-if="isOpenSetting" class="absolute top-full right-0 z-50 shadow-separate w-56 px-2 py-0.5 rounded-bl bg-open24-main bg-open24-main-gradient">
+                        <template v-for="setting in settingList" :key="setting.id">
+                            <a v-if="!setting.isContainThemes" href="#" :class="setting.borderBottom ? 'border-b border-dotted border-gray-100' : ''" class="flex items-center py-1.5 px-1.5 rounded hover:bg-black hover:bg-opacity-30">
+                                <i :class="setting.icon" class="text-base w-5 text-center mr-2"></i> {{ setting.name }}
+                            </a>
+                            <a v-if="setting.isContainThemes" href="javascript:void(0)" :class="setting.borderBottom ? 'border-b border-dotted border-gray-100' : ''" class="flex items-center group relative py-1.5 px-1.5 rounded hover:bg-black hover:bg-opacity-30">
+                                <i :class="setting.icon" class="fas fa-palette text-base w-5 text-center mr-2"></i> {{ setting.name }}
+                                <ul class="hidden absolute top-0 right-full w-36 p-1.5 group-hover:grid grid-cols-3 gap-2 bg-open24-main bg-open24-main-gradient shadow-separate rounded sm:w-60 sm:grid-cols-4 sm:gap-2.5 sm:p-2.5">
+                                    <li class="w-10 h-10 bg-open24-main border border-gray-100 hover:outline-highlight sm:w-12 sm:h-12" v-for="(theme, index) in themeList" :key="index" :class="[theme.includes('gradient') ? 'bg-open24-main-gradient' : '', theme]" @click="$emit('changeTheme', theme)"></li>
+                                </ul>
+                            </a>
+                        </template>
+                    </div>
                 </div>
             </div>
         </div>
@@ -168,20 +180,26 @@
 </template>
 
 <script>
-    import { ref, reactive, toRefs, watch } from 'vue';
-    import * as Device from '../composables/checkDevices';
-    import { navbarItems } from '../mixins/navbarItems';
     import BaseModal from './BaseModal.vue';
     import BaseInputGroup from './BaseInputGroup.vue';
     import ButtonAgree from './ButtonAgree.vue';
-    import ButtonCancel from './ButtonCancel.vue';
+    import ButtonCancel from './ButtonCancel.vue';    
+    import { ref, reactive, toRefs, watch } from 'vue';
+    import * as Device from '../composables/checkDevices';
+    import { InitHeaderMenu } from '../data';
+    import { GetListDonVi_User } from '../data';
+    import { GetThongBao } from '../data';
     import removeAccents from '../composables/useRemoveAccents';
+import ButtonAddNew from './ButtonAddNew.vue';
+
     export default {
         components: {
             BaseModal, BaseInputGroup, ButtonAgree, ButtonCancel,
+                ButtonAddNew,
         },
         emits: ['changeTheme'],
         setup(props, context) {
+            const menuHeader = InitHeaderMenu.dataSoure.Menu;
             const helperList = [
                 {
                     id: 1,
@@ -285,7 +303,6 @@
                     isContainThemes: false,
                 },
             ];
-
             const showStates = reactive({
                 isOpenSideNav: false,
                 isOpenBranch: false,
@@ -307,7 +324,6 @@
                     navItem.nextElementSibling.classList.toggle('hidden');
                 }
             }
-
             function closeNavActivation() {
                 const itemActivation = document.querySelector('.nav-item.active');
                 if (itemActivation) {
@@ -316,37 +332,45 @@
                 }
             }
 
-            let branches = [
-                { id: 1, name: 'Ssoft Cầu giấy', nameNoAccent: 'Ssoft Cau Giay'},
-                { id: 2, name: 'Chi nhánh 02', nameNoAccent: 'Chi nhanh 02'},
-                { id: 3, name: 'Chi nhánh 03', nameNoAccent: 'Chi nhanh 03'},
-                { id: 4, name: 'Chi nhánh 04', nameNoAccent: 'Chi nhanh 04'},
-                { id: 5, name: 'Chi nhánh 05', nameNoAccent: 'nameNoAccent 05'},
-            ];
+            let branches = GetListDonVi_User;
             const branchInput = ref('');
             const branchFilter = ref(branches);
-            const selectedBranch = ref(branches[0].name);
-
+            const selectedBranch = ref(branches[0].TenDonVi);
             function changeBranch(branchName) {
                 selectedBranch.value = branchName;
             }
-
-            watch(branchInput, (newValue, oldValue) => {
+            watch(branchInput, (newValue) => {
                 if(newValue.length === 0) {
                     branchFilter.value = branches;
                     return;
                 }
                 const stringToNoAccent = removeAccents(newValue);
                 branchFilter.value = branches.filter(branch => {
-                    return branch.nameNoAccent.toUpperCase().includes(stringToNoAccent.toUpperCase());
+                    const branchNameNoAccent = removeAccents(branch.TenDonVi);
+                    return branchNameNoAccent.toUpperCase().includes(stringToNoAccent.toUpperCase());
                 })
             })
+
+            
+            const listNotify = ref(GetThongBao.dataSoure.ListThongBao);
+            const numberOfNotify =  ref(GetThongBao.dataSoure.CountTB);
+            function readAllNotify() {
+                numberOfNotify.value = 0;
+                listNotify.value = listNotify.value.map(item => {
+                    return {
+                        DaDoc: true,
+                        NoiDungThongBao: item.NoiDungThongBao,
+                        NgayTao: item.NgayTao,
+                        Image: item.Image,
+                    }
+                })
+            }
 
             const themeList = ['blue-theme', 'sky-theme', 'green-theme', 'red-theme', 'orange-theme', 'pink-theme', 'brown-theme', 'grey-theme',
             'sky-gradient-theme', 'pink-gradient-theme', 'cyan-gradient-theme', 'indigo-gradient-theme', 'rose-gradient-theme'];
 
             return {
-                navbarItems,
+                menuHeader,
                 themeList,
                 ...toRefs(showStates),
                 collapseNav,
@@ -356,7 +380,10 @@
                 branchInput,
                 changeBranch,
                 helperList,
-                settingList
+                settingList,
+                listNotify,
+                numberOfNotify,
+                readAllNotify,
             }
         }
     }
@@ -373,6 +400,20 @@
 
     .navbar-notify-height {
         height: calc(100vh - 40px);
+    }
+
+    .notify-badge-width {
+        min-width: 20px;
+    }
+
+    .max-h-content-notify {
+        max-height: calc(100vh - 130px);
+        overflow: auto;
+    }
+    .date-notifi {
+        font-size: 11px;
+        color: #727070;
+        font-style: italic;
     }
 
     @media screen and (min-width: 1280px) {

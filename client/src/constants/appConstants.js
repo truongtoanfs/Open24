@@ -1,0 +1,1 @@
+export const TABLE_OPTION_VALUES = [10, 20, 30, 40, 50];
