@@ -8,6 +8,8 @@
 + cd client
 + npm run dev
 
+
+
 # Bugs
 
 
@@ -28,5 +30,5 @@
 
 
 # Analysis
-
++ How to divide layout
 

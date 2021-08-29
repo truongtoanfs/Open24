@@ -5,14 +5,28 @@
             <thead>
                 <tr>
                     <template v-for="column in columnList" :key="column.id">
-                        <th class="bg-gray-300 open24-table-cell whitespace-nowrap sticky top-0 border-r border-white last:border-0">{{ column.name }}</th>
+                        <th v-if="column.colShow" class="bg-gray-300 open24-table-cell whitespace-nowrap sticky top-0 border-r border-white last:border-0">{{ column.colText }}</th>
                     </template>
                 </tr>
             </thead>
             <tbody>
                 <template v-for="(object, rowIndex) in tableData" :key="rowIndex">
                     <tr @click="expandTable(rowIndex)" class="border-t border-gray-300 group">
-                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-for="(element, cellIndex) in object.data" :key="cellIndex">{{ element }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[0].colShow" >{{ object.BienSo }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[1].colShow" >{{ object.MaDoiTuong }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[2].colShow" >{{ object.TenDoiTuong }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[3].colShow" >{{ object.DienThoai }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[4].colShow" >{{ object.TenHangXe }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[5].colShow" >{{ object.TenLoaiXe }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[6].colShow" >{{ object.TenMauXe }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[7].colShow" >{{ object.NamSanXuat === 0 ? '' : object.NamSanXuat }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[8].colShow" >{{ object.SoKhung }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[9].colShow" >{{ object.SoMay }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[10].colShow" >{{ object.MauSon }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[11].colShow" >{{ object.DungTich }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[12].colShow" >{{ object.HopSo }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[13].colShow" >{{ object.GhiChu }}</td>
+                        <td :class="(activedRowIndex === rowIndex) ? 'bg-gray-200' : 'bg-open24-base'" class="open24-table-cell whitespace-nowrap group-hover:bg-gray-200" v-if="columnList[14].colShow" >{{ object.TrangThai === 1 ? "Đang Sử dụng" : "Ngừng sử dụng" }}</td>
                     </tr>
                     <tr v-if="activedRowIndex === rowIndex">
                         <td :colspan="columnList.length" class="bg-gray-200">
@@ -25,14 +39,103 @@
                             <div class="bg-open24-base">
                                 <div v-if="activedTab === 'info'" class="table-width px-6 ">
                                     <div class="pt-2 pb-4 md:grid md:grid-cols-2 md:gap-x-6 lg:grid-cols-3">
-                                        <div v-for="(infoItem, index) in object.info" :key="index" class="flex items-center open24-table-cell open24-table-cell-border">
-                                            <span class="block w-32">{{infoItem.name}}</span>
-                                            <span>{{ infoItem.value }}</span>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Biển số xe:</span>
+                                            <span>{{ object.BienSo }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Hãng xe:</span>
+                                            <span>{{ object.TenHangXe }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Loại xe:</span>
+                                            <span>{{ object.TenLoaiXe }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Mẫu xe:</span>
+                                            <span>{{ object.TenMauXe }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Màu sơn:</span>
+                                            <span>{{ object.MauSon }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Số khung:</span>
+                                            <span>{{ object.SoKhung }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Số máy:</span>
+                                            <span>{{ object.SoMay }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Dung tích:</span>
+                                            <span>{{ object.DungTich }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Hộp số:</span>
+                                            <span>{{ object.HopSo }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Mã chủ xe:</span>
+                                            <span>{{ object.MaDoiTuong }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Tên chủ xe:</span>
+                                            <span>{{ object.TenDoiTuong }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Ngày sinh:</span>
+                                            <span>{{ object.NgaySinh_NgayTLap }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Điện thoại:</span>
+                                            <span>{{ object.DienThoai }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Mã số thuế:</span>
+                                            <span>{{ object.MaSoThue }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Email:</span>
+                                            <span>{{ object.Email }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Địa chỉ:</span>
+                                            <span>{{ object.DiaChi }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Quận/huyện:</span>
+                                            <span>{{ object.TenQuanHuyen }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Tỉnh/thành:</span>
+                                            <span>{{ object.TenTinhTHanh }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Ngày tạo:</span>
+                                            <span>{{ object.NgayTao }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Người tạo:</span>
+                                            <span>{{ object.NguoiTao }}</span>
+                                        </div>
+                                        <div class="flex items-center open24-table-cell open24-table-cell-border">
+                                            <span class="block w-32">Ghi chú:</span>
+                                            <span>{{ object.GhiChu }}</span>
                                         </div>
                                     </div>
                                     <div class="flex items-center justify-end pb-3">
-                                        <ButtonModify class="mr-2" />
-                                        <ButtonDelete>xe {{ object.data.bienSo }}</ButtonDelete>
+                                        <ButtonModify @click="activedUpdateModalIndex = rowIndex" />
+                                        <BaseModalThemMoiXe v-if="activedUpdateModalIndex === rowIndex" :modalTitle="`Cập nhật xe ${object.BienSo}`"
+                                            @closeModal="activedUpdateModalIndex = -1"
+                                            @openModalMauXe="$emit('openModalMauXe')" @openModalHangXe="$emit('openModalHangXe')" @openModalLoaiXe="$emit('openModalLoaiXe')" @openModalKhachHang="$emit('openModalKhachHang')"
+                                            :updateXeData="object" :hangxeList="hangxeList" :loaixeList="loaixeList" :mauxeList="mauxeList" :chuxeList="chuxeList" >
+                                            <template v-slot:modal-footer>
+                                                <button-cancel @closeModal="activedUpdateModalIndex = -1" />
+                                                <button-save class="btn-distance" />
+                                            </template>
+                                        </BaseModalThemMoiXe>
+                                        <ButtonDelete class="btn-distance">xe {{ object.BienSo }}</ButtonDelete>
                                     </div>
                                 </div>
                                 <div v-if="activedTab === 'history'" class="table-width px-3">
@@ -110,7 +213,11 @@
                                     <TablePagination :paginationButtonList="historyPaginationButtonList" :pageView="historyPageView" :totalPages="historyTotalPages" />
                                 </div>
                                 <div v-if="activedTab === 'schedule'" class="table-width px-3">
-                                    <div class="overflow-auto pt-4">
+                                    <div class="flex items-center justify-end px-2 pt-2">
+                                        <BaseCheckbox label="Chưa xử lý" :value="true" />
+                                        <BaseCheckbox label="Đã nhắc" class="ml-4" :value="true" />
+                                    </div>
+                                    <div class="overflow-auto pt-1.5">
                                         <table class="w-full">
                                             <thead>
                                                 <tr>
@@ -154,9 +261,13 @@
 import ButtonDelete from './ButtonDelete.vue';
 import ButtonModify from './ButtonModify.vue';
 import ButtonExport from './ButtonExport.vue';
+import ButtonCancel from './ButtonCancel.vue';
+import ButtonSave from './ButtonSave.vue';
 import Accordition from './Accordition.vue';
 import TablePagination from './Tablepagination.vue';
-import { ref } from 'vue';
+import BaseModalThemMoiXe from './danhSachXe/BaseModalThemMoiXe.vue';
+import BaseCheckbox from './BaseCheckbox.vue';
+import { ref, watch } from 'vue';
 import { GetListGaraDanhMucXe_v1 } from '../data';
 import { Gara_GetListHoaDonSuaChua_v2 } from "../data";
 import { Gara_GetListNhatKyBaoDuongTheoXe } from "../data";
@@ -166,153 +277,38 @@ import { Gara_GetListLichBaoDuongTheoXe } from "../data";
 export default {
     props: {
         columnList: Array,
+        hangxeList: Array,
+        loaixeList: Array,
+        mauxeList: Array,
+        chuxeList: Array,
     },
+    emits: ['openModalMauXe', 'openModalHangXe', 'openModalLoaiXe', 'openModalKhachHang'],
     components: {
         ButtonDelete,
         ButtonModify,
         ButtonExport,
+        ButtonCancel,
+        ButtonSave,
         Accordition,
-        TablePagination
+        TablePagination,
+        BaseModalThemMoiXe,
+        BaseCheckbox,
     },
-    setup() {
-        const tableData = GetListGaraDanhMucXe_v1.dataSoure.data.map(item => {
-            return {
-                data: {
-                    bienSo: item.BienSo,
-                    maChuXe: item.MaDoiTuong,
-                    chuXe: item.TenDoiTuong,
-                    dienThoai: item.DienThoai,
-                    hangXe: item.TenHangXe,
-                    loaiXe: item.TenLoaiXe,
-                    mauXe: item.TenMauXe,
-                    namSanXuat: item.NamSanXuat === 0 ? '' : item.NamSanXuat,
-                    soKhung: item.SoKhung,
-                    soMay: item.SoMay,
-                    mauSon: item.MauSon,
-                    dungTich: item.DungTich,
-                    hopSo: item.HopSo,
-                    ghiChu: item.GhiChu,
-                    trangThai: item.TrangThai === 1 ? "Đang Sử dụng" : "Ngừng sử dụng",
-                },
-                info: [
-                    {
-                        id: 1,
-                        name: 'Biển số xe:',
-                        value: item.BienSo,
-                    },
-                    {
-                        id: 2,
-                        name: 'Hãng xe:',
-                        value: item.TenHangXe,
-                    },
-                    {
-                        id: 3,
-                        name: 'Loại xe:',
-                        value: item.TenLoaiXe,
-                    },
-                    {
-                        id: 4,
-                        name: 'Mẫu xe:',
-                        value: item.TenMauXe,
-                    },
-                    {
-                        id: 5,
-                        name: 'Màu sơn:',
-                        value: item.MauSon,
-                    },
-                    {
-                        id: 6,
-                        name: 'Số khung:',
-                        value: item.SoKhung,
-                    },
-                    {
-                        id: 7,
-                        name: 'Số máy:',
-                        value: item.SoMay,
-                    },
-                    {
-                        id: 8,
-                        name: 'Dung tích:',
-                        value: item.DungTich,
-                    },
-                    {
-                        id: 9,
-                        name: 'Hộp số:',
-                        value: item.HopSo,
-                    },
-                    {
-                        id: 10,
-                        name: 'Mã chủ xe:',
-                        value: item.MaDoiTuong,
-                    },
-                    {
-                        id: 11,
-                        name: 'Tên chủ xe:',
-                        value: item.TenDoiTuong,
-                    },
-                    {
-                        id: 13,
-                        name: 'Ngày sinh:',
-                        value: item.NgaySinh_NgayTLap,
-                    },
-                    {
-                        id: 14,
-                        name: 'Điện thoại:',
-                        value: item.DienThoai,
-                    },
-                    {
-                        id: 15,
-                        name: 'Mã số thuế:',
-                        value: item.MaSoThue,
-                    },
-                    {
-                        id: 16,
-                        name: 'Email:',
-                        value: item.Email,
-                    },
-                    {
-                        id: 17,
-                        name: 'Địa chỉ:',
-                        value: item.DiaChi,
-                    },
-                    {
-                        id: 18,
-                        name: 'Quận/huyện:',
-                        value: item.TenQuanHuyen,
-                    },
-                    {
-                        id: 19,
-                        name: 'Tỉnh/thành:',
-                        value: item.TenTinhTHanh,
-                    },
-                    {
-                        id: 20,
-                        name: 'Ngày tạo:',
-                        value: item.NgayTao,
-                    },
-                    {
-                        id: 21,
-                        name: 'Người tạo:',
-                        value: item.NguoiTao,
-                    },
-                    {
-                        id: 22,
-                        name: 'Ghi chú:',
-                        value: item.GhiChu,
-                    },
-                ]
-            }
-        })
+    setup(props) {
+        const tableData = GetListGaraDanhMucXe_v1.dataSoure.data;
         const paginationButtonList = GetListGaraDanhMucXe_v1.dataSoure.ListPage;
         const pageView = GetListGaraDanhMucXe_v1.dataSoure.PageView;
         const totalPages = GetListGaraDanhMucXe_v1.dataSoure.NumberOfPage;
 
+        
         const activedTab = ref('info');
         const activedRowIndex = ref(-1);//khởi tạo đóng tất cả các hàng
         function expandTable(rowIndex) {
             activedRowIndex.value = activedRowIndex.value === rowIndex ? -1 : rowIndex;
             activedTab.value = 'info';
         }
+
+        const activedUpdateModalIndex = ref(-1);
 
         const historyData = Gara_GetListHoaDonSuaChua_v2.dataSoure.data;
         const historyPaginationButtonList = Gara_GetListHoaDonSuaChua_v2.dataSoure.ListPage;
@@ -335,6 +331,7 @@ export default {
             pageView,
             activedTab,
             activedRowIndex,
+            activedUpdateModalIndex,
             paginationButtonList,
             expandTable,
             historyData,

@@ -1,7 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* Base layer dùng để reset stylesheet áp dụng trên mọi phần tử */
+/* Component layer chứa các custom css dùng để xử lý việc trùng lặp */
+/* Utilities layer chứa các class tiện ích áp dụng trên từng phần tử */
+/* Reference link: https://tailwindcss.com/docs/adding-base-styles */
 @layer base {
     :root {
         --color-text-accent: #ffffff;
@@ -54,10 +57,6 @@
         --color-main: 135, 0, 0;
     }
 
-    .checkbox-size {
-        @apply h-4 w-4;
-    }
-
     @font-face {
         font-family: "Helvetical Neue";
         src: url("/fonts/HelveticalNeue/helveticanewe.otf") format("otf"), url("/fonts/HelveticalNeue/helveticanewe.ttf") format("ttf");
@@ -68,11 +67,19 @@
     ::-webkit-scrollbar-thumb {
         @apply bg-gray-400 rounded-lg;
     }
-
     @media screen and (min-width: 1280px) {
         ::-webkit-scrollbar {
             @apply w-1.5 h-2;
         }
+    }
+    .font-13 {
+        font-size: 13px;
+    }
+    .checkbox-size {
+        @apply h-4 w-4;
+    }
+    .btn-distance {
+        @apply ml-2;
     }
 }
 
@@ -95,9 +102,6 @@
 }
 
 @layer utilities {
-    .font-13 {
-        font-size: 13px;
-    }
     .flex-cover {
         flex: 1;
     }
@@ -113,11 +117,12 @@
     .bg-inherit {
         background: inherit;
     }
-    .bg-primary {
-        background-color: #1374AD;
-    }
 
     .overlay {
         @apply fixed inset-0 z-10;
     }
+
+    .bg-readonly, .bg-disable {
+        @apply bg-gray-100;
+    } 
 }

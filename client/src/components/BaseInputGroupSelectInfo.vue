@@ -3,7 +3,7 @@
         <label class="form-group__label">{{ label }}</label>
         <div v-click-outside="closeDropdown" class="relative flex-cover">
             <div class="relative">
-                <input ref="input" type="text" class="input" @click="isOpenList = true" v-model="filterInput" :placeholder="placeholderText">
+                <input type="text" class="input" @click="isOpenList = true, highlightText($event)" v-model="filterInput" :placeholder="placeholderText">
                 <span v-if="requiredPlus" @click="$emit('openModalAddNew')" class="absolute top-0 right-0 w-8 h-8 flex items-center justify-center cursor-pointer hover:bg-gray-300 rounded-full">
                     <i class="fas fa-plus font-13"></i>
                 </span>
@@ -33,6 +33,10 @@ export default {
     props: {
         label: String,
         placeholderText: String,
+        value: {
+            type: String,
+            default: '',
+        },
         selectList: Array,
         requiredPlus: {
             type: Boolean,
@@ -40,9 +44,9 @@ export default {
         },
     },
     emits: ['openModalAddNew'],
-    setup({ selectList }) {
+    setup({ selectList, value }) {
         const isOpenList = ref(false);
-        const filterInput = ref('');
+        const filterInput = ref(value);
 
         function closeDropdown() {
             isOpenList.value = false;
@@ -64,12 +68,18 @@ export default {
                 })
             }
         })
+
+        function highlightText(event) {
+            event.currentTarget.select();
+            filterList.value = selectList;
+        }
         
         return {
             isOpenList,
             filterInput,
             closeDropdown,
             filterList,
+            highlightText,
         }
     }
 }

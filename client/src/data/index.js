@@ -1038,6 +1038,230 @@ export const InitHeaderMenu = {
     }
 };
 
+export const GetListDonVi_User = [
+    {
+        "ID": "4f447d7f-8f72-4ed9-8c2c-afd6172d4849",
+        "MaDonVi": "CN02",
+        "TenDonVi": "Chi nhánh 02",
+        "TenDonViKTD": null,
+        "TenDonViBoDAu": null,
+        "DiaChi": "",
+        "SoDienThoai": "02020202",
+        "TrangThai": null
+    },
+    {
+        "ID": "b47a1194-a766-4d71-90bd-6289c5132e61",
+        "MaDonVi": "CN03",
+        "TenDonVi": "Chi Nhánh 03",
+        "TenDonViKTD": null,
+        "TenDonViBoDAu": null,
+        "DiaChi": "",
+        "SoDienThoai": "",
+        "TrangThai": null
+    },
+    {
+        "ID": "a31fa9bc-dd97-47f8-9901-f19efc4fa831",
+        "MaDonVi": "55555",
+        "TenDonVi": "Chi nhánh 04",
+        "TenDonViKTD": null,
+        "TenDonViBoDAu": null,
+        "DiaChi": "",
+        "SoDienThoai": "",
+        "TrangThai": null
+    },
+    {
+        "ID": "9fbd9bd9-0360-47e8-bd30-20331c7b0a04",
+        "MaDonVi": "CN05",
+        "TenDonVi": "Chi nhánh 05 ",
+        "TenDonViKTD": null,
+        "TenDonViBoDAu": null,
+        "DiaChi": "",
+        "SoDienThoai": "",
+        "TrangThai": null
+    },
+    {
+        "ID": "c0e04477-c31b-4d12-a9cf-11b5ce34affc",
+        "MaDonVi": "CN 10",
+        "TenDonVi": "Chi nhánh 10",
+        "TenDonViKTD": null,
+        "TenDonViBoDAu": null,
+        "DiaChi": "",
+        "SoDienThoai": "0242938628",
+        "TrangThai": null
+    },
+    {
+        "ID": "22bdff24-5283-4249-8331-cd5167e2c504",
+        "MaDonVi": "CN03",
+        "TenDonVi": "Chi nhánh 3",
+        "TenDonViKTD": null,
+        "TenDonViBoDAu": null,
+        "DiaChi": "",
+        "SoDienThoai": "",
+        "TrangThai": null
+    },
+    {
+        "ID": "2725f0f5-384c-4522-96a0-4442e3925fda",
+        "MaDonVi": "CG.07",
+        "TenDonVi": "CN07",
+        "TenDonViKTD": null,
+        "TenDonViBoDAu": null,
+        "DiaChi": "rrrr",
+        "SoDienThoai": "02456328965",
+        "TrangThai": null
+    },
+    {
+        "ID": "7da921a6-08a9-4218-ae02-949da6b4eb76",
+        "MaDonVi": "CN08",
+        "TenDonVi": "CN08",
+        "TenDonViKTD": null,
+        "TenDonViBoDAu": null,
+        "DiaChi": "",
+        "SoDienThoai": "",
+        "TrangThai": null
+    },
+    {
+        "ID": "1e75948e-021b-408d-b608-477817334f8e",
+        "MaDonVi": "CN09",
+        "TenDonVi": "CN09",
+        "TenDonViKTD": null,
+        "TenDonViBoDAu": null,
+        "DiaChi": "",
+        "SoDienThoai": "",
+        "TrangThai": null
+    },
+    {
+        "ID": "d78cf00c-78e2-4832-a33b-4b2fecea1bbb",
+        "MaDonVi": "CG_11",
+        "TenDonVi": "CN11",
+        "TenDonViKTD": null,
+        "TenDonViBoDAu": null,
+        "DiaChi": "",
+        "SoDienThoai": "",
+        "TrangThai": null
+    },
+    {
+        "ID": "d93b17ea-89b9-4ecf-b242-d03b8cde71de",
+        "MaDonVi": "CG.01_",
+        "TenDonVi": "Ssoft CN Cầu Giấy",
+        "TenDonViKTD": null,
+        "TenDonViBoDAu": null,
+        "DiaChi": "116 Nhân Hòa, Hà Nội",
+        "SoDienThoai": "09734749851",
+        "TrangThai": null
+    }
+];
+
+export const GetThongBao = {
+    "res": true,
+    "dataSoure": {
+        "ListThongBao": [
+            {
+                "DaDoc": false,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('E96E5E6A-3905-4CC6-BD50-12C812548B79')\">Biển số xe 29A-1220 có 2 hàng hóa: BD theo thời gian (5,10 ngày), BD 0408 đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": false,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('E7677F60-7417-4436-93AF-18504EF1FA3F')\">Biển số xe 37X-0001 có 1 hàng hóa: BD theo thời gian (5,10 ngày) đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": false,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('B8E0FD15-B282-44AE-859F-295FA3431107')\">Biển số xe 28K12563 có 1 hàng hóa: BD theo thời gian (5,10 ngày) đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": false,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('FC334B50-62BD-496E-877B-2999B5ECA1E9')\">Biển số xe 24F38232 có 1 hàng hóa: HHBD theo TG (5,10) đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": false,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('19671E85-2C18-4831-9DA2-4916CADD0602')\">Biển số xe 11H10823 có 1 hàng hóa: HH (km,100) đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": false,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('DB36C2DD-29EB-4329-8D24-7F8B3FD17019')\">Biển số xe 30A-9632 có 2 hàng hóa: CN03_km 50, 100, CN03_km 50, 100 đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": false,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('6ED84114-6AB6-4667-8465-81FA032D432C')\">Biển số xe 30B06820 có 2 hàng hóa: HH (time,10), HH (km,100) đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": false,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('496029FA-2023-4F71-A60C-A592C869DDBC')\">Biển số xe 29A1106 có 4 hàng hóa: BD theo thời gian (5,10 ngày), CN02_km50, 100, CN02_km50, 100, BD 0408 đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": false,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('06AA8959-D243-4ECE-9C3F-ADA855DC7BCD')\">Biển số xe X10309 có 1 hàng hóa: DVKM 0005939 đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": false,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('D10A574D-AAAA-4B72-85AC-B49686D1572E')\">Biển số xe 34C18202 có 1 hàng hóa: HH BD (km, 50, 5) đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": true,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('FCE1E835-B0E2-4F8A-9740-D2703C344402')\">Biển số xe 21A1362 có 1 hàng hóa: HHBD theo TG (5,10) đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": true,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('D00D41D7-987D-458B-8CAB-D74324FB7308')\">Biển số xe 1708_X1 có 1 hàng hóa: CN03_BD100 200 đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": false,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('C6F7D471-1910-4BFF-9C90-F5A2074A50C7')\">Biển số xe 180821_X1 có 4 hàng hóa: CN02_km50, 100, CN03_km 50, 100, CN02_km50, 100, 1608_HH_rescue_giaithoat đến lịch bảo dưỡng.</p>",
+                "NgayTao": "1 giờ trước",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": true,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('9D4752E9-AB64-40EC-BB07-04FF0DAEE22A')\">Biển số xe 31A5312 có 2 hàng hóa: 1008 BD theo thời gian (20 ngày, 1 tháng), DBkm 1000 1500 đến lịch bảo dưỡng.</p>",
+                "NgayTao": "21 Tháng 8 lúc 03:34",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": true,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('AC3D6DE7-4778-4202-8711-B7FED321E28D')\">Biển số xe 50Y-0001 có 1 hàng hóa: BD theo km (100,200km) đến lịch bảo dưỡng.</p>",
+                "NgayTao": "21 Tháng 8 lúc 03:34",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": true,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('28103D25-2CF3-43DE-AD63-4D0FF1A753FB')\">Biển số xe 28K12563 có 1 hàng hóa: BD 0408 đến lịch bảo dưỡng.</p>",
+                "NgayTao": "21 Tháng 8 lúc 03:34",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            },
+            {
+                "DaDoc": true,
+                "NoiDungThongBao": "<p onclick=\"loaddadoc('279c507e-8ff1-4f33-b353-ca74345b7efa')\">Hàng hóa <a onclick=\"loadthongbao('4', 'HH0123457033','279c507e-8ff1-4f33-b353-ca74345b7efa')\"><span class=\"blue\">HH0123457033 </span> có lô hàng 2 </a> đã hết hạn </p>",
+                "NgayTao": "13 Tháng 4 lúc 13:46",
+                "Image": "<img src=\"/Content/images/anhhh/hetkho.png\" height=\"30\"/>"
+            }
+        ],
+        "CountTB": 11
+    }
+};
+
 export const GetListGaraDanhMucXe_v1 = {
     "res": true,
     "dataSoure": {
@@ -3079,5 +3303,1965 @@ export const Gara_GetListLichBaoDuongTheoXe = {
         ],
         "PageView": "Hiển thị 1 - 4 trên tổng số 4 bản ghi",
         "NumberOfPage": 1
+    }
+};
+
+export const GetAllHangXes = {
+    "res": true,
+    "dataSoure": [
+        {
+            "ID": "8daa70fb-4209-46b4-8258-d2026404c796",
+            "MaHangXe": "YAMAHA",
+            "TenHangXe": "yamaha",
+            "Logo": "/ImageUpload/0973474985/LogoHangXe/YAMAHA/A8.jpg",
+            "TrangThai": 1
+        },
+        {
+            "ID": "73bf79f2-4503-4b5f-ad89-444df87f5f6b",
+            "MaHangXe": "TOYOTA",
+            "TenHangXe": "Toyota",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "4e573280-9d39-4678-be67-661aed5a2199",
+            "MaHangXe": "TMT",
+            "TenHangXe": "TMT",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "163670d4-c7d4-464f-9477-035dfa1cd591",
+            "MaHangXe": "TOYOTA ",
+            "TenHangXe": "Thaco",
+            "Logo": "/ImageUpload/0973474985/LogoHangXe/TOYOTA /A8.jpg",
+            "TrangThai": 1
+        },
+        {
+            "ID": "0febea68-2bb2-4953-9ee4-97127a10c0e3",
+            "MaHangXe": "SUZUKI",
+            "TenHangXe": "suzuki",
+            "Logo": "/ImageUpload/0973474985/LogoHangXe/SUZUKI/A1.jpg",
+            "TrangThai": 1
+        },
+        {
+            "ID": "e7fc1f34-e8ca-4dd4-ae84-2251505d8a30",
+            "MaHangXe": "pro xxx",
+            "TenHangXe": "pro xxx1",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "0d354902-38f2-4fcf-8787-3a1c7845383f",
+            "MaHangXe": "MITSUBISHI",
+            "TenHangXe": "Mitsubishi",
+            "Logo": "/ImageUpload/0973474985/LogoHangXe/MITSUBISHI/BCHH.png",
+            "TrangThai": 1
+        },
+        {
+            "ID": "8c011cc0-c813-43ce-b4b7-4076e65a7382",
+            "MaHangXe": "MERCEDES",
+            "TenHangXe": "Mercedes",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "4d13fa7f-9edd-4e74-85f7-aee457295618",
+            "MaHangXe": "MAZDA",
+            "TenHangXe": "Mazda 1",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "06e92918-d3f3-4385-a3da-26ea86ab42c4",
+            "MaHangXe": "MAZDA",
+            "TenHangXe": "mazda 03",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "08411e5b-473c-4eed-9002-e16790d8e9a7",
+            "MaHangXe": "MAZDA",
+            "TenHangXe": "mazda",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "7080c946-8199-472e-880c-3b3a85d5b2b4",
+            "MaHangXe": "KIA",
+            "TenHangXe": "KIA",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "a5fa63e0-e5df-434d-9b4d-c17355e978d5",
+            "MaHangXe": "HYUNDAI",
+            "TenHangXe": "HYUNDAI",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "745fdb12-0d99-4e82-a53f-59b51ea74acc",
+            "MaHangXe": "honda",
+            "TenHangXe": "honda",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "d6831676-07d6-4d49-9156-4853a2f78cb9",
+            "MaHangXe": "HANGXX",
+            "TenHangXe": "HangXX",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "100b9f8c-d803-453e-b398-2580475d2c90",
+            "MaHangXe": "HANG XE",
+            "TenHangXe": "hãng xe",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "f854db57-5f7e-49dd-bc32-3d5e968bc51e",
+            "MaHangXe": "HANG TTT",
+            "TenHangXe": "hang ttt",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "c67b5661-2bac-497b-9562-5cf9a3086034",
+            "MaHangXe": "HANG ANCC",
+            "TenHangXe": "hang ancc",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "bd50bb71-35bc-4bf9-badd-a72b394cf874",
+            "MaHangXe": "FORD",
+            "TenHangXe": "ford",
+            "Logo": "/ImageUpload/0973474985/LogoHangXe/FORD/logo-ford.jpg",
+            "TrangThai": 1
+        },
+        {
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "MaHangXe": "CXD",
+            "TenHangXe": "Chưa xác định",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "5e1362b2-5f84-4b20-82ac-9934b15f447d",
+            "MaHangXe": "ANH",
+            "TenHangXe": "anh",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "81ded13c-a3f7-4880-b399-f78792cc1097",
+            "MaHangXe": "AAA1",
+            "TenHangXe": "AAA1_Pro",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "6458f865-2985-4250-a4fa-6d9f7df2fc02",
+            "MaHangXe": "4",
+            "TenHangXe": "4",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "064cf809-e8ff-4e94-8876-70c77ee35ae7",
+            "MaHangXe": "3",
+            "TenHangXe": "3",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "15f581e0-dac2-47b4-83e5-a29a35c4d476",
+            "MaHangXe": "2121212",
+            "TenHangXe": "2121212",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "8b101309-d3ad-4bcb-a358-c00c916f1743",
+            "MaHangXe": "20210610_TEST LOGO",
+            "TenHangXe": "20210610_Test logo",
+            "Logo": "/ImageUpload/0973474985/LogoHangXe/A10.jpg",
+            "TrangThai": 1
+        },
+        {
+            "ID": "2ff0355d-0085-47a1-accf-bee6e79c4b76",
+            "MaHangXe": "20210116_HANG1",
+            "TenHangXe": "20210116_hang1",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "8fc884cf-c59e-4dc1-9be1-6c2ca1e2ad55",
+            "MaHangXe": "20210114_HANG3",
+            "TenHangXe": "20210114_hang3",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "cd43009a-798e-458f-b544-75ec1c2b6c07",
+            "MaHangXe": "20210114_HANG2",
+            "TenHangXe": "20210114_hang2",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "58c6da99-d24a-479d-bea4-30c55da205db",
+            "MaHangXe": "20210114_HANG1",
+            "TenHangXe": "20210114_hang1",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "6733d684-fa9b-43a6-95ca-c0242e1dd186",
+            "MaHangXe": "2021 HANG 3",
+            "TenHangXe": "2021 hang 3",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "7dcb736e-974d-4064-a7e5-d7bd4a475213",
+            "MaHangXe": "2021 HANG 2",
+            "TenHangXe": "2021 hang 2",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "5cb9b46c-50f7-4a12-ba35-cbe7f7b54366",
+            "MaHangXe": "2021 HANG 1",
+            "TenHangXe": "2021 hang 1",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "e7591d01-422d-4d1f-b843-d18ac6cec9cc",
+            "MaHangXe": "2021 HANG 0001",
+            "TenHangXe": "2021 hang 0001",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "ed2f3b11-391d-49a8-824a-8c407713b5a5",
+            "MaHangXe": "2",
+            "TenHangXe": "2",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "3f7b5f07-1189-44d6-bb64-c176222673db",
+            "MaHangXe": "1",
+            "TenHangXe": "1",
+            "Logo": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "1fd2a253-ec46-4414-97bb-25ea2b570fd8",
+            "MaHangXe": "0105",
+            "TenHangXe": "0105",
+            "Logo": "",
+            "TrangThai": 1
+        }
+    ]
+};
+
+export const GetAllLoaiXes = {
+    "res": true,
+    "dataSoure": [
+        {
+            "ID": "85a09c67-bfb6-4595-b55c-607b57fd34f0",
+            "MaLoaiXe": "ya_loai1",
+            "TenLoaiXe": "yama_loai01",
+            "TrangThai": 1
+        },
+        {
+            "ID": "53188108-9f39-41fc-951f-3e3016f77c6c",
+            "MaLoaiXe": "XE CAPLOCK",
+            "TenLoaiXe": "XE CAPLOCK",
+            "TrangThai": 1
+        },
+        {
+            "ID": "f10a1285-6f63-486f-97c0-cadcb1a7208a",
+            "MaLoaiXe": "ST8160T",
+            "TenLoaiXe": "ST8160T",
+            "TrangThai": 1
+        },
+        {
+            "ID": "bb74e2b4-7800-41d1-ad61-0f0d83337411",
+            "MaLoaiXe": "Sedan",
+            "TenLoaiXe": "Sedan",
+            "TrangThai": 1
+        },
+        {
+            "ID": "70e4ea97-321d-488a-9a3c-912bf917e7ab",
+            "MaLoaiXe": "MER-BEN",
+            "TenLoaiXe": "Mer-Ben",
+            "TrangThai": 1
+        },
+        {
+            "ID": "04b82955-baea-4644-b798-2312303c2bf3",
+            "MaLoaiXe": "LOAIYY",
+            "TenLoaiXe": "LoaiYY",
+            "TrangThai": 1
+        },
+        {
+            "ID": "ae4455f2-bcc6-4f92-a9f8-95e81bf2c903",
+            "MaLoaiXe": "LOAI RRR",
+            "TenLoaiXe": "loai rrr",
+            "TrangThai": 1
+        },
+        {
+            "ID": "570092f9-71ca-4cf3-a147-153259749d00",
+            "MaLoaiXe": "HYUNDAI ELENTRA",
+            "TenLoaiXe": "HyunDai Elentra",
+            "TrangThai": 1
+        },
+        {
+            "ID": "33d0faad-35f4-47e2-9b1c-29ad7383c6a7",
+            "MaLoaiXe": "hon_loai1",
+            "TenLoaiXe": "hon_loai1",
+            "TrangThai": 1
+        },
+        {
+            "ID": "5c9e15f2-a1bc-4758-805c-f8c6e5fe7d13",
+            "MaLoaiXe": "CUV",
+            "TenLoaiXe": "CUV",
+            "TrangThai": 1
+        },
+        {
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "MaLoaiXe": "CXD",
+            "TenLoaiXe": "Chưa xác định",
+            "TrangThai": 1
+        },
+        {
+            "ID": "fbacc8ef-f47c-48f0-bf86-4d5801b6d485",
+            "MaLoaiXe": "ANH 1",
+            "TenLoaiXe": "anh 1",
+            "TrangThai": 1
+        },
+        {
+            "ID": "fd756523-ec87-4d1d-96f6-1a0b3feed2a4",
+            "MaLoaiXe": "2101",
+            "TenLoaiXe": "2101",
+            "TrangThai": 1
+        },
+        {
+            "ID": "f789a9c7-ce98-4215-a266-5a92b95fb638",
+            "MaLoaiXe": "20210116_LOAI XE 1",
+            "TenLoaiXe": "20210116_Loai xe 1",
+            "TrangThai": 1
+        },
+        {
+            "ID": "c8e7ee57-35a6-45c5-a319-ef1670e75a98",
+            "MaLoaiXe": "2021 LOAI2",
+            "TenLoaiXe": "2021 loai2",
+            "TrangThai": 1
+        },
+        {
+            "ID": "51b30ea6-1bc6-4027-a9fd-86641fef7358",
+            "MaLoaiXe": "2021 LOAI 6",
+            "TenLoaiXe": "2021 loai 6",
+            "TrangThai": 1
+        },
+        {
+            "ID": "85289a42-bd6a-476e-9f14-e1c521042d15",
+            "MaLoaiXe": "2021 LOAI 5",
+            "TenLoaiXe": "2021 loai 5",
+            "TrangThai": 1
+        },
+        {
+            "ID": "12643287-44bd-4cd2-b000-a017118a697d",
+            "MaLoaiXe": "2021 LOAI 3",
+            "TenLoaiXe": "2021 loai 3",
+            "TrangThai": 1
+        },
+        {
+            "ID": "7eea265f-957a-41f0-a5d1-240c4bb9a683",
+            "MaLoaiXe": "2021 LOAI 1",
+            "TenLoaiXe": "2021 loai 1",
+            "TrangThai": 1
+        },
+        {
+            "ID": "cb39324e-e650-4c58-9f09-311e15ee67a6",
+            "MaLoaiXe": "2021 LOAI 001",
+            "TenLoaiXe": "2021 loai 001",
+            "TrangThai": 1
+        },
+        {
+            "ID": "30001b75-a220-4af1-9f8a-766f1cfae4eb",
+            "MaLoaiXe": "12323",
+            "TenLoaiXe": "12323",
+            "TrangThai": 1
+        }
+    ]
+};
+
+export const GetAllDanhMucMauXe = {
+    "res": true,
+    "dataSoure": [
+        {
+            "ID": "d8c42044-f4c7-4c42-b6b9-65db0e92dcca",
+            "TenMauXe": "XXXXXX",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "00000000-0000-0000-0000-000000000000",
+            "TenLoaiXe": "Chưa xác định",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "3b2859d4-bee6-4f93-abfd-88078c8bcb5b",
+            "TenMauXe": "vios",
+            "ID_HangXe": "73bf79f2-4503-4b5f-ad89-444df87f5f6b",
+            "ID_LoaiXe": "bb74e2b4-7800-41d1-ad61-0f0d83337411",
+            "TenLoaiXe": "Sedan",
+            "TenHangXe": "Toyota",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "526f59d8-86fd-4e57-880f-f32f00fee35b",
+            "TenMauXe": "suzuki2",
+            "ID_HangXe": "0febea68-2bb2-4953-9ee4-97127a10c0e3",
+            "ID_LoaiXe": "fbacc8ef-f47c-48f0-bf86-4d5801b6d485",
+            "TenLoaiXe": "anh 1",
+            "TenHangXe": "suzuki",
+            "GhiChu": "I hope you will better soon",
+            "TrangThai": 1
+        },
+        {
+            "ID": "9c62cd21-c03e-4404-9242-99977a541d10",
+            "TenMauXe": "sinotruk",
+            "ID_HangXe": "4e573280-9d39-4678-be67-661aed5a2199",
+            "ID_LoaiXe": "f10a1285-6f63-486f-97c0-cadcb1a7208a",
+            "TenLoaiXe": "ST8160T",
+            "TenHangXe": "TMT",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "0f382263-3245-460b-b3ad-42f89fbab801",
+            "TenMauXe": "seltos2",
+            "ID_HangXe": "7080c946-8199-472e-880c-3b3a85d5b2b4",
+            "ID_LoaiXe": "5c9e15f2-a1bc-4758-805c-f8c6e5fe7d13",
+            "TenLoaiXe": "CUV",
+            "TenHangXe": "KIA",
+            "GhiChu": "here your change",
+            "TrangThai": 1
+        },
+        {
+            "ID": "f1082d7c-bb20-4eb5-bc7f-b1ecd376bb8e",
+            "TenMauXe": "SELTOS",
+            "ID_HangXe": "7080c946-8199-472e-880c-3b3a85d5b2b4",
+            "ID_LoaiXe": "5c9e15f2-a1bc-4758-805c-f8c6e5fe7d13",
+            "TenLoaiXe": "CUV",
+            "TenHangXe": "KIA",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "72f70822-5b0f-44ec-a777-73e548d80d67",
+            "TenMauXe": "prox",
+            "ID_HangXe": "745fdb12-0d99-4e82-a53f-59b51ea74acc",
+            "ID_LoaiXe": "33d0faad-35f4-47e2-9b1c-29ad7383c6a7",
+            "TenLoaiXe": "hon_loai1",
+            "TenHangXe": "honda",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "7d930177-4b37-4fe9-a09a-dad2c0f6c34f",
+            "TenMauXe": "pro xx1 mau 1",
+            "ID_HangXe": "e7fc1f34-e8ca-4dd4-ae84-2251505d8a30",
+            "ID_LoaiXe": "42681ed3-4403-408f-83c5-da91540d5cfb",
+            "TenLoaiXe": "suzu_loai1",
+            "TenHangXe": "pro xxx1",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "d6427752-e2d3-40cd-83fd-c4accc6bfc0c",
+            "TenMauXe": "model x665",
+            "ID_HangXe": "d6831676-07d6-4d49-9156-4853a2f78cb9",
+            "ID_LoaiXe": "04b82955-baea-4644-b798-2312303c2bf3",
+            "TenLoaiXe": "LoaiYY",
+            "TenHangXe": "HangXX",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "48252ecd-8f6e-436d-be36-bf8a93a13e6e",
+            "TenMauXe": "model",
+            "ID_HangXe": "5e1362b2-5f84-4b20-82ac-9934b15f447d",
+            "ID_LoaiXe": "d9bb4746-bc4d-4532-9ecc-bd2f2f5d65fc",
+            "TenLoaiXe": "anh 1",
+            "TenHangXe": "anh",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "5fe035fb-0a60-40d1-b0ad-c1efc63b0d98",
+            "TenMauXe": "mit moi",
+            "ID_HangXe": "0d354902-38f2-4fcf-8787-3a1c7845383f",
+            "ID_LoaiXe": "bb74e2b4-7800-41d1-ad61-0f0d83337411",
+            "TenLoaiXe": "Sedan",
+            "TenHangXe": "Mitsubishi",
+            "GhiChu": "logo hãng",
+            "TrangThai": 1
+        },
+        {
+            "ID": "7bebb67b-3fa1-4ad4-a428-1bc84b03286e",
+            "TenMauXe": "mer",
+            "ID_HangXe": "8c011cc0-c813-43ce-b4b7-4076e65a7382",
+            "ID_LoaiXe": "70e4ea97-321d-488a-9a3c-912bf917e7ab",
+            "TenLoaiXe": "Mer-Ben",
+            "TenHangXe": "Mercedes",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "706e9c07-a9e6-4702-9cbe-e14d5cb71951",
+            "TenMauXe": "mauxxyy",
+            "ID_HangXe": "d6831676-07d6-4d49-9156-4853a2f78cb9",
+            "ID_LoaiXe": "04b82955-baea-4644-b798-2312303c2bf3",
+            "TenLoaiXe": "LoaiYY",
+            "TenHangXe": "HangXX",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "7e1aea87-f088-47c8-901f-08c431fe4dad",
+            "TenMauXe": "mau caplock",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "00000000-0000-0000-0000-000000000000",
+            "TenLoaiXe": "Chưa xác định",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "a038e06c-bc5c-47f6-8d0a-f629bb34901a",
+            "TenMauXe": "hyundai2020",
+            "ID_HangXe": "a5fa63e0-e5df-434d-9b4d-c17355e978d5",
+            "ID_LoaiXe": "570092f9-71ca-4cf3-a147-153259749d00",
+            "TenLoaiXe": "HyunDai Elentra",
+            "TenHangXe": "HYUNDAI",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "261d5ba6-87ac-4d38-b100-b8b5404c2461",
+            "TenMauXe": "hang ttt - mau rrr",
+            "ID_HangXe": "f854db57-5f7e-49dd-bc32-3d5e968bc51e",
+            "ID_LoaiXe": "ae4455f2-bcc6-4f92-a9f8-95e81bf2c903",
+            "TenLoaiXe": "loai rrr",
+            "TenHangXe": "hang ttt",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "6dccc03b-414e-446f-9656-d78ba767fc9b",
+            "TenMauXe": "express",
+            "ID_HangXe": "ed2f3b11-391d-49a8-824a-8c407713b5a5",
+            "ID_LoaiXe": "85a09c67-bfb6-4595-b55c-607b57fd34f0",
+            "TenLoaiXe": "yama_loai01",
+            "TenHangXe": "2",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "00000000-0000-0000-0000-000000000000",
+            "TenMauXe": "Chưa xác định",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "00000000-0000-0000-0000-000000000000",
+            "TenLoaiXe": "Chưa xác định",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "06241cd7-e180-41ea-905f-b733e709f349",
+            "TenMauXe": "Cerato",
+            "ID_HangXe": "7080c946-8199-472e-880c-3b3a85d5b2b4",
+            "ID_LoaiXe": "bb74e2b4-7800-41d1-ad61-0f0d83337411",
+            "TenLoaiXe": "Sedan",
+            "TenHangXe": "KIA",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "1d016518-f006-40da-a09d-4b4f4a91878e",
+            "TenMauXe": "CAPLOCK2",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "00000000-0000-0000-0000-000000000000",
+            "TenLoaiXe": "Chưa xác định",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "a14bbdec-367c-4800-b790-df676b9a882d",
+            "TenMauXe": "bac",
+            "ID_HangXe": "0febea68-2bb2-4953-9ee4-97127a10c0e3",
+            "ID_LoaiXe": "d9bb4746-bc4d-4532-9ecc-bd2f2f5d65fc",
+            "TenLoaiXe": "anh 1",
+            "TenHangXe": "suzuki",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "bf8c19f6-f70b-4116-9983-e79e4357c1d5",
+            "TenMauXe": "aaaaaaaaa",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "bb74e2b4-7800-41d1-ad61-0f0d83337411",
+            "TenLoaiXe": "Sedan",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "note mẫu",
+            "TrangThai": 1
+        },
+        {
+            "ID": "07306e71-428c-4f15-ae64-e634d62cb94c",
+            "TenMauXe": "9635",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "dcd19914-e91e-4e1d-b4cf-e7c53874de1d",
+            "TenLoaiXe": "toyo_loai 1",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "3a82e650-e1d1-4538-a61f-f9e0cc41c3a3",
+            "TenMauXe": "2301m2",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "00000000-0000-0000-0000-000000000000",
+            "TenLoaiXe": "Chưa xác định",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "b43af18d-e0b6-4456-bd40-30a372b91eb5",
+            "TenMauXe": "2301m1",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "00000000-0000-0000-0000-000000000000",
+            "TenLoaiXe": "Chưa xác định",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "3ed6d99e-37fb-4ce3-81f7-ba947cdfab33",
+            "TenMauXe": "220221_m1",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "00000000-0000-0000-0000-000000000000",
+            "TenLoaiXe": "Chưa xác định",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "model promotion",
+            "TrangThai": 1
+        },
+        {
+            "ID": "2af2b614-f14d-476c-a8dc-3c61224d2bd6",
+            "TenMauXe": "2105",
+            "ID_HangXe": "1fd2a253-ec46-4414-97bb-25ea2b570fd8",
+            "ID_LoaiXe": "fd756523-ec87-4d1d-96f6-1a0b3feed2a4",
+            "TenLoaiXe": "2101",
+            "TenHangXe": "0105",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "27dfbede-75bf-4af3-aff0-348f2a75b9fc",
+            "TenMauXe": "210107",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "dcd19914-e91e-4e1d-b4cf-e7c53874de1d",
+            "TenLoaiXe": "toyo_loai 1",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "197c0369-3085-4cac-96e6-8b971ebaac8e",
+            "TenMauXe": "20210527_m1",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "00000000-0000-0000-0000-000000000000",
+            "TenLoaiXe": "Chưa xác định",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "c2160c3c-6ea0-40e3-a263-c732b89535a5",
+            "TenMauXe": "20210116_mau1",
+            "ID_HangXe": "2ff0355d-0085-47a1-accf-bee6e79c4b76",
+            "ID_LoaiXe": "f789a9c7-ce98-4215-a266-5a92b95fb638",
+            "TenLoaiXe": "20210116_Loai xe 1",
+            "TenHangXe": "20210116_hang1",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "e17c3729-dad7-42dc-a609-ff0a25b60dc4",
+            "TenMauXe": "2021_model1",
+            "ID_HangXe": "e7fc1f34-e8ca-4dd4-ae84-2251505d8a30",
+            "ID_LoaiXe": "ae4455f2-bcc6-4f92-a9f8-95e81bf2c903",
+            "TenLoaiXe": "loai rrr",
+            "TenHangXe": "pro xxx1",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "77fa20cb-b04d-4bc2-9c72-e00d8acd6520",
+            "TenMauXe": "2021 model2",
+            "ID_HangXe": "0febea68-2bb2-4953-9ee4-97127a10c0e3",
+            "ID_LoaiXe": "33d0faad-35f4-47e2-9b1c-29ad7383c6a7",
+            "TenLoaiXe": "hon_loai1",
+            "TenHangXe": "suzuki",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "80479e26-87ad-458a-8d5f-2e77a8c526a7",
+            "TenMauXe": "2021 model 5",
+            "ID_HangXe": "7dcb736e-974d-4064-a7e5-d7bd4a475213",
+            "ID_LoaiXe": "12643287-44bd-4cd2-b000-a017118a697d",
+            "TenLoaiXe": "2021 loai 3",
+            "TenHangXe": "2021 hang 2",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "9f90ee15-724d-468e-9091-76b770b39a62",
+            "TenMauXe": "2021 model 3",
+            "ID_HangXe": "5cb9b46c-50f7-4a12-ba35-cbe7f7b54366",
+            "ID_LoaiXe": "12643287-44bd-4cd2-b000-a017118a697d",
+            "TenLoaiXe": "2021 loai 3",
+            "TenHangXe": "2021 hang 1",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "97fd401f-43a2-4ed2-b928-3935ffe1743d",
+            "TenMauXe": "2021 model 1",
+            "ID_HangXe": "100b9f8c-d803-453e-b398-2580475d2c90",
+            "ID_LoaiXe": "04b82955-baea-4644-b798-2312303c2bf3",
+            "TenLoaiXe": "LoaiYY",
+            "TenHangXe": "hãng xe",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "cbca02b7-57f6-4b31-89c6-73b8bd591f1a",
+            "TenMauXe": "2021 mau0001",
+            "ID_HangXe": "e7591d01-422d-4d1f-b843-d18ac6cec9cc",
+            "ID_LoaiXe": "cb39324e-e650-4c58-9f09-311e15ee67a6",
+            "TenLoaiXe": "2021 loai 001",
+            "TenHangXe": "2021 hang 0001",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "5ea90b70-f1a0-4c39-afea-b218953147fb",
+            "TenMauXe": "2021 mau 7",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "42681ed3-4403-408f-83c5-da91540d5cfb",
+            "TenLoaiXe": "suzu_loai1",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "5c443481-0136-4622-9ad9-925829b09e91",
+            "TenMauXe": "2021",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "b7812641-8e4f-4fab-a577-2d056f2e073a",
+            "TenLoaiXe": "yama_loai 2.0",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "36037cf3-cdfe-4662-9381-a7b983c14afc",
+            "TenMauXe": "20201217",
+            "ID_HangXe": "745fdb12-0d99-4e82-a53f-59b51ea74acc",
+            "ID_LoaiXe": "d9bb4746-bc4d-4532-9ecc-bd2f2f5d65fc",
+            "TenLoaiXe": "anh 1",
+            "TenHangXe": "honda",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "8438b6db-9f2d-4106-b58e-3fd202f4e303",
+            "TenMauXe": "20201217",
+            "ID_HangXe": "745fdb12-0d99-4e82-a53f-59b51ea74acc",
+            "ID_LoaiXe": "33d0faad-35f4-47e2-9b1c-29ad7383c6a7",
+            "TenLoaiXe": "hon_loai1",
+            "TenHangXe": "honda",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "5b99883c-2f4a-4c57-afbb-1824d34883fa",
+            "TenMauXe": "20201216",
+            "ID_HangXe": "0febea68-2bb2-4953-9ee4-97127a10c0e3",
+            "ID_LoaiXe": "42681ed3-4403-408f-83c5-da91540d5cfb",
+            "TenLoaiXe": "suzu_loai1",
+            "TenHangXe": "suzuki",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "67a46b5f-f503-4152-9848-b6fb1255d17a",
+            "TenMauXe": "20201215",
+            "ID_HangXe": "d6831676-07d6-4d49-9156-4853a2f78cb9",
+            "ID_LoaiXe": "04b82955-baea-4644-b798-2312303c2bf3",
+            "TenLoaiXe": "LoaiYY",
+            "TenHangXe": "HangXX",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "d16070b0-41d5-4728-939f-1a81471e57f8",
+            "TenMauXe": "1801",
+            "ID_HangXe": "7080c946-8199-472e-880c-3b3a85d5b2b4",
+            "ID_LoaiXe": "7eea265f-957a-41f0-a5d1-240c4bb9a683",
+            "TenLoaiXe": "2021 loai 1",
+            "TenHangXe": "KIA",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "beccacb2-9c3b-4225-9d51-7f11038b2be3",
+            "TenMauXe": "1438_md",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "dcd19914-e91e-4e1d-b4cf-e7c53874de1d",
+            "TenLoaiXe": "toyo_loai 1",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "ebb28b04-45b8-404c-854c-54d088592954",
+            "TenMauXe": "131231",
+            "ID_HangXe": "00000000-0000-0000-0000-000000000000",
+            "ID_LoaiXe": "dcd19914-e91e-4e1d-b4cf-e7c53874de1d",
+            "TenLoaiXe": "toyo_loai 1",
+            "TenHangXe": "Chưa xác định",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "bf419cd2-799b-441c-910f-b24a826b080b",
+            "TenMauXe": "1232412",
+            "ID_HangXe": "ed2f3b11-391d-49a8-824a-8c407713b5a5",
+            "ID_LoaiXe": "85289a42-bd6a-476e-9f14-e1c521042d15",
+            "TenLoaiXe": "2021 loai 5",
+            "TenHangXe": "2",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "4b70b901-a7b3-43bc-a8be-dec97dc3e28f",
+            "TenMauXe": "1232412",
+            "ID_HangXe": "0febea68-2bb2-4953-9ee4-97127a10c0e3",
+            "ID_LoaiXe": "42681ed3-4403-408f-83c5-da91540d5cfb",
+            "TenLoaiXe": "suzu_loai1",
+            "TenHangXe": "suzuki",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "c58991ae-8a8b-4829-91a5-0ed4e8fc24be",
+            "TenMauXe": "1231241231231",
+            "ID_HangXe": "c7fa79ee-7be5-4499-8f7b-cd9091977f2c",
+            "ID_LoaiXe": "d9bb4746-bc4d-4532-9ecc-bd2f2f5d65fc",
+            "TenLoaiXe": "anh 1",
+            "TenHangXe": "suzuki",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "83ca6f9d-5406-4ea4-b9ee-f77d12a40661",
+            "TenMauXe": "121",
+            "ID_HangXe": "8daa70fb-4209-46b4-8258-d2026404c796",
+            "ID_LoaiXe": "85a09c67-bfb6-4595-b55c-607b57fd34f0",
+            "TenLoaiXe": "yama_loai01",
+            "TenHangXe": "yamaha",
+            "GhiChu": "",
+            "TrangThai": 1
+        },
+        {
+            "ID": "367684c6-bb8f-4747-9295-da04cd70ccac",
+            "TenMauXe": "03125",
+            "ID_HangXe": "0febea68-2bb2-4953-9ee4-97127a10c0e3",
+            "ID_LoaiXe": "00000000-0000-0000-0000-000000000000",
+            "TenLoaiXe": "Chưa xác định",
+            "TenHangXe": "suzuki",
+            "GhiChu": "",
+            "TrangThai": 1
+        }
+    ]
+};
+
+export const GetChuXeList = [
+    {
+        "ID": "180ea06f-6638-4ad8-9ae5-000106107858",
+        "MaNguoiNop": "KH0752536",
+        "NguoiNopTien": "Lê Thanh Thủy<Bs.Tùng>",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "c5435499-4f1d-49be-a35f-00032895d117",
+        "MaNguoiNop": "KH0781481",
+        "NguoiNopTien": "Đỗ Văn Hải(BS Lê Thị Hồng)",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "d1f544a8-fe3f-4db5-8ab0-00058740fb31",
+        "MaNguoiNop": "KH0742389",
+        "NguoiNopTien": "Nguyễn Thị Hồng Nhung",
+        "SoDienThoai": "0321698574",
+        "Email": "nhungnt@gmail.com",
+        "DiaChi": "TTYT cauvong",
+        "IDNhomDoiTuongs": "CF722B84-4407-42EF-97CB-799EDB1E2C69, "
+    },
+    {
+        "ID": "1a018940-240c-48af-9899-000654885f33",
+        "MaNguoiNop": "KH0753121",
+        "NguoiNopTien": "lã đức khánh",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "f44d6891-5fe0-4aef-8d23-00071d42f68f",
+        "MaNguoiNop": "KH0776372",
+        "NguoiNopTien": "Bác Xoan-Bs Tài",
+        "SoDienThoai": "101992",
+        "Email": "5666666",
+        "DiaChi": "33333",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "1176f49b-f2c0-4c31-bce3-00082d54d0f4",
+        "MaNguoiNop": "KH0798379",
+        "NguoiNopTien": "Tuấn (Bs Thương )",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "d43d05dd-1018-4ac7-ac9b-0009c11bb10b",
+        "MaNguoiNop": "KH0805554",
+        "NguoiNopTien": "Đỗ Thị Thu Huyền - 24/10/1995 - Xóm 11, NT, VG, HY",
+        "SoDienThoai": "0975762542",
+        "Email": "",
+        "DiaChi": "Xóm 11 - Nghĩa Trụ - Văn Giang - Hưng Yên",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "6b477380-4c03-4f17-9edb-000a0484cbbe",
+        "MaNguoiNop": "KH0762273",
+        "NguoiNopTien": "Lô Văn Quang<Bs.Mỹ>",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "c279cbea-4a6e-4f71-b6ee-000c89756804",
+        "MaNguoiNop": "KH0777064",
+        "NguoiNopTien": "dương tuấn anh",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "27dc029d-01cb-464e-b01d-0011b2784a9d",
+        "MaNguoiNop": "KH0804837",
+        "NguoiNopTien": "Đỗ Văn Cường (BS Quyết)",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "bfedc150-5038-4161-873c-0011f7d6dc02",
+        "MaNguoiNop": "KH0743400",
+        "NguoiNopTien": "Vũ Phương Thanh",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "5ae6d5ea-59ed-41b2-b2ee-001207a64128",
+        "MaNguoiNop": "KH0780118",
+        "NguoiNopTien": "trần thị bình",
+        "SoDienThoai": "10101998",
+        "Email": "email@gmail.com",
+        "DiaChi": "Phuong Dong Ngac",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "65dc4b73-c4dc-4556-9e65-00127d5f4020",
+        "MaNguoiNop": "KH0780935",
+        "NguoiNopTien": "lê hùng oai",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "30938be5-714c-44ca-9380-001498b73043",
+        "MaNguoiNop": "KH0782339",
+        "NguoiNopTien": "Trương Thị Liên(BS Lê Thị Hiền)",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "0ddacf6c-177c-467a-9b1e-00152fc96376",
+        "MaNguoiNop": "KH0746523",
+        "NguoiNopTien": "Đào VĂn HÂn(BS Ngà)",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "10d8d8de-7a5b-47bb-89e4-0017089204f8",
+        "MaNguoiNop": "KH0767471",
+        "NguoiNopTien": "đinh xuân vững",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "19bd399b-9c78-433b-aedc-0017ac605a68",
+        "MaNguoiNop": "KH0783079",
+        "NguoiNopTien": "Hà Văn Trường ( BS HOÀN)",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "5345d1d8-9e2f-42e4-a245-001809f51384",
+        "MaNguoiNop": "KH0772051",
+        "NguoiNopTien": "Him (BS Thắng)",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "a0e048b5-6abe-4084-a352-001adda20985",
+        "MaNguoiNop": "KH0778862",
+        "NguoiNopTien": "Trương Văn Hiếu",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+        "ID": "fa1fe66d-e4d1-4423-bb24-001b21b891fa",
+        "MaNguoiNop": "KH0742724",
+        "NguoiNopTien": "Tô Thị Bích Ngọc",
+        "SoDienThoai": "",
+        "Email": "",
+        "DiaChi": "",
+        "IDNhomDoiTuongs": "00000000-0000-0000-0000-000000000000"
+    }
+];
+
+export const GetDM_NguonKhach = [
+    {
+        "ID": "4834d10a-5b86-4ba1-8720-008a9dcf98ac",
+        "TenNguonKhach": "Very VIP",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "6566bf8b-d623-47e8-871c-00916e52a3e1",
+        "TenNguonKhach": "20190801_face",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "15a4d1a9-f0ff-485a-bc3f-0405fad87821",
+        "TenNguonKhach": "n2",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "558a5204-1729-4c5a-a3c0-0dcbdf282aa1",
+        "TenNguonKhach": "Cũ ",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "1e82da83-86c9-4328-83ca-0f9c0cc8b7a5",
+        "TenNguonKhach": "20190801 nguon face",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "e2bb2519-d560-4c3a-8b0d-155fbcfedd08",
+        "TenNguonKhach": "modalKH_N1",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "621c10bd-2d49-4b2d-a686-18d03cbf57a3",
+        "TenNguonKhach": "Mới ",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "a75c79e8-9499-4035-b26b-252548884cd7",
+        "TenNguonKhach": "xxx4",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "e8a832d1-5f35-456f-b6fc-32f0f15a0c95",
+        "TenNguonKhach": "Khách Thanh Hóa",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "f55b4dd2-c393-4d5f-9d74-409a73ca2bd8",
+        "TenNguonKhach": "notice period",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "dd302e8d-a2f5-4f10-9d55-415964bc0cea",
+        "TenNguonKhach": "kháchH1",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "30e91064-ff4a-4f01-b179-48536ec256f6",
+        "TenNguonKhach": "Tự do",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "305084d2-9636-4abf-83be-49018f5b960a",
+        "TenNguonKhach": "22222",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "3d536e9d-2373-4eb0-a28d-4b4830882a44",
+        "TenNguonKhach": "dh",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "b43eb7e4-4cf1-4de0-9da1-4ba9f4777494",
+        "TenNguonKhach": "20190813 Nguon03",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "5c1c7a89-9a4b-44d1-86c9-4c5d85c1b3dd",
+        "TenNguonKhach": "xxx3",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "44ccfe35-350d-413e-bfa4-4cf9e666238e",
+        "TenNguonKhach": "sourcevuew1",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "1a0c2b25-1535-4e89-af45-4efa7433b6d4",
+        "TenNguonKhach": "KH thân thiết",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "a38c18eb-44b4-49f9-be45-513b7d1b3dc4",
+        "TenNguonKhach": "source vue 2",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "8fd2e049-40f0-4006-ba4f-58b016d3f773",
+        "TenNguonKhach": "test 2",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "c092d9ed-f235-46f4-9819-58fa9b85d347",
+        "TenNguonKhach": "holiday for entitlement",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "3278d44e-c2b0-47e5-9b35-5d994509f22b",
+        "TenNguonKhach": "",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "0d336aff-73ba-44a0-8657-628823f00c2f",
+        "TenNguonKhach": "Gmail",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "1302406f-5248-4011-930d-6820c1170403",
+        "TenNguonKhach": "20210407_N1",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "0a9f42ca-12e5-43fd-bb48-696fcd62a2d4",
+        "TenNguonKhach": "BL_N1",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "ff0e08a9-fe7f-4cf8-8dcc-6a81356fd064",
+        "TenNguonKhach": "20190813 Nguon02",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "30a77c29-d626-4b85-89db-6fcb03aaec57",
+        "TenNguonKhach": "DSX_NK1",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "003bf5aa-df3c-4f94-ae20-72692f5d95ce",
+        "TenNguonKhach": "khtd",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "18a056ee-1c9e-4079-a9d7-72daad3bad3b",
+        "TenNguonKhach": "toàn quốc",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "3f202a76-7b36-44ae-a63a-7b4b926f73bd",
+        "TenNguonKhach": "20190813 Nguon01",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "fc8e5d2b-92e0-4d71-9521-8992ccbcb808",
+        "TenNguonKhach": "2605_n1",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "f25fec77-ac4c-474f-a527-8a881ba81638",
+        "TenNguonKhach": "khách bán lẻ",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "af80a6d5-84cd-4f3b-9c9c-a6cb6d7a80c7",
+        "TenNguonKhach": "Zalo",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "3ecfc061-d0fa-4c0f-87d1-af1cb1f21854",
+        "TenNguonKhach": "n11",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "caf12ef0-24ff-4116-9310-b884ca3cb438",
+        "TenNguonKhach": "ARMY",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "e0fbbdff-f839-45c7-9a6b-b8985f09963c",
+        "TenNguonKhach": "",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "872ba24d-3eda-4470-a3d2-c72796a22e3f",
+        "TenNguonKhach": "nhóm1",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "1d5315da-2377-4498-badf-cfb74e3798e7",
+        "TenNguonKhach": "n23",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "031bfd8d-54b3-4484-803b-cfefefe39642",
+        "TenNguonKhach": "FB ",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "6f2353f7-a1af-4da1-978d-d2586ac7b3f1",
+        "TenNguonKhach": "jhj",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "eed5c5c5-1cb0-429f-8aa7-d48c86ef73b4",
+        "TenNguonKhach": "Khách lẻ",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "544aa988-9713-4493-9283-d6af52241d2e",
+        "TenNguonKhach": "n2",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "4607a4b2-92d5-45d4-a54f-dbd05a16d5cb",
+        "TenNguonKhach": "Cực VIP",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "668ba877-2321-48f1-8e62-decfbcdb5ca4",
+        "TenNguonKhach": "kh123",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "b468d58d-447a-46da-aae3-df324c7463f6",
+        "TenNguonKhach": "Khách hàng 1",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "7af1307f-2921-4876-81ef-e31903ec2966",
+        "TenNguonKhach": "20210111_nguon01",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "52a63baa-63be-4cbd-98a2-e92d7e75759e",
+        "TenNguonKhach": "Nguon_NhaHang1",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "c3e2bf09-5706-486d-9991-f848e80c9e54",
+        "TenNguonKhach": "G_Nguon1",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "67920c0e-6b7b-4e7d-98ff-fcae9152c37b",
+        "TenNguonKhach": "0813 Nguon03",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    },
+    {
+        "ID": "1e903077-ebac-4793-a77b-fe11b127d69c",
+        "TenNguonKhach": "rưẻwr",
+        "NguoiTao": "",
+        "NgayTao": null,
+        "NguoiSua": "",
+        "NgaySua": null,
+        "DM_DoiTuong": []
+    }
+];
+
+export const GetNhomDoiTuong_DonVi = {
+    "res": true,
+    "data": [
+        {
+            "ID": "71c9355d-4574-4356-80db-09783fae444c",
+            "TenNhomDoiTuong": "Đủ điều",
+            "GiamGia": 20,
+            "GiamGiaTheoPhanTram": true,
+            "GhiChu": "",
+            "TuDongCapNhat": true,
+            "NhomDT_DonVi": [
+                {
+                    "ID_NhomDoiTuong": "71c9355d-4574-4356-80db-09783fae444c",
+                    "ID": "2725f0f5-384c-4522-96a0-4442e3925fda",
+                    "TenDonVi": "CN07"
+                },
+                {
+                    "ID_NhomDoiTuong": "71c9355d-4574-4356-80db-09783fae444c",
+                    "ID": "22bdff24-5283-4249-8331-cd5167e2c504",
+                    "TenDonVi": "Chi nhánh 3"
+                },
+                {
+                    "ID_NhomDoiTuong": "71c9355d-4574-4356-80db-09783fae444c",
+                    "ID": "d93b17ea-89b9-4ecf-b242-d03b8cde71de",
+                    "TenDonVi": "Ssoft CN Cầu Giấy"
+                },
+                {
+                    "ID_NhomDoiTuong": "71c9355d-4574-4356-80db-09783fae444c",
+                    "ID": "d78cf00c-78e2-4832-a33b-4b2fecea1bbb",
+                    "TenDonVi": "CN11"
+                },
+                {
+                    "ID_NhomDoiTuong": "71c9355d-4574-4356-80db-09783fae444c",
+                    "ID": "c0e04477-c31b-4d12-a9cf-11b5ce34affc",
+                    "TenDonVi": "Chi nhánh 10"
+                },
+                {
+                    "ID_NhomDoiTuong": "71c9355d-4574-4356-80db-09783fae444c",
+                    "ID": "b47a1194-a766-4d71-90bd-6289c5132e61",
+                    "TenDonVi": "Chi Nhánh 03"
+                },
+                {
+                    "ID_NhomDoiTuong": "71c9355d-4574-4356-80db-09783fae444c",
+                    "ID": "4f447d7f-8f72-4ed9-8c2c-afd6172d4849",
+                    "TenDonVi": "Chi nhánh 02"
+                },
+                {
+                    "ID_NhomDoiTuong": "71c9355d-4574-4356-80db-09783fae444c",
+                    "ID": "1e75948e-021b-408d-b608-477817334f8e",
+                    "TenDonVi": "CN09"
+                },
+                {
+                    "ID_NhomDoiTuong": "71c9355d-4574-4356-80db-09783fae444c",
+                    "ID": "7da921a6-08a9-4218-ae02-949da6b4eb76",
+                    "TenDonVi": "CN08"
+                },
+                {
+                    "ID_NhomDoiTuong": "71c9355d-4574-4356-80db-09783fae444c",
+                    "ID": "9fbd9bd9-0360-47e8-bd30-20331c7b0a04",
+                    "TenDonVi": "Chi nhánh 05 "
+                },
+                {
+                    "ID_NhomDoiTuong": "71c9355d-4574-4356-80db-09783fae444c",
+                    "ID": "a31fa9bc-dd97-47f8-9901-f19efc4fa831",
+                    "TenDonVi": "Chi nhánh 04"
+                }
+            ]
+        },
+        {
+            "ID": "762cb64c-5940-4ddf-b3b8-1e013144cb10",
+            "TenNhomDoiTuong": "CN05",
+            "GiamGia": 50000,
+            "GiamGiaTheoPhanTram": false,
+            "GhiChu": "",
+            "TuDongCapNhat": true,
+            "NhomDT_DonVi": [
+                {
+                    "ID_NhomDoiTuong": "762cb64c-5940-4ddf-b3b8-1e013144cb10",
+                    "ID": "9fbd9bd9-0360-47e8-bd30-20331c7b0a04",
+                    "TenDonVi": "Chi nhánh 05 "
+                }
+            ]
+        },
+        {
+            "ID": "051ef314-914c-4e1b-b5a4-39a9c97a4af8",
+            "TenNhomDoiTuong": "20210116_TNX_Nhom1",
+            "GiamGia": 50000,
+            "GiamGiaTheoPhanTram": false,
+            "GhiChu": "cn03, cn05",
+            "TuDongCapNhat": false,
+            "NhomDT_DonVi": [
+                {
+                    "ID_NhomDoiTuong": "051ef314-914c-4e1b-b5a4-39a9c97a4af8",
+                    "ID": "22bdff24-5283-4249-8331-cd5167e2c504",
+                    "TenDonVi": "Chi nhánh 3"
+                },
+                {
+                    "ID_NhomDoiTuong": "051ef314-914c-4e1b-b5a4-39a9c97a4af8",
+                    "ID": "9fbd9bd9-0360-47e8-bd30-20331c7b0a04",
+                    "TenDonVi": "Chi nhánh 05 "
+                }
+            ]
+        },
+        {
+            "ID": "d32d4193-9998-4894-af02-3ac04fe9e4b4",
+            "TenNhomDoiTuong": "Ami",
+            "GiamGia": 0,
+            "GiamGiaTheoPhanTram": true,
+            "GhiChu": "",
+            "TuDongCapNhat": false,
+            "NhomDT_DonVi": [
+                {
+                    "ID_NhomDoiTuong": "d32d4193-9998-4894-af02-3ac04fe9e4b4",
+                    "ID": "d78cf00c-78e2-4832-a33b-4b2fecea1bbb",
+                    "TenDonVi": "CN11"
+                }
+            ]
+        },
+        {
+            "ID": "91f7f7f8-f8b0-4774-8ea3-4e3b91deea52",
+            "TenNhomDoiTuong": "G_N2",
+            "GiamGia": 20,
+            "GiamGiaTheoPhanTram": true,
+            "GhiChu": "cn7, cn01",
+            "TuDongCapNhat": true,
+            "NhomDT_DonVi": [
+                {
+                    "ID_NhomDoiTuong": "91f7f7f8-f8b0-4774-8ea3-4e3b91deea52",
+                    "ID": "d78cf00c-78e2-4832-a33b-4b2fecea1bbb",
+                    "TenDonVi": "CN11"
+                },
+                {
+                    "ID_NhomDoiTuong": "91f7f7f8-f8b0-4774-8ea3-4e3b91deea52",
+                    "ID": "2725f0f5-384c-4522-96a0-4442e3925fda",
+                    "TenDonVi": "CN07"
+                }
+            ]
+        },
+        {
+            "ID": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+            "TenNhomDoiTuong": "Đk bán, tuổi",
+            "GiamGia": 10,
+            "GiamGiaTheoPhanTram": true,
+            "GhiChu": "",
+            "TuDongCapNhat": true,
+            "NhomDT_DonVi": [
+                {
+                    "ID_NhomDoiTuong": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+                    "ID": "c0e04477-c31b-4d12-a9cf-11b5ce34affc",
+                    "TenDonVi": "Chi nhánh 10"
+                },
+                {
+                    "ID_NhomDoiTuong": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+                    "ID": "b47a1194-a766-4d71-90bd-6289c5132e61",
+                    "TenDonVi": "Chi Nhánh 03"
+                },
+                {
+                    "ID_NhomDoiTuong": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+                    "ID": "1e75948e-021b-408d-b608-477817334f8e",
+                    "TenDonVi": "CN09"
+                },
+                {
+                    "ID_NhomDoiTuong": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+                    "ID": "a31fa9bc-dd97-47f8-9901-f19efc4fa831",
+                    "TenDonVi": "Chi nhánh 04"
+                },
+                {
+                    "ID_NhomDoiTuong": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+                    "ID": "4f447d7f-8f72-4ed9-8c2c-afd6172d4849",
+                    "TenDonVi": "Chi nhánh 02"
+                },
+                {
+                    "ID_NhomDoiTuong": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+                    "ID": "d93b17ea-89b9-4ecf-b242-d03b8cde71de",
+                    "TenDonVi": "Ssoft CN Cầu Giấy"
+                },
+                {
+                    "ID_NhomDoiTuong": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+                    "ID": "7da921a6-08a9-4218-ae02-949da6b4eb76",
+                    "TenDonVi": "CN08"
+                },
+                {
+                    "ID_NhomDoiTuong": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+                    "ID": "22bdff24-5283-4249-8331-cd5167e2c504",
+                    "TenDonVi": "Chi nhánh 3"
+                },
+                {
+                    "ID_NhomDoiTuong": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+                    "ID": "2725f0f5-384c-4522-96a0-4442e3925fda",
+                    "TenDonVi": "CN07"
+                },
+                {
+                    "ID_NhomDoiTuong": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+                    "ID": "9fbd9bd9-0360-47e8-bd30-20331c7b0a04",
+                    "TenDonVi": "Chi nhánh 05 "
+                },
+                {
+                    "ID_NhomDoiTuong": "08db7dcc-3d88-4dac-83c3-5a5dd239ab26",
+                    "ID": "d78cf00c-78e2-4832-a33b-4b2fecea1bbb",
+                    "TenDonVi": "CN11"
+                }
+            ]
+        },
+        {
+            "ID": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+            "TenNhomDoiTuong": "hôm nay mua nhiều",
+            "GiamGia": 15,
+            "GiamGiaTheoPhanTram": true,
+            "GhiChu": "",
+            "TuDongCapNhat": true,
+            "NhomDT_DonVi": [
+                {
+                    "ID_NhomDoiTuong": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+                    "ID": "d78cf00c-78e2-4832-a33b-4b2fecea1bbb",
+                    "TenDonVi": "CN11"
+                },
+                {
+                    "ID_NhomDoiTuong": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+                    "ID": "9fbd9bd9-0360-47e8-bd30-20331c7b0a04",
+                    "TenDonVi": "Chi nhánh 05 "
+                },
+                {
+                    "ID_NhomDoiTuong": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+                    "ID": "d93b17ea-89b9-4ecf-b242-d03b8cde71de",
+                    "TenDonVi": "Ssoft CN Cầu Giấy"
+                },
+                {
+                    "ID_NhomDoiTuong": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+                    "ID": "c0e04477-c31b-4d12-a9cf-11b5ce34affc",
+                    "TenDonVi": "Chi nhánh 10"
+                },
+                {
+                    "ID_NhomDoiTuong": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+                    "ID": "1e75948e-021b-408d-b608-477817334f8e",
+                    "TenDonVi": "CN09"
+                },
+                {
+                    "ID_NhomDoiTuong": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+                    "ID": "22bdff24-5283-4249-8331-cd5167e2c504",
+                    "TenDonVi": "Chi nhánh 3"
+                },
+                {
+                    "ID_NhomDoiTuong": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+                    "ID": "7da921a6-08a9-4218-ae02-949da6b4eb76",
+                    "TenDonVi": "CN08"
+                },
+                {
+                    "ID_NhomDoiTuong": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+                    "ID": "4f447d7f-8f72-4ed9-8c2c-afd6172d4849",
+                    "TenDonVi": "Chi nhánh 02"
+                },
+                {
+                    "ID_NhomDoiTuong": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+                    "ID": "b47a1194-a766-4d71-90bd-6289c5132e61",
+                    "TenDonVi": "Chi Nhánh 03"
+                },
+                {
+                    "ID_NhomDoiTuong": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+                    "ID": "a31fa9bc-dd97-47f8-9901-f19efc4fa831",
+                    "TenDonVi": "Chi nhánh 04"
+                },
+                {
+                    "ID_NhomDoiTuong": "cf722b84-4407-42ef-97cb-799edb1e2c69",
+                    "ID": "2725f0f5-384c-4522-96a0-4442e3925fda",
+                    "TenDonVi": "CN07"
+                }
+            ]
+        },
+        {
+            "ID": "b0a408de-52f7-4815-a986-8b5c92531094",
+            "TenNhomDoiTuong": "Nhom test trang thai",
+            "GiamGia": 0,
+            "GiamGiaTheoPhanTram": false,
+            "GhiChu": "",
+            "TuDongCapNhat": false,
+            "NhomDT_DonVi": [
+                {
+                    "ID_NhomDoiTuong": "b0a408de-52f7-4815-a986-8b5c92531094",
+                    "ID": "d78cf00c-78e2-4832-a33b-4b2fecea1bbb",
+                    "TenDonVi": "CN11"
+                },
+                {
+                    "ID_NhomDoiTuong": "b0a408de-52f7-4815-a986-8b5c92531094",
+                    "ID": "1e75948e-021b-408d-b608-477817334f8e",
+                    "TenDonVi": "CN09"
+                }
+            ]
+        },
+        {
+            "ID": "fdd33c70-d857-4bb5-b5fe-9fc54f03e9ca",
+            "TenNhomDoiTuong": "20210116_DSX1_Nhom1",
+            "GiamGia": 10,
+            "GiamGiaTheoPhanTram": true,
+            "GhiChu": "cn05, cn06",
+            "TuDongCapNhat": false,
+            "NhomDT_DonVi": [
+                {
+                    "ID_NhomDoiTuong": "fdd33c70-d857-4bb5-b5fe-9fc54f03e9ca",
+                    "ID": "253f5fd1-541b-4ca8-8937-48bd96e20467",
+                    "TenDonVi": "CN06_chi nhanh 6"
+                },
+                {
+                    "ID_NhomDoiTuong": "fdd33c70-d857-4bb5-b5fe-9fc54f03e9ca",
+                    "ID": "9fbd9bd9-0360-47e8-bd30-20331c7b0a04",
+                    "TenDonVi": "Chi nhánh 05 "
+                }
+            ]
+        },
+        {
+            "ID": "efdcfe1f-1140-4aad-b982-ae7a24264dd8",
+            "TenNhomDoiTuong": "CN02",
+            "GiamGia": 0,
+            "GiamGiaTheoPhanTram": true,
+            "GhiChu": "",
+            "TuDongCapNhat": false,
+            "NhomDT_DonVi": [
+                {
+                    "ID_NhomDoiTuong": "efdcfe1f-1140-4aad-b982-ae7a24264dd8",
+                    "ID": "4f447d7f-8f72-4ed9-8c2c-afd6172d4849",
+                    "TenDonVi": "Chi nhánh 02"
+                }
+            ]
+        },
+        {
+            "ID": "3b3b2aa3-24d2-4640-bf3e-e71fde155626",
+            "TenNhomDoiTuong": "CN01",
+            "GiamGia": 0,
+            "GiamGiaTheoPhanTram": true,
+            "GhiChu": "",
+            "TuDongCapNhat": false,
+            "NhomDT_DonVi": [
+                {
+                    "ID_NhomDoiTuong": "3b3b2aa3-24d2-4640-bf3e-e71fde155626",
+                    "ID": "42e8dbde-62d5-4f19-8ea5-87c338399eb9",
+                    "TenDonVi": "Chi nhánh 1"
+                }
+            ]
+        }
+    ]
+};
+
+export const GetTrangThaiTimKiem = {
+    "res": true,
+    "dataSoure": {
+        "ttcongviec": [
+            {
+                "IsSelected": false,
+                "ID": 1,
+                "Name": "Đang xử lý"
+            },
+            {
+                "IsSelected": false,
+                "ID": 2,
+                "Name": "Hoàn thành"
+            },
+            {
+                "IsSelected": false,
+                "ID": 3,
+                "Name": "Hủy"
+            }
+        ],
+        "ttkhachhang": [
+            {
+                "IsSelected": false,
+                "ID": "1c7db58d-3b1b-4236-bf1a-1ac4e0e41875",
+                "Name": "9999"
+            },
+            {
+                "IsSelected": false,
+                "ID": "21977338-ef48-495c-b952-244bd36b5a3d",
+                "Name": "Ngừng online "
+            },
+            {
+                "IsSelected": false,
+                "ID": "465c5f3a-6f8e-415f-b8c3-262908685aa5",
+                "Name": "Tiềm năng"
+            },
+            {
+                "IsSelected": false,
+                "ID": "db5e4a25-8eb5-4ca3-8af0-28d25bb56370",
+                "Name": "TTvue_TT1"
+            },
+            {
+                "IsSelected": false,
+                "ID": "f347dffe-98a3-45dd-9897-32940adca04c",
+                "Name": "modalKH_TT1"
+            },
+            {
+                "IsSelected": false,
+                "ID": "244bb401-67c0-473a-a171-3d1df8bf2c8f",
+                "Name": "Đang hoạt động "
+            },
+            {
+                "IsSelected": false,
+                "ID": "22abcc45-11df-4efa-a028-5cb3cf44e61a",
+                "Name": "Vi diệu"
+            },
+            {
+                "IsSelected": false,
+                "ID": "ca963b45-826a-46b1-a403-7139bd1ec77e",
+                "Name": "DSX_Status1"
+            },
+            {
+                "IsSelected": false,
+                "ID": "a2dfe281-c9cc-484c-a23e-aa80faa8d56a",
+                "Name": "20190813 Tiem nang"
+            },
+            {
+                "IsSelected": false,
+                "ID": "69683676-62a5-4372-87c4-c2a6b6371745",
+                "Name": "9999"
+            },
+            {
+                "IsSelected": false,
+                "ID": "900c9aee-8724-4600-83a2-f0e928930145",
+                "Name": "5555"
+            }
+        ]
     }
 };

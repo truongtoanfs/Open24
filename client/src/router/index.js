@@ -8,27 +8,26 @@ import HoaDonSuaChua from '../views/HoaDonSuaChua.vue';
 const routes = [
   {
     path: '/',
-    alias: '/tongQuan',
-    name: 'dashboard',
+    alias: '/Dashboard',
     component: Dashboard,
   },
   {
-    path: '/danhSachXe',
+    path: '/DanhSachXe',
     name: 'danhSachXe',
     component: DanhSachXe,
   },
   {
-    path: '/phieuTiepNhan',
+    path: '/DanhSachPhieuTiepNhan',
     name: 'phieuTiepNhan',
     component: PhieuTiepNhan,
   },
   {
-    path: '/baoGiaSuaChua',
+    path: '/Quotation',
     name: 'baoGiaSuaChua',
     component: BaoGiaSuaChua,
   },
   {
-    path: '/hoaDonSuaChua',
+    path: '/HoaDonSuaChua',
     name: 'hoaDonSuaChua',
     component: HoaDonSuaChua,
   },

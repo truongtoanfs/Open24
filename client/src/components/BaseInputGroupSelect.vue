@@ -12,11 +12,11 @@
 
             <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
                 <ul v-if="isOpenList" class="absolute z-10 mt-1 py-1 w-full max-h-56 overflow-auto rounded-md bg-white shadow-lg text-sm font-normal divide-y divide-gray-300">
-                    <li @click ="filterInput = item.name, closeDropdown()" v-for="(item, index) in filterList" :key="index" class="relative py-1.5 px-2 cursor-default select-none">
+                    <li @click ="filterInput = item[keywordFilter], closeDropdown(), $emit('selected', item[keywordFilter])" v-for="(item, index) in filterList" :key="index" class="relative py-1.5 px-2 cursor-default select-none">
                         <span>
-                            {{ item.name }}
+                            {{ item[keywordFilter] }}
                         </span>
-                        <span v-if="filterInput === item.name" class="absolute inset-y-0 right-0 flex items-center pr-4">
+                        <span v-if="filterInput === item[keywordFilter]" class="absolute inset-y-0 right-0 flex items-center pr-4">
                             <i class="fas fa-check text-blue-600" />
                         </span>
                     </li>
@@ -34,17 +34,24 @@ export default {
     props: {
         label: String,
         placeholderText: String,
+        value: {
+            type: String,
+            default: '',
+        },
         selectList: Array,
+        keywordFilter: {
+            type: String,
+            default: 'name'
+        },
         requiredPlus: {
             type: Boolean,
             default: true,
         },
     },
-    emits: ['openModalAddNew'],
+    emits: ['openModalAddNew', 'selected'],
     setup(props) {
         const isOpenList = ref(false);
-        const filterInput = ref('');
-
+        const filterInput = ref(props.value);
         function closeDropdown() {
             isOpenList.value = false;
         }
@@ -55,7 +62,7 @@ export default {
                 filterList.value = props.selectList;
             } else {
                 filterList.value = props.selectList.filter(item => {
-                    const itemNameNoAccents = removeAccents(item.name);
+                    const itemNameNoAccents = removeAccents(item[props.keywordFilter]);
                     const inputNoAccents = removeAccents(newValue);
                     return itemNameNoAccents.toUpperCase().includes(inputNoAccents.toUpperCase());
                 })

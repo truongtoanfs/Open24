@@ -3,8 +3,8 @@
         <ul class="grid grid-cols-2 py-2 px-1 bg-gray-600 text-white text-sm rounded-sm">
             <li v-for="(column, index) in columnList" :key="index">
                 <label class="flex items-center py-1.5 px-2 hover:bg-gray-500">
-                    <input type="checkbox" class="h-4 w-4 mr-1.5" v-model="column.checked">
-                    <span>{{ column.name }}</span>
+                    <input type="checkbox" class="h-4 w-4 mr-1.5" v-model="column.colShow">
+                    <span>{{ column.colText }}</span>
                 </label>
             </li>
         </ul>

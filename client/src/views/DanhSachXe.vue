@@ -1,21 +1,48 @@
 <template>
     <div class="p-3.5 xl:flex xl:pl-0">
         <TheSidebar :class="[isOpenSidebar ? 'block' : 'hidden', 'xl:block xl:mr-1.5']" @closeSidebar="isOpenSidebar = false" :isCollapseAll="isCollapseAll" @collapseAll="isCollapseAll = !isCollapseAll">
-            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalHangXe = true" @openModalUpdate="isOpenModalUpdateHangXe = true" headerText="Hãng xe" searchLabel="Tìm kiếm hãng xe" :filterData="hangxeList">
+            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalHangXe = true" @openModalUpdate="openModalUpdateHangXe" headerText="Hãng xe" searchLabel="Tìm kiếm hãng xe" :filterData="hangxeList" keywordFilter="TenHangXe">
                 <template v-slot:header-icon>
                     <i class="fab fa-fort-awesome"></i>
                 </template>
-            </SidebarItemSearch>
-
-            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalLoaiXe = true" @openModalUpdate="isOpenModalUpdateLoaiXe = true" headerText="Loại xe" searchLabel="Tìm kiếm loại xe" :filterData="loaixeList">
-                <template v-slot:header-icon>
-                    <i class="fas fa-truck-pickup"></i>
+                <template v-slot:update-modal="{updateData , activedItemIndex}">
+                    <BaseModalHangXe v-if="activedHangXeModal === activedItemIndex" @closeModal="activedHangXeModal = -1" modalTitle="Cập nhật hãng xe" :maHangXe="updateData.MaHangXe" :tenHangXe="updateData.TenHangXe" :imageUrl="updateData.Logo" >
+                        <template v-slot:modal-footer>
+                            <ButtonCancel @click="activedHangXeModal = -1" class="mr-2" />
+                            <ButtonDelete class="mr-2">hãng {{ updateData.TenHangXe }}</ButtonDelete>
+                            <ButtonSave />
+                        </template>
+                    </BaseModalHangXe>
                 </template>
             </SidebarItemSearch>
 
-            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalMauXe = true" @openModalUpdate="isOpenModalUpdateMauXe = true" headerText="Mẫu xe" searchLabel="Tìm kiếm mẫu xe" :filterData="mauxeList">
+            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalLoaiXe = true" @openModalUpdate="openModalUpdateLoaiXe" headerText="Loại xe" searchLabel="Tìm kiếm loại xe" :filterData="loaixeList" keywordFilter="TenLoaiXe">
                 <template v-slot:header-icon>
-                    <i class="fas fa-car-side"></i>
+                    <i class="fas fa-truck-pickup"></i>
+                </template>
+                <template v-slot:update-modal="{updateData , activedItemIndex}">
+                    <BaseModalLoaiXe v-if="activedLoaiXeModal === activedItemIndex" @closeModal="activedLoaiXeModal = -1" modalTitle="Cập nhật loại xe" :maLoaiXe="updateData.MaLoaiXe" :tenLoaiXe="updateData.TenLoaiXe">
+                        <template v-slot:modal-footer>
+                            <ButtonCancel @click="activedLoaiXeModal = -1" class="mr-2" />
+                            <ButtonDelete class="mr-2">{{ updateData.TenLoaiXe }}</ButtonDelete>
+                            <ButtonSave />
+                        </template>
+                    </BaseModalLoaiXe>
+                </template>
+            </SidebarItemSearch>
+
+            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalMauXe = true" @openModalUpdate="openModalUpdateMauXe" headerText="Mẫu xe" searchLabel="Tìm kiếm mẫu xe" :filterData="mauxeList" keywordFilter="TenMauXe">
+                <template v-slot:header-icon>
+                    <i class="fas fa-truck-pickup"></i>
+                </template>
+                <template v-slot:update-modal="{updateData , activedItemIndex}">
+                    <BaseModalMauXe v-if="activedMauXeModal === activedItemIndex" @closeModal="activedMauXeModal = -1" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" modalTitle="Cập nhật mẫu xe" :tenMauXe="updateData.TenMauXe" :tenHangXe="updateData.TenHangXe" :tenLoaiXe="updateData.TenLoaiXe" :ghiChu="updateData.GhiChu" :hangxeList="hangxeList" :loaixeList="loaixeList" >
+                        <template v-slot:modal-footer>
+                            <ButtonCancel @click="activedMauXeModal = -1" class="mr-2" />
+                            <ButtonDelete class="mr-2">{{ updateData.TenMauXe }}</ButtonDelete>
+                            <ButtonSave />
+                        </template>
+                    </BaseModalMauXe>
                 </template>
             </SidebarItemSearch>
 
@@ -35,14 +62,6 @@
                 <div class="relative flex items-center mb-3">
                     <div class="mr-1.5">
                         <ButtonAddNew @click="isOpenModalThemMoiXe = true" />
-                        <ModalThemMoiXe v-if="isOpenModalThemMoiXe" @closeModal="isOpenModalThemMoiXe = false"
-                            @openModalMauXe="isOpenModalMauXe = true" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" @openModalKhachHang="isOpenModalKhachHang = true" 
-                            :mauXeList="mauxeList" :hangXeList="hangxeList" :loaiXeList="loaixeList" :khachHangList="khachHangList">
-                                <template v-slot:modal-footer>
-                                    <ButtonCancel @click="isOpenModalThemMoiXe = false" class="mr-2" />
-                                    <ButtonSave />
-                                </template>
-                        </ModalThemMoiXe>
                     </div>
                     <div class="mr-1.5">
                         <ButtonImport @click="isOpenModalNhapFile = true" />
@@ -66,58 +85,47 @@
                     </BaseButton>
                 </div>
             </div>
-            <TableDanhSachXe :columnList="columnList" />
+            <TableDanhSachXe :columnList="columnList" :hangxeList="hangxeList" :loaixeList="loaixeList" :mauxeList="mauxeList" :chuxeList="chuxeList"
+                @openModalMauXe="isOpenModalMauXe = true" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" @openModalKhachHang="isOpenModalKhachHang = true" />
         </div>
 
-        <ModalHangXe v-if="isOpenModalHangXe" @closeModal="isOpenModalHangXe = false" modalTitle="Thêm mới hãng xe">
+        <BaseModalHangXe v-if="isOpenModalHangXe" @closeModal="isOpenModalHangXe = false" modalTitle="Thêm mới hãng xe" >
             <template v-slot:modal-footer>
                 <ButtonCancel @click="isOpenModalHangXe = false" class="mr-2" />
                 <ButtonSave />
             </template>
-        </ModalHangXe>
-        <ModalHangXe v-if="isOpenModalUpdateHangXe" @closeModal="isOpenModalUpdateHangXe = false" modalTitle="Cập nhật hãng xe">
-            <template v-slot:modal-footer>
-                <ButtonCancel @click="isOpenModalUpdateHangXe = false" class="mr-2" />
-                <ButtonDelete class="mr-2" />
-                <ButtonSave />
-            </template>
-        </ModalHangXe>
+        </BaseModalHangXe>
 
-        <ModalLoaiXe v-if="isOpenModalLoaiXe" @closeModal="isOpenModalLoaiXe = false" modalTitle="Thêm mới loại xe">
+        <BaseModalLoaiXe v-if="isOpenModalLoaiXe" @closeModal="isOpenModalLoaiXe = false" modalTitle="Thêm mới loại xe">
             <template v-slot:modal-footer>
                 <ButtonCancel @click="isOpenModalLoaiXe = false" class="mr-2" />
                 <ButtonSave />
             </template>
-        </ModalLoaiXe>
-        <ModalLoaiXe v-if="isOpenModalUpdateLoaiXe" @closeModal="isOpenModalUpdateLoaiXe = false" modalTitle="Cập nhật loại xe">
-            <template v-slot:modal-footer>
-                <ButtonCancel @click="isOpenModalUpdateLoaiXe = false" class="mr-2" />
-                <ButtonDelete class="mr-2" />
-                <ButtonSave />
-            </template>
-        </ModalLoaiXe>
+        </BaseModalLoaiXe>
 
-        <ModalMauXe v-if="isOpenModalMauXe" @closeModal="isOpenModalMauXe = false" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" modalTitle="Thêm mới mẫu xe" :hangxeList="hangxeList" :loaixeList="loaixeList">
+        <BaseModalMauXe v-if="isOpenModalMauXe" @closeModal="isOpenModalMauXe = false" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" modalTitle="Thêm mới mẫu xe" :hangxeList="hangxeList" :loaixeList="loaixeList">
             <template v-slot:modal-footer>
                 <ButtonCancel @click="isOpenModalMauXe = false" class="mr-2" />
                 <ButtonSave />
             </template>
-        </ModalMauXe>
-        <ModalMauXe v-if="isOpenModalUpdateMauXe" @closeModal="isOpenModalUpdateMauXe = false" modalTitle="Cập nhật mẫu xe" :hangxeList="hangxeList" :loaixeList="loaixeList">
-            <template v-slot:modal-footer>
-                <ButtonCancel @click="isOpenModalUpdateMauXe = false" class="mr-2" />
-                <ButtonDelete class="mr-2" />
-                <ButtonSave />
-            </template>
-        </ModalMauXe>
+        </BaseModalMauXe>
 
-        <ModalKhachHang v-if="isOpenModalKhachHang" @closeModal="isOpenModalKhachHang = false" modalTitle="Thêm mới khách hàng" :nguonKhachList="nguonKhachList" :nhomKhachList="nhomKhachList" :trangThaiKhachList="trangThaiKhachList"  :nhanVienList="nhanVienList"
+        <BaseModalThemMoiXe v-if="isOpenModalThemMoiXe" modalTitle="Thêm mới xe" @closeModal="isOpenModalThemMoiXe = false"
+            @openModalMauXe="isOpenModalMauXe = true" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" @openModalKhachHang="isOpenModalKhachHang = true" 
+            :mauxeList="mauxeList" :hangxeList="hangxeList" :loaixeList="loaixeList" :chuxeList="chuxeList">
+                <template v-slot:modal-footer>
+                    <ButtonCancel @click="isOpenModalThemMoiXe = false" />
+                    <ButtonSave class="btn-distance" />
+                </template>
+        </BaseModalThemMoiXe>
+
+        <BaseModalKhachHang v-if="isOpenModalKhachHang" @closeModal="isOpenModalKhachHang = false" modalTitle="Thêm mới khách hàng" :nguonKhachList="nguonKhachList" :nhomKhachList="nhomKhachList" :trangThaiKhachList="trangThaiKhachList"  :nhanVienList="nhanVienList"
         @openModalNguonKhach="isOpenModalNguonKhach = true" @openModalTrangThaiKhach="isOpenModalTrangThaiKhach = true" @openModalNhomKhach ="isOpenModalNhomKhach = true">
             <template v-slot:modal-footer>
                 <ButtonCancel @click="isOpenModalKhachHang = false" class="mr-2" />
                 <ButtonSave />
             </template>
-        </ModalKhachHang>
+        </BaseModalKhachHang>
 
         <ModalNguonKhach v-if="isOpenModalNguonKhach" @closeModal="isOpenModalNguonKhach = false" modalTitle="Thêm mới nguồn khách">
             <template v-slot:modal-footer>
@@ -148,11 +156,6 @@ import BaseSeachBox from '../components/BaseSearchBox.vue';
 import BaseCheckbox from '../components/BaseCheckbox.vue';
 import BaseButton from '../components/BaseButton.vue';
 import BaseModal from '../components/BaseModal.vue';
-import ModalHangXe from '../components/ModalHangXe.vue';
-import ModalLoaiXe from '../components/ModalLoaiXe.vue';
-import ModalMauXe from '../components/ModalMauXe.vue';
-import ModalKhachHang from '../components/ModalKhachHang.vue';
-import ModalThemMoiXe from '../components/ModalThemMoiXe.vue';
 import ModalNguonKhach from '../components/ModalNguonKhach.vue';
 import ModalNhomKhach from '../components/ModalNhomKhach.vue';
 import ModalTrangThaiKhach from '../components/ModalTrangThaiKhach.vue';
@@ -165,9 +168,22 @@ import ButtonImport from '../components/ButtonImport.vue';
 import ButtonExport from '../components/ButtonExport.vue';
 import DropdownColumnList from '../components/DropdownColumnList.vue';
 import TableDanhSachXe from '../components/TableDanhSachXe.vue';
+import BaseModalHangXe from '../components/danhSachXe/BaseModalHangXe.vue';
+import BaseModalLoaiXe from '../components/danhSachXe/BaseModalLoaiXe.vue';
+import BaseModalMauXe from '../components/danhSachXe/BaseModalMauXe.vue';
+import BaseModalThemMoiXe from '../components/danhSachXe/BaseModalThemMoiXe.vue';
+import BaseModalKhachHang from '../components/danhSachXe/BaseModalKhachHang.vue';
+
 
 import { ref, reactive, toRefs } from '@vue/reactivity';
-import axios from 'axios';
+import { GetAllHangXes } from '../data';
+import { GetAllLoaiXes } from '../data';
+import { GetAllDanhMucMauXe } from '../data';
+import { GetChuXeList } from '../data';
+import { GetDM_NguonKhach } from '../data';
+import { GetNhomDoiTuong_DonVi } from '../data';
+import { GetTrangThaiTimKiem } from '../data';
+import { watch } from '@vue/runtime-core';
 
 export default {
     components: {
@@ -177,11 +193,7 @@ export default {
         BaseSeachBox,
         BaseCheckbox,
         BaseButton,
-        ModalHangXe,
-        ModalLoaiXe,
-        ModalMauXe,
-        ModalKhachHang,
-        ModalThemMoiXe,
+        BaseModalKhachHang,
         ModalNguonKhach,
         ModalNhomKhach,
         ModalTrangThaiKhach,
@@ -194,327 +206,135 @@ export default {
         ButtonExport,
         DropdownColumnList,
         TableDanhSachXe,
+        BaseModalHangXe,
+        BaseModalLoaiXe,
+        BaseModalMauXe,
+        BaseModalThemMoiXe,
     },
     emits: ["closeModal"],
     setup() {
-        const hangxeList = ref([
-            {
-                id: 1,
-                name: 'Vinfast',
-            },
-            {
-                id: 2,
-                name: 'Rolls-Rouce',
-            },
-            {
-                id: 3,
-                name: 'Mercedes-Benz',
-            },
-            {
-                id: 4,
-                name: 'Land Rover',
-            },
-            {
-                id: 5,
-                name: 'Bentley',
-            },
-            {
-                id: 6,
-                name: 'Lexus',
-            },
-            {
-                id: 7,
-                name: 'Trường Hải',
-            },
-            {
-                id: 8,
-                name: 'BMW',
-            },
-            {
-                id: 9,
-                name: 'Audi',
-            },
-            {
-                id: 10,
-                name: 'Porsche',
-            },
-            {
-                id: 11,
-                name: 'Maserati',
-            },
-            {
-                id: 12,
-                name: 'Aston Martin',
-            },
-        ]);
-        const loaixeList = ref([
-            {
-                id: 1,
-                name: 'Sedan',
-            },
-            {
-                id: 2,
-                name: 'Hatchback',
-            },
-            {
-                id: 3,
-                name: 'Suv',
-            },
-            {
-                id: 4,
-                name: 'Crossover',
-            },
-            {
-                id: 5,
-                name: 'MPV',
-            },
-            {
-                id: 6,
-                name: 'Coupe',
-            },
-            {
-                id: 7,
-                name: 'Convertible',
-            },
-            {
-                id: 8,
-                name: 'Pickup',
-            },
-            {
-                id: 9,
-                name: 'Limousine',
-            },
-        ]);
-        const mauxeList = ref([
-            {
-                id: 1,
-                name: 'Lexus ES250',
-            },
-            {
-                id: 2,
-                name: 'Lexus RX300',
-            },
-            {
-                id: 3,
-                name: 'Lexus RX350',
-            },
-            {
-                id: 4,
-                name: 'BMW X5',
-            },
-            {
-                id: 5,
-                name: 'BMW X7',
-            },
-            {
-                id: 6,
-                name: 'Mercedes Benz GLC200',
-            },
-            {
-                id: 7,
-                name: 'Mercedes Benz GLC300',
-            },
-            {
-                id: 8,
-                name: 'Porsche Cayenne',
-            },
-            {
-                id: 9,
-                name: 'Porsche Macan',
-            },
-            {
-                id: 10,
-                name: 'Volvo XC60',
-            },
-            {
-                id: 11,
-                name: 'Volvo XC90',
-            },
-            {
-                id: 12,
-                name: ' Range Rover',
-            },
-        ]);
+        const hangxeList = GetAllHangXes.dataSoure;
+        const loaixeList = GetAllLoaiXes.dataSoure;
+        const mauxeList = GetAllDanhMucMauXe.dataSoure;
+        const chuxeList = GetChuXeList.map(chuXe => {
+            return {
+                id: chuXe.ID,
+                code: chuXe.MaNguoiNop,
+                name: chuXe.NguoiNopTien,
+                phoneNumber: chuXe.SoDienThoai,
+                email: chuXe.Email,
+                diaChi: chuXe.DiaChi,
+                idNhomDoiTuongs: chuXe.IDNhomDoiTuongs,
+            }
+        });
+
+        const nguonKhachList = GetDM_NguonKhach;
+        const nhomKhachList = GetNhomDoiTuong_DonVi.data;
+
+
         const columnList = ref([
             {
-                id: 1,
-                name: 'Biển số',
-                checked: true,
+                "colName": "colBienSo",
+                "colText": "Biển số",
+                "colShow": true,
+                "index": 0
             },
             {
-                id: 2,
-                name: 'Mã chủ xe',
-                checked: true,
+                "colName": "colMaChuXe",
+                "colText": "Mã chủ xe",
+                "colShow": true,
+                "index": 1
             },
             {
-                id: 3,
-                name: 'Chủ xe',
-                checked: true,
+                "colName": "colChuXe",
+                "colText": "Chủ xe",
+                "colShow": true,
+                "index": 2
             },
             {
-                id: 4,
-                name: 'Điện thoại',
-                checked: true,
+                "colName": "colDienThoai",
+                "colText": "Điện thoại",
+                "colShow": false,
+                "index": 3
             },
             {
-                id: 5,
-                name: 'Hãng xe',
-                checked: true,
+                "colName": "colHangXe",
+                "colText": "Hãng xe",
+                "colShow": true,
+                "index": 4
             },
             {
-                id: 6,
-                name: 'Loại xe',
-                checked: true,
+                "colName": "colLoaiXe",
+                "colText": "Loại xe",
+                "colShow": true,
+                "index": 5
             },
             {
-                id: 7,
-                name: 'Mẫu xe',
-                checked: true,
+                "colName": "colMauXe",
+                "colText": "Mẫu xe",
+                "colShow": true,
+                "index": 6
             },
             {
-                id: 8,
-                name: 'Năm sản xuất',
-                checked: true,
+                "colName": "colNamSanXuat",
+                "colText": "Năm sản xuất",
+                "colShow": true,
+                "index": 7
             },
             {
-                id: 9,
-                name: 'Số khung',
-                checked: false,
+                "colName": "colSoKhung",
+                "colText": "Số khung",
+                "colShow": true,
+                "index": 8
             },
             {
-                id: 10,
-                name: 'Số máy',
-                checked: false,
+                "colName": "colSoMay",
+                "colText": "Số máy",
+                "colShow": true,
+                "index": 9
             },
             {
-                id: 11,
-                name: 'Màu sơn',
-                checked: true,
+                "colName": "colMauSon",
+                "colText": "Màu sơn",
+                "colShow": true,
+                "index": 10
             },
             {
-                id: 12,
-                name: 'Dung tích',
-                checked: false,
+                "colName": "colDungTich",
+                "colText": "Dung tích",
+                "colShow": true,
+                "index": 11
             },
             {
-                id: 13,
-                name: 'Hộp số',
-                checked: false,
+                "colName": "colHopSo",
+                "colText": "Hộp số",
+                "colShow": true,
+                "index": 12
             },
             {
-                id: 14,
-                name: 'ghi chú',
-                checked: true,
+                "colName": "colGhiChu",
+                "colText": "Ghi chú",
+                "colShow": true,
+                "index": 13
             },
             {
-                id: 15,
-                name: 'Trạng thái',
-                checked: true,
-            },
+                "colName": "colTrangThai",
+                "colText": "Trạng thái",
+                "colShow": false,
+                "index": 14
+            }
         ]);
+        if (!localStorage.DanhMucXeColumnList) {
+            localStorage.setItem("DanhMucXeColumnList", JSON.stringify(columnList.value));
+        } else {
+            columnList.value = JSON.parse(localStorage.DanhMucXeColumnList);
+        }
 
-        const khachHangList = ref([
-            {
-                id: 1,
-                code: 'KH000027',
-                name: 'Nguyễn Duy Dương',
-                phoneNumber: '0906586355'
+        watch(columnList, (newValue) => {
+            localStorage.setItem("DanhMucXeColumnList", JSON.stringify(columnList.value));
+        }, { deep: true })
 
-            },
-            {
-                id: 2,
-                code: 'KH0000009',
-                name: 'Trương Thảo Linh',
-                phoneNumber: ''
-
-            },
-            {
-                id: 3,
-                code: 'KH0000011',
-                name: 'Dương Minh Quang',
-                phoneNumber: '0382963813'
-
-            },
-            {
-                id: 4,
-                code: 'KH0000032',
-                name: 'Trần Thu Hà',
-                phoneNumber: '0936895531'
-
-            },
-            {
-                id: 5,
-                code: 'KH0000030',
-                name: 'Phạm Mỹ Dung',
-                phoneNumber: '0963858965'
-
-            },
-            {
-                id: 6,
-                code: 'KH000027',
-                name: 'Nguyễn Duy Dương',
-                phoneNumber: '0906586355'
-
-            },
-            {
-                id: 7,
-                code: 'KH0000009',
-                name: 'Trương Thảo Linh',
-                phoneNumber: ''
-
-            },
-            {
-                id: 8,
-                code: 'KH0000011',
-                name: 'Dương Minh Quang',
-                phoneNumber: '0382963813'
-
-            },
-            {
-                id: 9,
-                code: 'KH0000032',
-                name: 'Trần Thu Hà',
-                phoneNumber: '0936895531'
-
-            },
-            {
-                id: 10,
-                code: 'KH0000030',
-                name: 'Phạm Mỹ Dung',
-                phoneNumber: '0963858965'
-
-            },
-        ])
-        const nguonKhachList = ref([
-            {
-                id: 1,
-                name: 'Khách tiềm năng',
-            },
-            {
-                id: 2,
-                name: 'Khách lâu năm',
-            }
-        ])
-        const nhomKhachList = ref([
-            {
-                id: 1,
-                name: 'Nhóm 1',
-            },
-            {
-                id: 2,
-                name: 'Nhóm 2',
-            }
-        ])
-        const trangThaiKhachList = ref([
-            {
-                id: 1,
-                name: 'Tự do',
-            },
-            {
-                id: 2,
-                name: 'Cố định',
-            }
-        ])
+        const trangThaiKhachList = GetTrangThaiTimKiem.dataSoure.ttkhachhang;
         const nhanVienList = ref([
             {
                 id: 1,
@@ -575,6 +395,19 @@ export default {
             const file = event.target.files[0];
             logoURL.value = URL.createObjectURL(file);
         }
+        
+        const activedHangXeModal = ref(-1);
+        function openModalUpdateHangXe(index) {
+            activedHangXeModal.value = index;
+        }
+        const activedLoaiXeModal = ref(-1);
+        function openModalUpdateLoaiXe(index) {
+            activedLoaiXeModal.value = index;
+        }
+        const activedMauXeModal = ref(-1);
+        function openModalUpdateMauXe(index) {
+            activedMauXeModal.value = index;
+        }
 
 
         return {
@@ -582,7 +415,7 @@ export default {
             loaixeList,
             mauxeList,
             columnList,
-            khachHangList,
+            chuxeList,
             previewLogo,
             logoURL,
             ...toRefs(modalsState),
@@ -593,6 +426,12 @@ export default {
             trangThaiKhachList,
             isCollapseAll,
             nhanVienList,
+            openModalUpdateHangXe,
+            activedHangXeModal,
+            openModalUpdateLoaiXe,
+            activedLoaiXeModal,
+            openModalUpdateMauXe,
+            activedMauXeModal
         }
     }
 }

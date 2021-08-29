@@ -9,8 +9,8 @@
                 <BaseInputGroup class="mb-1.5" label="Điện thoại" />
                 <BaseInputGroup class="mb-1.5" label="Email" />
                 <BaseInputGroup class="mb-1.5" label="Địa chỉ" />
-                <BaseInputGroupSelect :requiredPlus="false" class="mb-1.5" label="Tỉnh thành" placeholderText="Chọn tỉnh thành" :selectList="provinceList" />
-                <BaseInputGroupSelect :requiredPlus="false" class="mb-1.5" label="Quận huyện" placeholderText="Chọn quận huyện" :selectList="provinceList" />
+                <BaseInputGroupSelect :requiredPlus="false" class="mb-1.5" label="Tỉnh thành" placeholderText="Chọn tỉnh thành" :selectList="provinceList" @selected="getDistricts" />
+                <BaseInputGroupSelect :requiredPlus="false" class="mb-1.5" label="Quận huyện" placeholderText="Chọn quận huyện" :selectList="districtList" />
                 <BaseInputGroup class="mb-1.5" label="Mã số thuế" />
                 <BaseTextareaGroup class="mb-1.5" label="Ghi chú" />
             </div>
@@ -70,10 +70,10 @@
                         </div>
                     </div>
                 </div>
-                <BaseInputGroupSelect @openModalAddNew="$emit('openModalNguonKhach')" class="mb-1.5" label="Nguồn khách" placeholderText="Chọn nguồn khách" :selectList="nguonKhachList" />
+                <BaseInputGroupSelect @openModalAddNew="$emit('openModalNguonKhach')" class="mb-1.5" label="Nguồn khách" placeholderText="Chọn nguồn khách" :selectList="nguonKhachList" keywordFilter="TenNguonKhach" />
                 <BaseInputGroup class="mb-1.5" label="Người giới thiệu" placeholderText="Khách hàng" />
-                <BaseInputGroupSelect @openModalAddNew="$emit('openModalNhomKhach')" class="mb-1.5" label="Nhóm khách" placeholderText="Chọn nhóm" :selectList="nhomKhachList" />
-                <BaseInputGroupSelect @openModalAddNew="$emit('openModalTrangThaiKhach')" class="mb-1.5" label="Trạng thái khách" placeholderText="Chọn trạng thái" :selectList="trangThaiKhachList" />
+                <BaseInputGroupSelect @openModalAddNew="$emit('openModalNhomKhach')" class="mb-1.5" label="Nhóm khách" placeholderText="Chọn nhóm" :selectList="nhomKhachList" keywordFilter="TenNhomDoiTuong" />
+                <BaseInputGroupSelect @openModalAddNew="$emit('openModalTrangThaiKhach')" class="mb-1.5" label="Trạng thái khách" placeholderText="Chọn trạng thái" :selectList="trangThaiKhachList" keywordFilter="Name" />
                 <BaseInputGroupSelectInfo class="mb-1.5" label="NV phụ trách" placeholderText="Chọn nhân viên" :selectList="nhanVienList" />
             </div>
         </template>
@@ -86,14 +86,14 @@
 <script>
     import { ref } from '@vue/reactivity';
     import axios from 'axios';
-    import BaseModal from './BaseModal.vue';
-    import BaseInputGroup from './BaseInputGroup.vue';
-    import BaseInputGroupSelect from './BaseInputGroupSelect.vue';
-    import BaseInputGroupSelectInfo from './BaseInputGroupSelectInfo.vue';
-    import BaseTextareaGroup from '../components/BaseTextareaGroup.vue';
-    import previewImage from '../composables/usePreviewImage.js';
-import { computed } from '@vue/runtime-core';
-
+    import BaseModal from '../BaseModal.vue';
+    import BaseInputGroup from '../BaseInputGroup.vue';
+    import BaseInputGroupSelect from '../BaseInputGroupSelect.vue';
+    import BaseInputGroupSelectInfo from '../BaseInputGroupSelectInfo.vue';
+    import BaseTextareaGroup from '../BaseTextareaGroup.vue';
+    import previewImage from '/Open24/client/src/composables/usePreviewImage';
+    import { computed } from '@vue/runtime-core';
+    import { getProvinceList } from '/Open24/client/src/composables/useProvinceList';
     export default {
         components: {
             BaseModal,
@@ -114,18 +114,16 @@ import { computed } from '@vue/runtime-core';
         setup() {
             const isPersonalCustomer = ref(true);
             const provinceList = ref([]);
-            async function getProvinceList() {
-                try {
-                    const data = await axios.get('https://provinces.open-api.vn/api/?depth=2');
-                    return data.data;
-                } catch(err) {
-                    console.error(err);
-                }
-            }
 
-            getProvinceList().then(province => {
-                provinceList.value = province;
+            getProvinceList().then(provinces => {
+                provinceList.value = provinces;
             })
+
+            const districtList = ref([]);
+            function getDistricts(proviceName) {
+                const selectedProvice = provinceList.value.find(province => province.name === proviceName);
+                districtList.value = selectedProvice.districts;
+            }
 
             const userImages = ref([]);
             const userImagesList = [];
@@ -134,7 +132,6 @@ import { computed } from '@vue/runtime-core';
                 userImagesList.push(...previewImage(event));
                 userImages.value = userImagesList;
                 imageAmount.value = userImagesList.length;
-                console.log(imageAmount.value);
             }
 
             function deleteImage(imageIndex) {
@@ -146,6 +143,8 @@ import { computed } from '@vue/runtime-core';
             return {
                 isPersonalCustomer,
                 provinceList,
+                districtList,
+                getDistricts,
                 userImages,
                 updateImage,
                 imageAmount,
