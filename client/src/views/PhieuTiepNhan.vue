@@ -1,3 +1,3 @@
 <template>
-    <h1>Phiếu tiếp nhận page</h1>
+    <h1>Phiếu Tiếp Nhận</h1>
 </template>

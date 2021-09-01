@@ -1,10 +1,10 @@
 <template>
-    <TheHeader @changeTheme="changeTheme" :class="primaryTheme" />
+    <the-header @changeTheme="changeTheme" :class="primaryTheme" />
     <router-view :class="[primaryTheme, 'mt-10']" />
 </template>
 
 <script>
-import { onBeforeMount, ref } from "@vue/runtime-core";
+import { ref } from "@vue/runtime-core";
 import TheHeader from "./components/TheHeader.vue";
 export default {
     components: {

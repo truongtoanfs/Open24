@@ -78,7 +78,7 @@
     .checkbox-size {
         @apply h-4 w-4;
     }
-    .btn-distance {
+    .button-distance {
         @apply ml-2;
     }
 }

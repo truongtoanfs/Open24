@@ -1,4 +1,3 @@
-let handleOutsideClick;
 export default {
     beforeMount: (el, binding) => {
         el.clickOutsideEvent = event => {

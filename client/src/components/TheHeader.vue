@@ -1,5 +1,5 @@
 <template>
-    <nav class="fixed top-0 inset-x-0 z-50 font-medium text-open24-accent bg-open24-main bg-open24-main-gradient">
+    <header class="fixed top-0 inset-x-0 z-50 font-medium text-open24-accent bg-open24-main bg-open24-main-gradient">
         <div class="flex items-center justify-between">
             <button class="py-2 px-3 xl:hidden" @click="isOpenSideNav = true">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -8,7 +8,7 @@
             </button>
 
             <div id="side-nav">
-                <div :class="isOpenSideNav ? 'block' : 'hidden'" class="side-nav-width fixed inset-y-0 left-0 z-20 overflow-auto bg-open24-main bg-open24-main-gradient xl:static xl:flex xl:overflow-visible xl:bg-none xl:bg-opacity-0">
+                <nav :class="isOpenSideNav ? 'block' : 'hidden'" class="side-nav-width fixed inset-y-0 left-0 z-20 overflow-auto bg-open24-main bg-open24-main-gradient xl:static xl:flex xl:overflow-visible xl:bg-none xl:bg-opacity-0">
                     <div class="flex items-center px-3 pt-1.5 pb-2 xl:py-1.5 xl:mx-3.5">
                         <button @click="isOpenSideNav = false" class="mr-9 xl:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </template>
-                </div>
+                </nav>
                 <div class="overlay bg-black bg-opacity-60"  v-if="isOpenSideNav" @click="isOpenSideNav = false"></div>
             </div>
             <div class="flex relative">
@@ -47,24 +47,22 @@
                         <i class="fas fa-map-marker-alt text-lg pr-1"></i> <span>{{ selectedBranch }}</span>
                     </div>
                     <div class="overlay" v-if="isOpenBranch" @click="isOpenBranch = false"></div>
-                    <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-                        <div v-if="isOpenBranch" class="absolute top-full right-0 z-50 w-56 p-1 bg-open24-base text-gray-600 shadow-md border border-gray-400 rounded-b">
-                            <div class="relative mt-0.5 mb-1">
-                                <input type="text" v-model="branchInput" class="input" placeholder="Tìm kiếm chi nhánh" autofocus>
-                                <span class="absolute top-1/2 transform -translate-y-2/4 right-3">
-                                    <i class="fas fa-search text-base"></i>
-                                </span>
-                            </div>
-                            <ul v-for="branch in branchFilter" :key="branch.id">
-                                <li @click="changeBranch(branch.TenDonVi), isOpenBranch = false" class="relative p-1.5 rounded-sm cursor-default select-none hover:bg-blue-100 hover:text-gray-900">
-                                    {{ branch.TenDonVi }}
-                                    <span v-if="selectedBranch === branch.TenDonVi" class="absolute inset-y-0 right-0 pr-4 flex items-center">
-                                        <i class="fas fa-check text-open24-main" aria-hidden="true" />
-                                    </span>
-                                </li>
-                            </ul>
+                    <div v-if="isOpenBranch" class="absolute top-full right-0 z-50 w-56 p-1 bg-open24-base text-333 shadow-md border border-gray-400 rounded-b">
+                        <div class="relative mt-0.5 mb-1">
+                            <input type="text" v-model="branchInput" class="input" placeholder="Tìm kiếm chi nhánh" autofocus>
+                            <span class="absolute top-1/2 transform -translate-y-2/4 right-3">
+                                <i class="fas fa-search text-base"></i>
+                            </span>
                         </div>
-                    </transition>
+                        <ul v-for="branch in branchFilter" :key="branch.id">
+                            <li @click="changeBranch(branch.TenDonVi), isOpenBranch = false" class="relative p-1.5 rounded-sm cursor-default select-none hover:bg-blue-100 hover:text-gray-900">
+                                {{ branch.TenDonVi }}
+                                <span v-if="selectedBranch === branch.TenDonVi" class="absolute inset-y-0 right-0 pr-4 flex items-center">
+                                    <i class="fas fa-check text-open24-main" aria-hidden="true" />
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="h-10 flex items-center">
                     <div class="relative px-2 cursor-pointer" @click="isOpenNotify = !isOpenNotify">
@@ -124,24 +122,22 @@
                         <i class="fas fa-question-circle text-lg"></i>
                     </div>
                     <div v-if="isOpenHelper" @click="isOpenHelper = false" class="overlay"></div>
-                    <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-                        <div v-if="isOpenHelper" class="absolute z-50 top-full right-0 w-56 p-1 bg-open24-main bg-open24-main-gradient text-sm shadow-separate">
-                            <template v-for="helper in helperList" :key="helper.id">
-                                <a v-if="!helper.isDeleteSystem" :href="helper.link" class="flex items-center px-2.5 py-1.5 rounded hover:bg-black hover:bg-opacity-30">
-                                    <img class="w-4 h-4 mr-2" :src="helper.iconUrl" alt="application icon"> <span>{{ helper.name }}</span>
-                                </a>
-                                <a v-if="helper.isDeleteSystem" :href="helper.link" @click="isOpenModalDeleteSystem = true, isOpenHelper = false" class="flex items-center px-2.5 py-1.5 rounded hover:bg-black hover:bg-opacity-30">
-                                    <img class="w-4 h-4 mr-2" :src="helper.iconUrl" alt="application icon"> <span>{{ helper.name }}</span>
-                                </a>
-                            </template>
-                        </div>
-                    </transition>
+                    <div v-if="isOpenHelper" class="absolute z-50 top-full right-0 w-56 p-1 bg-open24-main bg-open24-main-gradient text-sm shadow-separate">
+                        <template v-for="helper in helperList" :key="helper.id">
+                            <a v-if="!helper.isDeleteSystem" :href="helper.link" class="flex items-center px-2.5 py-1.5 rounded hover:bg-black hover:bg-opacity-30">
+                                <img class="w-4 h-4 mr-2" :src="helper.iconUrl" alt="application icon"> <span>{{ helper.name }}</span>
+                            </a>
+                            <a v-if="helper.isDeleteSystem" :href="helper.link" @click="isOpenModalDeleteSystem = true, isOpenHelper = false" class="flex items-center px-2.5 py-1.5 rounded hover:bg-black hover:bg-opacity-30">
+                                <img class="w-4 h-4 mr-2" :src="helper.iconUrl" alt="application icon"> <span>{{ helper.name }}</span>
+                            </a>
+                        </template>
+                    </div>
                 </div>
                 
-                <BaseModal modalSize="md" v-if="isOpenModalDeleteSystem" @closeModal="isOpenModalDeleteSystem = false">
+                <base-modal modalSize="md" v-if="isOpenModalDeleteSystem" @closeModal="isOpenModalDeleteSystem = false">
                     <template v-slot:modal-title>Xóa dữ liệu hệ thống</template>
                     <template v-slot:modal-content>
-                        <BaseInputGroup label="Nhập mật khẩu" />
+                        <base-input-group label="Nhập mật khẩu" />
                         <label class="flex items-center py-0.5 mt-2.5">
                             <input type="checkbox" name="" class="checkbox-size mr-2"> Giữ lại danh mục Hàng hóa
                         </label>
@@ -150,10 +146,10 @@
                         </label>
                     </template>
                     <template v-slot:modal-footer>
-                        <ButtonCancel @click="isOpenModalDeleteSystem = false" class="mr-2.5" />
-                        <ButtonAgree @click="isOpenModalDeleteSystem = false" />
+                        <button-cancel @click="isOpenModalDeleteSystem = false" />
+                        <button-agree @click="isOpenModalDeleteSystem = false" class="button-distance" />
                     </template>
-                </BaseModal>
+                </base-modal>
 
                 <div class="relative h-10 flex items-center">
                     <div @click="isOpenSetting = !isOpenSetting" class="px-3 cursor-pointer">
@@ -176,217 +172,216 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </header>
 </template>
 
 <script>
-    import BaseModal from './BaseModal.vue';
-    import BaseInputGroup from './BaseInputGroup.vue';
-    import ButtonAgree from './ButtonAgree.vue';
-    import ButtonCancel from './ButtonCancel.vue';    
-    import { ref, reactive, toRefs, watch } from 'vue';
-    import * as Device from '../composables/checkDevices';
-    import { InitHeaderMenu } from '../data';
-    import { GetListDonVi_User } from '../data';
-    import { GetThongBao } from '../data';
-    import removeAccents from '../composables/useRemoveAccents';
-import ButtonAddNew from './ButtonAddNew.vue';
+import BaseModal from './base/BaseModal.vue';
+import BaseInputGroup from './base/BaseInputGroup.vue';
+import ButtonAgree from './buttons/ButtonAgree.vue';
+import ButtonCancel from './buttons/ButtonCancel.vue';
+import ButtonAddNew from './buttons/ButtonAddNew.vue';
+import { ref, reactive, toRefs, watch } from 'vue';
+import * as Device from '../composables/checkDevices';
+import { InitHeaderMenu } from '../data';
+import { GetListDonVi_User } from '../data';
+import { GetThongBao } from '../data';
+import removeAccents from '../composables/useRemoveAccents';
 
-    export default {
-        components: {
-            BaseModal, BaseInputGroup, ButtonAgree, ButtonCancel,
-                ButtonAddNew,
-        },
-        emits: ['changeTheme'],
-        setup(props, context) {
-            const menuHeader = InitHeaderMenu.dataSoure.Menu;
-            const helperList = [
-                {
-                    id: 1,
-                    name: 'Tải Teamviewer',
-                    link: 'https://get.teamviewer.com/qgvaru2',
-                    iconUrl: '/src/assets/images/teamview.png',
-                    isDeleteSystem: false,
-                },
-                {
-                    id: 2,
-                    name: 'Tải Ultraviewer',
-                    link: 'http://dl2.ultraviewer.net/UltraViewer_setup_6.1_vi.exe',
-                    iconUrl: '/src/assets/images/ultraviewer.png',
-                    isDeleteSystem: false,
-                },
-                {
-                    id: 3,
-                    name: 'Hướng dẫn sử dụng',
-                    link: 'https://open24.vn/huong-dan-su-dung',
-                    iconUrl: '/src/assets/images/huong-dan-su-dung.png',
-                    isDeleteSystem: false,
-                },
-                {
-                    id: 4,
-                    name: 'Xóa dữ liệu hệ thống',
-                    link: 'javascript:void(0)',
-                    iconUrl: '/src/assets/images/xoa-du-lieu.png',
-                    isDeleteSystem: true,
-                },
-                {
-                    id: 5,
-                    name: 'Tạo shortcut in nhanh',
-                    link: 'javascript:void(0)',
-                    iconUrl: '/src/assets/images/tao-shortcut.png',
-                    isDeleteSystem: false,
-                },
-                
-            ];
-            const settingList = [
-                {
-                    id: 1,
-                    name: 'Test',
-                    icon: 'fas fa-user',
-                    borderBottom: true,
-                    isContainThemes: false,
-                },
-                {
-                    id: 2,
-                    name: 'Cài đặt cửa hàng',
-                    icon: 'fas fa-store-alt',
-                    borderBottom: false,
-                    isContainThemes: false,
-                },
-                {
-                    id: 3,
-                    name: 'Cài đặt sơ đồ',
-                    icon: 'fas fa-map-marker-alt',
-                    borderBottom: false,
-                    isContainThemes: false,
-                },
-                {
-                    id: 4,
-                    name: 'Cài đặt mẫu in',
-                    icon: 'fas fa-print',
-                    borderBottom: false,
-                    isContainThemes: false,
-                },
-                {
-                    id: 5,
-                    name: 'Cài đặt hoa hồng',
-                    icon: 'fas fa-user-cog',
-                    borderBottom: false,
-                    isContainThemes: false,
-                },
-                {
-                    id: 6,
-                    name: 'Cài đặt khuyến mại',
-                    icon: 'fas fa-gift',
-                    borderBottom: false,
-                    isContainThemes: false,
-                },
-                {
-                    id: 7,
-                    name: 'Nhật ký sử dụng',
-                    icon: 'fas fa-bookmark',
-                    borderBottom: false,
-                    isContainThemes: false,
-                },
-                {
-                    id: 8,
-                    name: 'Chủ đề',
-                    icon: 'fas fa-palette',
-                    borderBottom: true,
-                    isContainThemes: true,
-                },
-                {
-                    id: 9,
-                    name: 'Đăng xuất',
-                    icon: 'fas fa-sign-out-alt',
-                    borderBottom: false,
-                    isContainThemes: false,
-                },
-            ];
-            const showStates = reactive({
-                isOpenSideNav: false,
-                isOpenBranch: false,
-                isOpenNotify: false,
-                isOpenSettingNotify: false,
-                isOpenHelper: false,
-                isOpenSetting: false,
-                isOpenModalDeleteSystem: false,
-            });
-
-            function collapseNav(event) {
-                if (!Device.isPrefix('xl')) {//chỉ áp dụng cho thiết bị nhỏ hơn beakpoint xl:1280 của tailwind 
-                    const navItem = event.currentTarget;
-
-                    if (!navItem.parentElement.classList.contains('active')) {
-                        closeNavActivation();
-                    }
-                    navItem.parentElement.classList.toggle('active');
-                    navItem.nextElementSibling.classList.toggle('hidden');
-                }
-            }
-            function closeNavActivation() {
-                const itemActivation = document.querySelector('.nav-item.active');
-                if (itemActivation) {
-                    itemActivation.classList.remove('active');
-                    itemActivation.querySelector('.nav-item__list').classList.add('hidden');
-                }
-            }
-
-            let branches = GetListDonVi_User;
-            const branchInput = ref('');
-            const branchFilter = ref(branches);
-            const selectedBranch = ref(branches[0].TenDonVi);
-            function changeBranch(branchName) {
-                selectedBranch.value = branchName;
-            }
-            watch(branchInput, (newValue) => {
-                if(newValue.length === 0) {
-                    branchFilter.value = branches;
-                    return;
-                }
-                const stringToNoAccent = removeAccents(newValue);
-                branchFilter.value = branches.filter(branch => {
-                    const branchNameNoAccent = removeAccents(branch.TenDonVi);
-                    return branchNameNoAccent.toUpperCase().includes(stringToNoAccent.toUpperCase());
-                })
-            })
-
+export default {
+    components: {
+        BaseModal, BaseInputGroup, ButtonAgree, ButtonCancel, ButtonAddNew,
+    },
+    emits: ['changeTheme'],
+    setup(props, context) {
+        const menuHeader = InitHeaderMenu.dataSoure.Menu;
+        const helperList = [
+            {
+                id: 1,
+                name: 'Tải Teamviewer',
+                link: 'https://get.teamviewer.com/qgvaru2',
+                iconUrl: '/src/assets/images/teamview.png',
+                isDeleteSystem: false,
+            },
+            {
+                id: 2,
+                name: 'Tải Ultraviewer',
+                link: 'http://dl2.ultraviewer.net/UltraViewer_setup_6.1_vi.exe',
+                iconUrl: '/src/assets/images/ultraviewer.png',
+                isDeleteSystem: false,
+            },
+            {
+                id: 3,
+                name: 'Hướng dẫn sử dụng',
+                link: 'https://open24.vn/huong-dan-su-dung',
+                iconUrl: '/src/assets/images/huong-dan-su-dung.png',
+                isDeleteSystem: false,
+            },
+            {
+                id: 4,
+                name: 'Xóa dữ liệu hệ thống',
+                link: 'javascript:void(0)',
+                iconUrl: '/src/assets/images/xoa-du-lieu.png',
+                isDeleteSystem: true,
+            },
+            {
+                id: 5,
+                name: 'Tạo shortcut in nhanh',
+                link: 'javascript:void(0)',
+                iconUrl: '/src/assets/images/tao-shortcut.png',
+                isDeleteSystem: false,
+            },
             
-            const listNotify = ref(GetThongBao.dataSoure.ListThongBao);
-            const numberOfNotify =  ref(GetThongBao.dataSoure.CountTB);
-            function readAllNotify() {
-                numberOfNotify.value = 0;
-                listNotify.value = listNotify.value.map(item => {
-                    return {
-                        DaDoc: true,
-                        NoiDungThongBao: item.NoiDungThongBao,
-                        NgayTao: item.NgayTao,
-                        Image: item.Image,
-                    }
-                })
-            }
+        ];
+        const settingList = [
+            {
+                id: 1,
+                name: 'Test',
+                icon: 'fas fa-user',
+                borderBottom: true,
+                isContainThemes: false,
+            },
+            {
+                id: 2,
+                name: 'Cài đặt cửa hàng',
+                icon: 'fas fa-store-alt',
+                borderBottom: false,
+                isContainThemes: false,
+            },
+            {
+                id: 3,
+                name: 'Cài đặt sơ đồ',
+                icon: 'fas fa-map-marker-alt',
+                borderBottom: false,
+                isContainThemes: false,
+            },
+            {
+                id: 4,
+                name: 'Cài đặt mẫu in',
+                icon: 'fas fa-print',
+                borderBottom: false,
+                isContainThemes: false,
+            },
+            {
+                id: 5,
+                name: 'Cài đặt hoa hồng',
+                icon: 'fas fa-user-cog',
+                borderBottom: false,
+                isContainThemes: false,
+            },
+            {
+                id: 6,
+                name: 'Cài đặt khuyến mại',
+                icon: 'fas fa-gift',
+                borderBottom: false,
+                isContainThemes: false,
+            },
+            {
+                id: 7,
+                name: 'Nhật ký sử dụng',
+                icon: 'fas fa-bookmark',
+                borderBottom: false,
+                isContainThemes: false,
+            },
+            {
+                id: 8,
+                name: 'Chủ đề',
+                icon: 'fas fa-palette',
+                borderBottom: true,
+                isContainThemes: true,
+            },
+            {
+                id: 9,
+                name: 'Đăng xuất',
+                icon: 'fas fa-sign-out-alt',
+                borderBottom: false,
+                isContainThemes: false,
+            },
+        ];
+        const showStates = reactive({
+            isOpenSideNav: false,
+            isOpenBranch: false,
+            isOpenNotify: false,
+            isOpenSettingNotify: false,
+            isOpenHelper: false,
+            isOpenSetting: false,
+            isOpenModalDeleteSystem: false,
+        });
 
-            const themeList = ['blue-theme', 'sky-theme', 'green-theme', 'red-theme', 'orange-theme', 'pink-theme', 'brown-theme', 'grey-theme',
-            'sky-gradient-theme', 'pink-gradient-theme', 'cyan-gradient-theme', 'indigo-gradient-theme', 'rose-gradient-theme'];
+        function collapseNav(event) {
+            if (!Device.isPrefix('xl')) {//chỉ áp dụng cho thiết bị nhỏ hơn beakpoint xl:1280 của tailwind 
+                const navItem = event.currentTarget;
 
-            return {
-                menuHeader,
-                themeList,
-                ...toRefs(showStates),
-                collapseNav,
-                closeNavActivation,
-                branchFilter,
-                selectedBranch,
-                branchInput,
-                changeBranch,
-                helperList,
-                settingList,
-                listNotify,
-                numberOfNotify,
-                readAllNotify,
+                if (!navItem.parentElement.classList.contains('active')) {
+                    closeNavActivation();
+                }
+                navItem.parentElement.classList.toggle('active');
+                navItem.nextElementSibling.classList.toggle('hidden');
             }
         }
+        function closeNavActivation() {
+            const itemActivation = document.querySelector('.nav-item.active');
+            if (itemActivation) {
+                itemActivation.classList.remove('active');
+                itemActivation.querySelector('.nav-item__list').classList.add('hidden');
+            }
+        }
+
+        let branches = GetListDonVi_User;
+        const selectedBranch = ref(branches[0].TenDonVi);
+        const branchInput = ref('');
+        const branchFilter = ref(branches);
+        function changeBranch(branchName) {
+            selectedBranch.value = branchName;
+            branchInput.value = '';
+        }
+        watch(branchInput, (newValue) => {
+            if(newValue.length === 0) {
+                branchFilter.value = branches;
+                return;
+            }
+            const stringToNoAccent = removeAccents(newValue);
+            branchFilter.value = branches.filter(branch => {
+                const branchNameNoAccent = removeAccents(branch.TenDonVi);
+                return branchNameNoAccent.toUpperCase().includes(stringToNoAccent.toUpperCase());
+            })
+        })
+        
+        const listNotify = ref(GetThongBao.dataSoure.ListThongBao);
+        const numberOfNotify =  ref(GetThongBao.dataSoure.CountTB);
+        function readAllNotify() {
+            numberOfNotify.value = 0;
+            listNotify.value = listNotify.value.map(item => {
+                return {
+                    DaDoc: true,
+                    NoiDungThongBao: item.NoiDungThongBao,
+                    NgayTao: item.NgayTao,
+                    Image: item.Image,
+                }
+            })
+        }
+
+        const themeList = ['blue-theme', 'sky-theme', 'green-theme', 'red-theme', 'orange-theme', 'pink-theme', 'brown-theme', 'grey-theme',
+        'sky-gradient-theme', 'pink-gradient-theme', 'cyan-gradient-theme', 'indigo-gradient-theme', 'rose-gradient-theme'];
+
+        return {
+            menuHeader,
+            themeList,
+            ...toRefs(showStates),
+            collapseNav,
+            closeNavActivation,
+            branchFilter,
+            selectedBranch,
+            branchInput,
+            changeBranch,
+            helperList,
+            settingList,
+            listNotify,
+            numberOfNotify,
+            readAllNotify,
+        }
     }
+}
 </script>
 
 <style scoped>

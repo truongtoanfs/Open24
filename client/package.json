@@ -8,7 +8,6 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src"
   },
   "dependencies": {
-    "@vueform/multiselect": "^2.1.0",
     "axios": "^0.21.1",
     "vue": "^3.0.5",
     "vue-router": "^4.0.10",

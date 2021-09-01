@@ -18,7 +18,6 @@
 
             const pageName = ref(null);
     
-            
             watch(() => route.params.slug, (newValue) => {
                 if (newValue) {
                     linksList.forEach(link => {

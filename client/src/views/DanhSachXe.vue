@@ -1,181 +1,106 @@
 <template>
-    <div class="p-3.5 xl:flex xl:pl-0">
-        <TheSidebar :class="[isOpenSidebar ? 'block' : 'hidden', 'xl:block xl:mr-1.5']" @closeSidebar="isOpenSidebar = false" :isCollapseAll="isCollapseAll" @collapseAll="isCollapseAll = !isCollapseAll">
-            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalHangXe = true" @openModalUpdate="openModalUpdateHangXe" headerText="Hãng xe" searchLabel="Tìm kiếm hãng xe" :filterData="hangxeList" keywordFilter="TenHangXe">
-                <template v-slot:header-icon>
+    <layout-main>
+        <template #sidebar="{ isCollapseAll }">
+            <sidebar-item-search class="mb-0.5" headerText="Hãng xe" searchLabel="Tìm kiếm hãng xe" :isCollapseAll="isCollapseAll" :filterData="hangXeList"
+                @openModal="isOpenModalHangXe = true" @openModalUpdate="openModalUpdateHangXe">
+                <template #header-icon>
                     <i class="fab fa-fort-awesome"></i>
                 </template>
-                <template v-slot:update-modal="{updateData , activedItemIndex}">
-                    <BaseModalHangXe v-if="activedHangXeModal === activedItemIndex" @closeModal="activedHangXeModal = -1" modalTitle="Cập nhật hãng xe" :maHangXe="updateData.MaHangXe" :tenHangXe="updateData.TenHangXe" :imageUrl="updateData.Logo" >
-                        <template v-slot:modal-footer>
-                            <ButtonCancel @click="activedHangXeModal = -1" class="mr-2" />
-                            <ButtonDelete class="mr-2">hãng {{ updateData.TenHangXe }}</ButtonDelete>
-                            <ButtonSave />
-                        </template>
-                    </BaseModalHangXe>
+                <template #update-modal="{ updateData , activedItemIndex }">
+                    <modal-hang-xe :isUpdateModal="true" v-if="activedHangXeModal === activedItemIndex" @closeModal="activedHangXeModal = -1" modalTitle="Cập nhật hãng xe" :maHangXe="updateData.maHangXe" :tenHangXe="updateData.name" :imageUrl="updateData.logo" />
                 </template>
-            </SidebarItemSearch>
+            </sidebar-item-search>
 
-            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalLoaiXe = true" @openModalUpdate="openModalUpdateLoaiXe" headerText="Loại xe" searchLabel="Tìm kiếm loại xe" :filterData="loaixeList" keywordFilter="TenLoaiXe">
-                <template v-slot:header-icon>
+            <sidebar-item-search class="mb-0.5" headerText="Loại xe" searchLabel="Tìm kiếm loại xe" :isCollapseAll="isCollapseAll" :filterData="loaiXeList"
+                @openModal="isOpenModalLoaiXe = true" @openModalUpdate="openModalUpdateLoaiXe">
+                <template #header-icon>
                     <i class="fas fa-truck-pickup"></i>
                 </template>
-                <template v-slot:update-modal="{updateData , activedItemIndex}">
-                    <BaseModalLoaiXe v-if="activedLoaiXeModal === activedItemIndex" @closeModal="activedLoaiXeModal = -1" modalTitle="Cập nhật loại xe" :maLoaiXe="updateData.MaLoaiXe" :tenLoaiXe="updateData.TenLoaiXe">
-                        <template v-slot:modal-footer>
-                            <ButtonCancel @click="activedLoaiXeModal = -1" class="mr-2" />
-                            <ButtonDelete class="mr-2">{{ updateData.TenLoaiXe }}</ButtonDelete>
-                            <ButtonSave />
-                        </template>
-                    </BaseModalLoaiXe>
+                <template #update-modal="{ updateData , activedItemIndex }">
+                    <modal-loai-xe :isUpdateModal="true" v-if="activedLoaiXeModal === activedItemIndex" @closeModal="activedLoaiXeModal = -1" modalTitle="Cập nhật loại xe" :maLoaiXe="updateData.maLoaiXe" :tenLoaiXe="updateData.name" />
                 </template>
-            </SidebarItemSearch>
+            </sidebar-item-search>
 
-            <SidebarItemSearch :isCollapseAll="isCollapseAll" class="mb-0.5" @openModal="isOpenModalMauXe = true" @openModalUpdate="openModalUpdateMauXe" headerText="Mẫu xe" searchLabel="Tìm kiếm mẫu xe" :filterData="mauxeList" keywordFilter="TenMauXe">
-                <template v-slot:header-icon>
-                    <i class="fas fa-truck-pickup"></i>
+            <sidebar-item-search class="mb-0.5" headerText="Mẫu Xe" searchLabel="Tìm kiếm mẫu xe" :isCollapseAll="isCollapseAll" :filterData="mauXeList"
+                @openModal="isOpenModalMauXe = true" @openModalUpdate="openModalUpdateMauXe">
+                <template #header-icon>
+                    <i class="fab fa-fort-awesome"></i>
                 </template>
-                <template v-slot:update-modal="{updateData , activedItemIndex}">
-                    <BaseModalMauXe v-if="activedMauXeModal === activedItemIndex" @closeModal="activedMauXeModal = -1" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" modalTitle="Cập nhật mẫu xe" :tenMauXe="updateData.TenMauXe" :tenHangXe="updateData.TenHangXe" :tenLoaiXe="updateData.TenLoaiXe" :ghiChu="updateData.GhiChu" :hangxeList="hangxeList" :loaixeList="loaixeList" >
-                        <template v-slot:modal-footer>
-                            <ButtonCancel @click="activedMauXeModal = -1" class="mr-2" />
-                            <ButtonDelete class="mr-2">{{ updateData.TenMauXe }}</ButtonDelete>
-                            <ButtonSave />
-                        </template>
-                    </BaseModalMauXe>
+                <template #update-modal="{ updateData , activedItemIndex }">
+                    <modal-mau-xe :isUpdateModal="true" v-if="activedMauXeModal === activedItemIndex" modalTitle="Cập nhật mẫu xe" :tenMauXe="updateData.name" :tenHangXe="updateData.tenHangXe" :tenLoaiXe="updateData.tenLoaiXe" :ghiChu="updateData.ghiChu" :hangXeList="hangXeList" :loaiXeList="loaiXeList"
+                    @closeModal="activedMauXeModal = -1" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" />
                 </template>
-            </SidebarItemSearch>
+            </sidebar-item-search>
 
-            <SidebarItemCheckbox :isCollapseAll="isCollapseAll" class="mb-0.5" headerText="Trạng thái">
-                <template v-slot:header-icon>
+            <sidebar-item-checkbox class="mb-0.5" headerText="Trạng thái" :isCollapseAll="isCollapseAll">
+                <template #header-icon>
                     <i class="far fa-stop-circle"></i>
                 </template>
-                <template v-slot:content>
-                    <BaseCheckbox label="Đang sử dụng" class="py-1" />
-                    <BaseCheckbox label="Hủy" class="py-1" />
+                <template #content>
+                    <base-checkbox label="Đang sử dụng" class="pt-2" />
+                    <base-checkbox label="Hủy" class="pt-2 pb-1" />
                 </template>
-            </SidebarItemCheckbox>
-        </TheSidebar>
-        <div class="w-full">
-            <h1 class="text-xl font-bold mb-2.5">Danh mục Xe</h1>
-            <div class="md:flex md:justify-between">
-                <div class="relative flex items-center mb-3">
-                    <div class="mr-1.5">
-                        <ButtonAddNew @click="isOpenModalThemMoiXe = true" />
-                    </div>
-                    <div class="mr-1.5">
-                        <ButtonImport @click="isOpenModalNhapFile = true" />
-                        <ModalNhapFile @closeModal="isOpenModalNhapFile = false" v-if="isOpenModalNhapFile" sectionName="danh sách xe" />
-                    </div>
-                    <div class="mr-1.5">
-                        <ButtonExport />
-                    </div>
-                    <div class="mr-1.5 md:relative">
-                        <BaseButton @click="isOpenDropdownColumn = true" class="bg-open24-main bg-open24-main-gradient hover:bg-none"><i class="fas fa-angle-double-down px-1.5"></i></BaseButton>
-                        <DropdownColumnList v-if="isOpenDropdownColumn" :columnList="columnList" />
-                        <div v-if="isOpenDropdownColumn" @click="isOpenDropdownColumn = false" class="overlay"></div>
-                    </div>
-                </div>
-                <div class="flex">
-                    <BaseSeachBox class="w-full max-w-xs md:w-80" />
-                    <BaseButton @click="isOpenSidebar = !isOpenSidebar" class="bg-open24-main bg-open24-main-gradient hover:bg-none ml-1.5 xl:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
-                        </svg>
-                    </BaseButton>
-                </div>
-            </div>
-            <TableDanhSachXe :columnList="columnList" :hangxeList="hangxeList" :loaixeList="loaixeList" :mauxeList="mauxeList" :chuxeList="chuxeList"
-                @openModalMauXe="isOpenModalMauXe = true" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" @openModalKhachHang="isOpenModalKhachHang = true" />
-        </div>
+            </sidebar-item-checkbox>
+        </template>
 
-        <BaseModalHangXe v-if="isOpenModalHangXe" @closeModal="isOpenModalHangXe = false" modalTitle="Thêm mới hãng xe" >
-            <template v-slot:modal-footer>
-                <ButtonCancel @click="isOpenModalHangXe = false" class="mr-2" />
-                <ButtonSave />
-            </template>
-        </BaseModalHangXe>
+        <template #page-title>
+            <page-title titleText="Danh mục xe" />
+        </template>
 
-        <BaseModalLoaiXe v-if="isOpenModalLoaiXe" @closeModal="isOpenModalLoaiXe = false" modalTitle="Thêm mới loại xe">
-            <template v-slot:modal-footer>
-                <ButtonCancel @click="isOpenModalLoaiXe = false" class="mr-2" />
-                <ButtonSave />
-            </template>
-        </BaseModalLoaiXe>
+        <template #control-buttons-group>
+            <button-add-new @click="isOpenModalThemMoiXe = true" />
+            <button-import @click="isOpenModalNhapFile = true" class="button-distance" />
+            <button-export class="button-distance" />
+            <button-control-column class="button-distance" :columnList="columnList" />
+        </template>
 
-        <BaseModalMauXe v-if="isOpenModalMauXe" @closeModal="isOpenModalMauXe = false" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" modalTitle="Thêm mới mẫu xe" :hangxeList="hangxeList" :loaixeList="loaixeList">
-            <template v-slot:modal-footer>
-                <ButtonCancel @click="isOpenModalMauXe = false" class="mr-2" />
-                <ButtonSave />
-            </template>
-        </BaseModalMauXe>
-
-        <BaseModalThemMoiXe v-if="isOpenModalThemMoiXe" modalTitle="Thêm mới xe" @closeModal="isOpenModalThemMoiXe = false"
-            @openModalMauXe="isOpenModalMauXe = true" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" @openModalKhachHang="isOpenModalKhachHang = true" 
-            :mauxeList="mauxeList" :hangxeList="hangxeList" :loaixeList="loaixeList" :chuxeList="chuxeList">
-                <template v-slot:modal-footer>
-                    <ButtonCancel @click="isOpenModalThemMoiXe = false" />
-                    <ButtonSave class="btn-distance" />
-                </template>
-        </BaseModalThemMoiXe>
-
-        <BaseModalKhachHang v-if="isOpenModalKhachHang" @closeModal="isOpenModalKhachHang = false" modalTitle="Thêm mới khách hàng" :nguonKhachList="nguonKhachList" :nhomKhachList="nhomKhachList" :trangThaiKhachList="trangThaiKhachList"  :nhanVienList="nhanVienList"
-        @openModalNguonKhach="isOpenModalNguonKhach = true" @openModalTrangThaiKhach="isOpenModalTrangThaiKhach = true" @openModalNhomKhach ="isOpenModalNhomKhach = true">
-            <template v-slot:modal-footer>
-                <ButtonCancel @click="isOpenModalKhachHang = false" class="mr-2" />
-                <ButtonSave />
-            </template>
-        </BaseModalKhachHang>
-
-        <ModalNguonKhach v-if="isOpenModalNguonKhach" @closeModal="isOpenModalNguonKhach = false" modalTitle="Thêm mới nguồn khách">
-            <template v-slot:modal-footer>
-                <ButtonCancel @click="isOpenModalNguonKhach = false" class="mr-2" />
-                <ButtonSave />
-            </template>
-        </ModalNguonKhach>
-        <ModalTrangThaiKhach v-if="isOpenModalTrangThaiKhach" @closeModal="isOpenModalTrangThaiKhach = false" modalTitle="Thêm mới trạng thái">
-            <template v-slot:modal-footer>
-                <ButtonCancel @click="isOpenModalTrangThaiKhach = false" class="mr-2" />
-                <ButtonSave />
-            </template>
-        </ModalTrangThaiKhach>
-        <ModalNhomKhach v-if="isOpenModalNhomKhach" @closeModal="isOpenModalNhomKhach = false" modalTitle="Thêm mới nhóm khách hàng">
-            <template v-slot:modal-footer>
-                <ButtonCancel @click="isOpenModalNhomKhach = false" class="mr-2" />
-                <ButtonSave />
-            </template>
-        </ModalNhomKhach>
-    </div>
+        <template #table-search>
+            <base-search-box class="w-full max-w-xs md:w-80" contentSearch="Theo mã, tên, biển số, số điện thoại" />
+        </template>
+        
+        <template #main-table>
+            <table-danh-sach-xe :columnList="columnList" :hangXeList="hangXeList" :loaiXeList="loaiXeList" :mauXeList="mauXeList" :chuXeList="chuXeList"
+            @openModalMauXe="isOpenModalMauXe = true" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" @openModalKhachHang="isOpenModalKhachHang = true"/>
+        </template>
+        <!-- Section Modals -->
+        <template #modal-section>
+            <modal-hang-xe v-if="isOpenModalHangXe" @closeModal="isOpenModalHangXe = false" modalTitle="Thêm mới hãng xe" />
+            <modal-loai-xe v-if="isOpenModalLoaiXe" @closeModal="isOpenModalLoaiXe = false" modalTitle="Thêm mới loại xe" />
+            <modal-mau-xe v-if="isOpenModalMauXe" modalTitle="Thêm mới mẫu xe" :hangXeList="hangXeList" :loaiXeList="loaiXeList"
+            @closeModal="isOpenModalMauXe = false" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" />
+            <modal-them-moi-xe v-if="isOpenModalThemMoiXe" modalTitle="Thêm mới xe" :mauXeList="mauXeList" :hangXeList="hangXeList" :loaiXeList="loaiXeList" :chuXeList="chuXeList"
+            @closeModal="isOpenModalThemMoiXe = false" @openModalMauXe="isOpenModalMauXe = true" @openModalHangXe="isOpenModalHangXe = true" @openModalLoaiXe="isOpenModalLoaiXe = true" @openModalKhachHang="isOpenModalKhachHang = true" />
+            <modal-khach-hang v-if="isOpenModalKhachHang" modalTitle="Thêm mới khách hàng" :nguonKhachList="nguonKhachList" :nhomKhachList="nhomKhachList" :trangThaiKhachList="trangThaiKhachList"  :nhanVienList="nhanVienList"
+            @closeModal="isOpenModalKhachHang = false" @openModalNguonKhach="isOpenModalNguonKhach = true" @openModalNhomKhach ="isOpenModalNhomKhach = true" @openModalTrangThaiKhach="isOpenModalTrangThaiKhach = true"  />
+            <modal-nguon-khach v-if="isOpenModalNguonKhach" @closeModal="isOpenModalNguonKhach = false" modalTitle="Thêm mới nguồn khách" />
+            <modal-nhom-khach v-if="isOpenModalNhomKhach" @closeModal="isOpenModalNhomKhach = false" modalTitle="Thêm mới nhóm khách hàng" />
+            <modal-trang-thai-khach v-if="isOpenModalTrangThaiKhach" @closeModal="isOpenModalTrangThaiKhach = false" modalTitle="Thêm mới trạng thái" />
+            <modal-nhap-file v-if="isOpenModalNhapFile" sectionName="danh mục xe" @closeModal="isOpenModalNhapFile = false" />
+        </template>
+    </layout-main>
 </template>
 
 <script>
-import TheSidebar from '../components/TheSidebar.vue';
-import SidebarItemSearch from '../components/SidebarItemSearch.vue';
-import SidebarItemCheckbox from '../components/SidebarItemCheckbox.vue';
-import BaseSeachBox from '../components/BaseSearchBox.vue';
-import BaseCheckbox from '../components/BaseCheckbox.vue';
-import BaseButton from '../components/BaseButton.vue';
-import BaseModal from '../components/BaseModal.vue';
-import ModalNguonKhach from '../components/ModalNguonKhach.vue';
-import ModalNhomKhach from '../components/ModalNhomKhach.vue';
-import ModalTrangThaiKhach from '../components/ModalTrangThaiKhach.vue';
-import ModalNhapFile from '../components/ModalNhapFile.vue';
-import ButtonCancel from '../components/ButtonCancel.vue';
-import ButtonSave from '../components/ButtonSave.vue';
-import ButtonDelete from '../components/ButtonDelete.vue';
-import ButtonAddNew from '../components/ButtonAddNew.vue';
-import ButtonImport from '../components/ButtonImport.vue';
-import ButtonExport from '../components/ButtonExport.vue';
-import DropdownColumnList from '../components/DropdownColumnList.vue';
-import TableDanhSachXe from '../components/TableDanhSachXe.vue';
-import BaseModalHangXe from '../components/danhSachXe/BaseModalHangXe.vue';
-import BaseModalLoaiXe from '../components/danhSachXe/BaseModalLoaiXe.vue';
-import BaseModalMauXe from '../components/danhSachXe/BaseModalMauXe.vue';
-import BaseModalThemMoiXe from '../components/danhSachXe/BaseModalThemMoiXe.vue';
-import BaseModalKhachHang from '../components/danhSachXe/BaseModalKhachHang.vue';
-
-
-import { ref, reactive, toRefs } from '@vue/reactivity';
+import LayoutMain from '../layout/LayoutMain.vue';
+import SidebarItemSearch from '../components/sidebar/SidebarItemSearch.vue';
+import SidebarItemCheckbox from '../components/sidebar/SidebarItemCheckbox.vue';
+import BaseCheckbox from '../components/base/BaseCheckbox.vue';
+import PageTitle from '../components/PageTitle.vue';
+import ButtonAddNew from '../components/buttons/ButtonAddNew.vue';
+import ButtonImport from '../components/buttons/ButtonImport.vue';
+import ButtonExport from '../components/buttons/ButtonExport.vue';
+import ButtonControlColumn from '../components/buttons/ButtonControlColumn.vue';
+import BaseSearchBox from '../components/base/BaseSearchBox.vue';
+import TableDanhSachXe from '../components/tables/TableDanhSachXe.vue';
+import ModalHangXe from '../components/modals/ModalHangXe.vue';
+import ModalLoaiXe from '../components/modals/ModalLoaiXe.vue';
+import ModalMauXe from '../components/modals/ModalMauXe.vue';
+import ModalThemMoiXe from '../components/modals/ModalThemMoiXe.vue';
+import ModalKhachHang from '../components/modals/ModalKhachHang.vue';
+import ModalNguonKhach from '../components/modals/ModalNguonKhach.vue';
+import ModalNhomKhach from '../components/modals/ModalNhomKhach.vue';
+import ModalTrangThaiKhach from '../components/modals/ModalTrangThaiKhach.vue';
+import ModalNhapFile from '../components/modals/ModalNhapFile.vue';
 import { GetAllHangXes } from '../data';
 import { GetAllLoaiXes } from '../data';
 import { GetAllDanhMucMauXe } from '../data';
@@ -183,40 +108,66 @@ import { GetChuXeList } from '../data';
 import { GetDM_NguonKhach } from '../data';
 import { GetNhomDoiTuong_DonVi } from '../data';
 import { GetTrangThaiTimKiem } from '../data';
-import { watch } from '@vue/runtime-core';
+
+import { ref, reactive, toRefs } from 'vue';
 
 export default {
     components: {
-        TheSidebar,
+        LayoutMain,
         SidebarItemSearch,
         SidebarItemCheckbox,
-        BaseSeachBox,
         BaseCheckbox,
-        BaseButton,
-        BaseModalKhachHang,
-        ModalNguonKhach,
-        ModalNhomKhach,
-        ModalTrangThaiKhach,
-        ModalNhapFile,
-        ButtonCancel,
-        ButtonSave,
-        ButtonDelete,
+        PageTitle,
         ButtonAddNew,
         ButtonImport,
         ButtonExport,
-        DropdownColumnList,
+        ButtonControlColumn,
+        BaseSearchBox,
         TableDanhSachXe,
-        BaseModalHangXe,
-        BaseModalLoaiXe,
-        BaseModalMauXe,
-        BaseModalThemMoiXe,
+        ModalHangXe,
+        ModalLoaiXe,
+        ModalMauXe,
+        ModalThemMoiXe,
+        ModalKhachHang,
+        ModalNhapFile,
+        ModalNguonKhach,
+        ModalNhomKhach,
+        ModalTrangThaiKhach,
     },
-    emits: ["closeModal"],
     setup() {
-        const hangxeList = GetAllHangXes.dataSoure;
-        const loaixeList = GetAllLoaiXes.dataSoure;
-        const mauxeList = GetAllDanhMucMauXe.dataSoure;
-        const chuxeList = GetChuXeList.map(chuXe => {
+        const hangXeList = GetAllHangXes.dataSoure.map(hangXe => {
+            return {
+                id: hangXe.ID,
+                maHangXe: hangXe.MaHangXe,
+                name: hangXe.TenHangXe,
+                logo: hangXe.Logo,
+                trangThai: hangXe.TrangThai,
+            }
+        })
+
+        const loaiXeList = GetAllLoaiXes.dataSoure.map(loaiXe => {
+            return {
+                id: loaiXe.ID,
+                maLoaiXe: loaiXe.MaLoaiXe,
+                name: loaiXe.TenLoaiXe,
+                trangThai: loaiXe.TrangThai,
+            }
+        })
+
+        const mauXeList = GetAllDanhMucMauXe.dataSoure.map(mauXe => {
+            return {
+                id: mauXe.ID,
+                name: mauXe.TenMauXe,
+                id_hangXe: mauXe.ID_HangXe,
+                id_loaiXe: mauXe.ID_LoaiXe,
+                tenLoaiXe: mauXe.TenLoaiXe,
+                tenHangXe: mauXe.TenHangXe,
+                ghiChu: mauXe.GhiChu,
+                trangThai: mauXe.TrangThai,
+            }
+        })
+
+        const chuXeList = GetChuXeList.map(chuXe => {
             return {
                 id: chuXe.ID,
                 code: chuXe.MaNguoiNop,
@@ -229,8 +180,72 @@ export default {
         });
 
         const nguonKhachList = GetDM_NguonKhach;
+        
         const nhomKhachList = GetNhomDoiTuong_DonVi.data;
 
+        const trangThaiKhachList = GetTrangThaiTimKiem.dataSoure.ttkhachhang;
+        const nhanVienList = ref([
+            {
+                id: 1,
+                code: 'NV001',
+                name: 'Nguyễn Duy Dương',
+                phoneNumber: '0906586355'
+
+            },
+            {
+                id: 2,
+                code: 'NV002',
+                name: 'Trương Thảo Linh',
+                phoneNumber: ''
+
+            },
+            {
+                id: 3,
+                code: 'NV003',
+                name: 'Dương Minh Quang',
+                phoneNumber: '0382963813'
+
+            },
+            {
+                id: 4,
+                code: 'NV004',
+                name: 'Trần Thu Hà',
+                phoneNumber: '0936895531'
+
+            },
+            {
+                id: 5,
+                code: 'NV005',
+                name: 'Phạm Mỹ Dung',
+                phoneNumber: ''
+
+            },
+        ])
+
+        const stateTracking = reactive({
+            isOpenModalHangXe: false,
+            isOpenModalLoaiXe: false,
+            isOpenModalMauXe: false,
+            isOpenModalThemMoiXe: false,
+            isOpenModalKhachHang: false,
+            isOpenModalNguonKhach: false,
+            isOpenModalNhomKhach: false,
+            isOpenModalTrangThaiKhach: false,
+            isOpenModalNhapFile: false,
+        })
+
+        const activedHangXeModal = ref(-1);
+        function openModalUpdateHangXe(index) {
+            activedHangXeModal.value = index;
+        }
+        const activedLoaiXeModal = ref(-1);
+        function openModalUpdateLoaiXe(index) {
+            activedLoaiXeModal.value = index;
+        }
+        const activedMauXeModal = ref(-1);
+        function openModalUpdateMauXe(index) {
+            activedMauXeModal.value = index;
+        }
 
         const columnList = ref([
             {
@@ -324,120 +339,25 @@ export default {
                 "index": 14
             }
         ]);
-        if (!localStorage.DanhMucXeColumnList) {
-            localStorage.setItem("DanhMucXeColumnList", JSON.stringify(columnList.value));
-        } else {
-            columnList.value = JSON.parse(localStorage.DanhMucXeColumnList);
-        }
-
-        watch(columnList, (newValue) => {
-            localStorage.setItem("DanhMucXeColumnList", JSON.stringify(columnList.value));
-        }, { deep: true })
-
-        const trangThaiKhachList = GetTrangThaiTimKiem.dataSoure.ttkhachhang;
-        const nhanVienList = ref([
-            {
-                id: 1,
-                code: 'NV001',
-                name: 'Nguyễn Duy Dương',
-                phoneNumber: '0906586355'
-
-            },
-            {
-                id: 2,
-                code: 'NV002',
-                name: 'Trương Thảo Linh',
-                phoneNumber: ''
-
-            },
-            {
-                id: 3,
-                code: 'NV003',
-                name: 'Dương Minh Quang',
-                phoneNumber: '0382963813'
-
-            },
-            {
-                id: 4,
-                code: 'NV004',
-                name: 'Trần Thu Hà',
-                phoneNumber: '0936895531'
-
-            },
-            {
-                id: 5,
-                code: 'NV005',
-                name: 'Phạm Mỹ Dung',
-                phoneNumber: ''
-
-            },
-        ])
-
-        const logoURL = ref('');
-        const modalsState = reactive({
-            isOpenModalHangXe: false,
-            isOpenModalLoaiXe: false,
-            isOpenModalMauXe: false,
-            isOpenModalKhachHang: false,
-            isOpenModalUpdateHangXe: false,
-            isOpenModalUpdateLoaiXe: false,
-            isOpenModalUpdateMauXe: false,
-            isOpenModalThemMoiXe: false,
-            isOpenModalNhapFile: false,
-            isOpenModalNguonKhach: false,
-            isOpenModalNhomKhach: false,
-            isOpenModalTrangThaiKhach: false,
-        })
-        const isOpenSidebar = ref(false);
-        const isOpenDropdownColumn = ref(false);
-        const isCollapseAll = ref(false);
-        function previewLogo(event) {
-            const file = event.target.files[0];
-            logoURL.value = URL.createObjectURL(file);
-        }
-        
-        const activedHangXeModal = ref(-1);
-        function openModalUpdateHangXe(index) {
-            activedHangXeModal.value = index;
-        }
-        const activedLoaiXeModal = ref(-1);
-        function openModalUpdateLoaiXe(index) {
-            activedLoaiXeModal.value = index;
-        }
-        const activedMauXeModal = ref(-1);
-        function openModalUpdateMauXe(index) {
-            activedMauXeModal.value = index;
-        }
-
 
         return {
-            hangxeList,
-            loaixeList,
-            mauxeList,
-            columnList,
-            chuxeList,
-            previewLogo,
-            logoURL,
-            ...toRefs(modalsState),
-            isOpenSidebar,
-            isOpenDropdownColumn,
+            ...toRefs(stateTracking),
+            hangXeList,
+            loaiXeList,
+            mauXeList,
+            chuXeList,
             nguonKhachList,
             nhomKhachList,
             trangThaiKhachList,
-            isCollapseAll,
             nhanVienList,
-            openModalUpdateHangXe,
             activedHangXeModal,
-            openModalUpdateLoaiXe,
+            openModalUpdateHangXe,
             activedLoaiXeModal,
+            openModalUpdateLoaiXe,
+            activedMauXeModal,
             openModalUpdateMauXe,
-            activedMauXeModal
+            columnList,
         }
     }
 }
-
-</script>
-
-<style scoped>
-
-</style>
+</script> 
