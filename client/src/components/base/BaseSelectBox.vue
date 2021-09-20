@@ -1,5 +1,5 @@
 <template>
-    <div class="relative" :class="inputWidth">
+    <div @clickout="isOpenList = false" class="relative" :class="inputWidth">
         <div class="relative">
             <input ref="input" @click="isOpenList = true, highlightText($event)" type="text" class="input" :placeholder="placeholderText" v-model="filterInput">
             <span v-if="requiredPlus" @click="$emit('openModalAddNew')" class="absolute top-0 right-0 w-8 h-8 flex items-center justify-center cursor-pointer hover:bg-gray-300 rounded-full">
@@ -8,7 +8,7 @@
         </div>
 
         <ul v-if="isOpenList" class="absolute z-10 mt-1 py-1 w-full max-h-56 overflow-auto rounded-md bg-white shadow-lg text-sm font-normal divide-y divide-gray-300">
-            <li @click ="filterInput = item, closeDropdown()" v-for="(item, index) in filterList" :key="index" class="relative py-1.5 px-2 cursor-default select-none">
+            <li @click ="filterInput = item, isOpenList = false" v-for="(item, index) in filterList" :key="index" class="relative py-1.5 px-2 cursor-default select-none">
                 <span>
                     {{ item }}
                 </span>
@@ -21,8 +21,10 @@
 </template>
 
 <script>
-import { onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import removeAccents from '../../composables/useRemoveAccents';
+import highlightText from '../../composables/useHighlightText';
+import filterData from '../../composables/useFilterData';
 
 export default {
     props: {
@@ -46,34 +48,11 @@ export default {
             delfaultValue = props.selectList[0];
         }
         const filterInput = ref(delfaultValue);
-
-        function closeDropdown() {
-            isOpenList.value = false;
-        }
-
-        const filterList = ref([]);
+        const filterList = computed(() => filterData(filterInput.value, props.selectList));
         
-        watch(filterInput, (newValue, oldValue) => {
-            if(newValue.length === 0) {
-                filterList.value = props.selectList;
-            } else {
-                filterList.value = props.selectList.filter(item => {
-                    const itemNameNoAccents = removeAccents(item);
-                    const inputNoAccents = removeAccents(newValue);
-                    return itemNameNoAccents.toUpperCase().includes(inputNoAccents.toUpperCase());
-                })
-            }
-        })
-        
-        function highlightText(event) {
-            event.currentTarget.select();
-            filterList.value = props.selectList;
-        }
-
         return {
             isOpenList,
             filterInput,
-            closeDropdown,
             filterList,
             highlightText,
         }

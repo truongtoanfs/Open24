@@ -1,5 +1,5 @@
 <template>
-    <header class="fixed top-0 inset-x-0 z-50 font-medium text-open24-accent bg-open24-main bg-open24-main-gradient">
+    <header class="fixed top-0 inset-x-0 z-20 font-medium text-open24-accent bg-open24-main bg-open24-main-gradient">
         <div class="flex items-center justify-between">
             <button class="py-2 px-3 xl:hidden" @click="isOpenSideNav = true">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -7,8 +7,8 @@
                 </svg>
             </button>
 
-            <div id="side-nav">
-                <nav :class="isOpenSideNav ? 'block' : 'hidden'" class="side-nav-width fixed inset-y-0 left-0 z-20 overflow-auto bg-open24-main bg-open24-main-gradient xl:static xl:flex xl:overflow-visible xl:bg-none xl:bg-opacity-0">
+            <div>
+                <nav :class="isOpenSideNav ? 'block' : 'hidden'" class="fixed inset-y-0 left-0 side-nav-width z-20 overflow-auto bg-open24-main bg-open24-main-gradient xl:static xl:flex xl:overflow-visible xl:bg-none xl:bg-opacity-0">
                     <div class="flex items-center px-3 pt-1.5 pb-2 xl:py-1.5 xl:mx-3.5">
                         <button @click="isOpenSideNav = false" class="mr-9 xl:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,7 +28,7 @@
                         </div>
                         <div v-else class="nav-item px-1 pb-1 xl:p-0 xl:relative group">      
                             <div @click="collapseNav($event)" class="nav-item__label flex items-center justify-between h-9 my-0.5 pr-1.5 rounded cursor-pointer xl:group-hover:bg-black xl:group-hover:bg-opacity-30 xl:h-full xl:my-0 xl:rounded-none xl:px-2">
-                                <span class="flex items-center mb-px"><i class="text-lg w-8 text-center mx-1 xl:hidden" :class="navItem.ClassName"></i>{{ navItem.Title }}</span>
+                                <span class="flex items-center mb-px"><i :class="navItem.ClassName" class="text-lg w-8 text-center mx-1 xl:hidden"></i>{{ navItem.Title }}</span>
                                 <i class="fas fa-angle-down pl-1 pt-0.5"></i>
                             </div>
                             <div class="nav-item__list hidden bg-open24-main bg-open24-main-gradient xl:group-hover:block xl:absolute xl:left-0 xl:top-full xl:z-50 xl:w-48 xl:rounded-b xl:shadow-separate">
@@ -39,14 +39,13 @@
                         </div>
                     </template>
                 </nav>
-                <div class="overlay bg-black bg-opacity-60"  v-if="isOpenSideNav" @click="isOpenSideNav = false"></div>
+                <div  v-if="isOpenSideNav" @click="isOpenSideNav = false" class="overlay bg-black bg-opacity-60"></div>
             </div>
             <div class="flex relative">
-                <div class="relative h-10 flex items-center">
+                <div @clickout="isOpenBranch = false" class="relative h-10 flex items-center">
                     <div @click="isOpenBranch = !isOpenBranch" class="flex items-center px-2 cursor-pointer">
                         <i class="fas fa-map-marker-alt text-lg pr-1"></i> <span>{{ selectedBranch }}</span>
                     </div>
-                    <div class="overlay" v-if="isOpenBranch" @click="isOpenBranch = false"></div>
                     <div v-if="isOpenBranch" class="absolute top-full right-0 z-50 w-56 p-1 bg-open24-base text-333 shadow-md border border-gray-400 rounded-b">
                         <div class="relative mt-0.5 mb-1">
                             <input type="text" v-model="branchInput" class="input" placeholder="Tìm kiếm chi nhánh" autofocus>
@@ -64,12 +63,11 @@
                         </ul>
                     </div>
                 </div>
-                <div class="h-10 flex items-center">
+                <div @clickout="isOpenNotify = false" class="h-10 flex items-center">
                     <div class="relative px-2 cursor-pointer" @click="isOpenNotify = !isOpenNotify">
                         <i class="fas fa-bell text-lg"></i>
                         <span v-if="numberOfNotify > 0" class="absolute -top-1 -right-2 block notify-badge-width px-1 h-5 text-center rounded-full text-open24-accent bg-red-500">{{ numberOfNotify }}</span>
                     </div>
-                    <div v-if="isOpenNotify" class="overlay" @click="isOpenNotify = false"></div>
                     <div v-if="isOpenNotify" class="navbar-notify-height absolute top-full right-0 z-20 bg-open24-base text-333 w-96 px-2.5 border-l border-gray-400 border-opacity-50">
                         <div class="flex items-center justify-between border-b border-gray-400 border-opacity-50 pt-0.5">
                             <h6 class="font-bold px-2">Thông báo</h6>
@@ -107,7 +105,7 @@
                                     <div class="w-14 flex-shrink-0 mr-1.5"><img class="mx-auto" src="../assets/images/hetkho.png" style="height: 30px;"></div>
                                     <div>
                                         <p v-html="notify.NoiDungThongBao"></p>
-                                        <span class="date-notifi">{{ notify.NgayTao }}</span>
+                                        <span class="date-notify">{{ notify.NgayTao }}</span>
                                     </div>
                                 </li>
                             </ul>
@@ -117,11 +115,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="hidden relative h-10 xl:flex xl:items-center">
+                <div @clickout="isOpenHelper = false" class="hidden relative h-10 xl:flex xl:items-center">
                     <div @click="isOpenHelper = !isOpenHelper" class="px-2 cursor-pointer">
                         <i class="fas fa-question-circle text-lg"></i>
                     </div>
-                    <div v-if="isOpenHelper" @click="isOpenHelper = false" class="overlay"></div>
                     <div v-if="isOpenHelper" class="absolute z-50 top-full right-0 w-56 p-1 bg-open24-main bg-open24-main-gradient text-sm shadow-separate">
                         <template v-for="helper in helperList" :key="helper.id">
                             <a v-if="!helper.isDeleteSystem" :href="helper.link" class="flex items-center px-2.5 py-1.5 rounded hover:bg-black hover:bg-opacity-30">
@@ -151,11 +148,10 @@
                     </template>
                 </base-modal>
 
-                <div class="relative h-10 flex items-center">
+                <div  @clickout="isOpenSetting = false" class="relative h-10 flex items-center">
                     <div @click="isOpenSetting = !isOpenSetting" class="px-3 cursor-pointer">
                         <img class="rounded-full w-7 h-7" src="../assets/images/men-user.png" alt="user logo">
                     </div>
-                    <div class="overlay" v-if="isOpenSetting" @click="isOpenSetting = false"></div>
                     <div v-if="isOpenSetting" class="absolute top-full right-0 z-50 shadow-separate w-56 px-2 py-0.5 rounded-bl bg-open24-main bg-open24-main-gradient">
                         <template v-for="setting in settingList" :key="setting.id">
                             <a v-if="!setting.isContainThemes" href="#" :class="setting.borderBottom ? 'border-b border-dotted border-gray-100' : ''" class="flex items-center py-1.5 px-1.5 rounded hover:bg-black hover:bg-opacity-30">
@@ -181,12 +177,11 @@ import BaseInputGroup from './base/BaseInputGroup.vue';
 import ButtonAgree from './buttons/ButtonAgree.vue';
 import ButtonCancel from './buttons/ButtonCancel.vue';
 import ButtonAddNew from './buttons/ButtonAddNew.vue';
-import { ref, reactive, toRefs, watch } from 'vue';
+import { InitHeaderMenu, GetListDonVi_User, GetThongBao } from '../data';
+import { ref, reactive, toRefs, computed } from 'vue';
 import * as Device from '../composables/checkDevices';
-import { InitHeaderMenu } from '../data';
-import { GetListDonVi_User } from '../data';
-import { GetThongBao } from '../data';
-import removeAccents from '../composables/useRemoveAccents';
+import filterData from '../composables/useFilterData';
+import { useStore } from 'vuex';
 
 export default {
     components: {
@@ -308,6 +303,7 @@ export default {
             isOpenModalDeleteSystem: false,
         });
 
+        // Đóng mở Nav trên các các thiết bị < 1280 
         function collapseNav(event) {
             if (!Device.isPrefix('xl')) {//chỉ áp dụng cho thiết bị nhỏ hơn beakpoint xl:1280 của tailwind 
                 const navItem = event.currentTarget;
@@ -326,27 +322,20 @@ export default {
                 itemActivation.querySelector('.nav-item__list').classList.add('hidden');
             }
         }
-
-        let branches = GetListDonVi_User;
-        const selectedBranch = ref(branches[0].TenDonVi);
+        // section chi nhánh
+        const store = useStore();
+        store.dispatch('getChiNhanhList');
+        const chiNhanhList = computed(() => store.getters.chiNhanhList);
+        const selectedBranch = ref(chiNhanhList.value[0].TenDonVi);
         const branchInput = ref('');
-        const branchFilter = ref(branches);
         function changeBranch(branchName) {
             selectedBranch.value = branchName;
             branchInput.value = '';
         }
-        watch(branchInput, (newValue) => {
-            if(newValue.length === 0) {
-                branchFilter.value = branches;
-                return;
-            }
-            const stringToNoAccent = removeAccents(newValue);
-            branchFilter.value = branches.filter(branch => {
-                const branchNameNoAccent = removeAccents(branch.TenDonVi);
-                return branchNameNoAccent.toUpperCase().includes(stringToNoAccent.toUpperCase());
-            })
+        const branchFilter = computed(() => {
+            return filterData(branchInput.value, chiNhanhList.value, ['TenDonVi']);
         })
-        
+        // section notify
         const listNotify = ref(GetThongBao.dataSoure.ListThongBao);
         const numberOfNotify =  ref(GetThongBao.dataSoure.CountTB);
         function readAllNotify() {
@@ -405,7 +394,7 @@ export default {
         max-height: calc(100vh - 130px);
         overflow: auto;
     }
-    .date-notifi {
+    .date-notify {
         font-size: 11px;
         color: #727070;
         font-style: italic;

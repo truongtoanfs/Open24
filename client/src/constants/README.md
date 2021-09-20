@@ -1,0 +1,1 @@
+# Chứa các hằng số global sử dụng trên toàn bộ app

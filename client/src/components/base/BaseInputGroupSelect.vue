@@ -1,7 +1,7 @@
 <template>
     <div class="flex">
         <label class="form-group__label">{{ label }}</label>
-        <div v-click-outside="closeDropdown" class="relative flex-cover">
+        <div @clickout="isOpenList = false" class="relative flex-cover">
             <div class="relative">
                 <input ref="input" @click="isOpenList = true, highlightText($event)" type="text" class="input" :placeholder="placeholderText" v-model="filterInput">
                 <span v-if="requiredPlus" @click="$emit('openModalAddNew')" class="absolute top-0 right-0 w-8 h-8 flex items-center justify-center cursor-pointer hover:bg-gray-300 rounded-full">
@@ -10,7 +10,7 @@
             </div>
 
             <ul v-if="isOpenList" class="absolute z-10 mt-1 py-1 w-full max-h-56 overflow-auto rounded-md bg-white shadow-lg text-sm font-normal divide-y divide-gray-300">
-                <li @click ="filterInput = item[keywordFilter], closeDropdown(), $emit('selected', item[keywordFilter])" v-for="(item, index) in filterList" :key="index" class="relative py-1.5 px-2 cursor-default select-none">
+                <li @click ="filterInput = item[keywordFilter], isOpenList = false, $emit('selected', item[keywordFilter])" v-for="(item, index) in filterList" :key="index" class="relative py-1.5 px-2 cursor-default select-none hover:bg-gray-200">
                     <span>
                         {{ item[keywordFilter] }}
                     </span>
@@ -23,8 +23,9 @@
     </div>
 </template>
 <script>
-import { onMounted, ref, watch } from 'vue';
-import removeAccents from '/Open24/client/src/composables/useRemoveAccents';
+import { computed, ref } from 'vue';
+import filterData from '../../composables/useFilterData';
+import highlightText from '../../composables/useHighlightText';
 
 
 export default {
@@ -49,32 +50,13 @@ export default {
     setup(props) {
         const isOpenList = ref(false);
         const filterInput = ref(props.value);
-        function closeDropdown() {
-            isOpenList.value = false;
-        }
+        const filterList = computed(() => {
+            return filterData(filterInput.value, props.selectList, [props.keywordFilter]);
+        });
 
-        const filterList = ref([]);
-        watch(filterInput, (newValue, oldValue) => {
-            if(newValue.length === 0) {
-                filterList.value = props.selectList;
-            } else {
-                filterList.value = props.selectList.filter(item => {
-                    const itemNameNoAccents = removeAccents(item[props.keywordFilter]);
-                    const inputNoAccents = removeAccents(newValue);
-                    return itemNameNoAccents.toUpperCase().includes(inputNoAccents.toUpperCase());
-                })
-            }
-        }, {immediate: true})
-
-        function highlightText(event) {
-            event.currentTarget.select();
-            filterList.value = props.selectList;
-        }
-        
         return {
             isOpenList,
             filterInput,
-            closeDropdown,
             filterList,
             highlightText,
         }

@@ -1,0 +1,3 @@
+# Chứa các loại layout
+1. LayoutMain (layout dạng bảng với sidebar): danh sách xe, phiếu tiếp nhận...
+2. 

@@ -56,7 +56,7 @@ export default {
             default: ''
         },
     },
-    emits: ["closeModal"],
+    emits: ['closeModal'],
     setup(props) {
         const logoURL = ref(props.imageUrl);
         function updateLogo(event) {

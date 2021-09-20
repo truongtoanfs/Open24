@@ -44,6 +44,6 @@ export default {
         },
 
     },
-    emits: ["closeModal"],
+    emits: ['closeModal'],
 }
 </script>

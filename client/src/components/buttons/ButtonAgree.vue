@@ -3,10 +3,10 @@
 </template>
 
 <script>
-    import BaseButton from '../base/BaseButton.vue';
-    export default {
-        components: {
-            BaseButton,
-        }
+import BaseButton from '../base/BaseButton.vue';
+export default {
+    components: {
+        BaseButton,
     }
+}
 </script>

@@ -1,7 +1,9 @@
 <template>
     <layout-main>
-        <template #sidebar>
-            <sidebar-item-chi-nhanh />
+        <template #sidebar="{ isCollapseAll }">
+            <sidebar-item-multi-select headerText="Chi nhánh" searchLabel="Tìm kiếm chi nhánh" :isCollapseAll="isCollapseAll" :filterData="chiNhanhList" keywordFilter="TenDonVi" >
+                <template #header-icon><i class="fab fa-fort-awesome"></i></template>
+            </sidebar-item-multi-select>
             <sidebar-item-date headerTitle="Ngày tiếp nhận">
                 <i class="fas fa-icon"></i>
             </sidebar-item-date>
@@ -40,17 +42,18 @@
 </template>
 
 <script>
-import 'LayoutMain' from '../components/LayoutMain.vue';
-import 'SidebarItemChiNhanh' from '../components/sidebar/SidebarItemChiNhanh.vue';
-import 'SidebarItemDate' from '../components/sidebar/SidebarItemDate.vue';
-import 'SidebarItemTrangThai' from '../components/sidebar/SidebarItemTrangThai.vue';
-import 'BaseCheckbox' from '../components/BaseCheckbox.vue';
-import 'PageTitle' from '../components/PageTitle.vue';
-import 'ButtonAddNew' from '../components/buttons/ButtonAddNew.vue';
-import 'ButtonExport' from '../components/buttons/ButtonExport.vue';
-import 'ButtonControlColumn' from '../components/buttons/ButtonControlColumn.vue';
-import 'BaseSerchBox' from '../components/base/BaseSearchBox.vue';
-import 'TablePhieuTiepNhan' from '../components/tables/TablePhieuTiepNhan.vue';
+import LayoutMain from '../components/LayoutMain.vue';
+import SidebarItemMultiSelect from '../components/sidebar/SidebarItemMultiSelect.vue';
+import SidebarItemDate from '../components/sidebar/SidebarItemDate.vue';
+import SidebarItemTrangThai from '../components/sidebar/SidebarItemTrangThai.vue';
+import BaseCheckbox from '../components/BaseCheckbox.vue';
+import PageTitle from '../components/PageTitle.vue';
+import ButtonAddNew from '../components/buttons/ButtonAddNew.vue';
+import ButtonExport from '../components/buttons/ButtonExport.vue';
+import ButtonControlColumn from '../components/buttons/ButtonControlColumn.vue';
+import BaseSerchBox from '../components/base/BaseSearchBox.vue';
+import TablePhieuTiepNhan from '../components/tables/TablePhieuTiepNhan.vue';
+import { GetListDonVi_User } from '../../data';
 
 export default {
     components: {
@@ -65,5 +68,12 @@ export default {
         ButtonControlColumn,
         TablePhieuTiepNhan,
     },
+    setup() {
+        const chiNhanhList = GetListDonVi_User;
+
+        return {
+            chiNhanhList,
+        }
+    }
 }
 </script>

@@ -5,7 +5,10 @@
             <div>
                 <base-input-group class="mb-1.5" label="Mã khách hàng" placeholderText="Mã mặc định" />
                 <base-input-group class="mb-1.5" label="Tên khách hàng" :required="true" />
-                <base-input-group class="mb-1.5" label="Ngày sinh" />
+                <div class="flex">
+                    <label class="form-group__label">Ngày sinh</label>
+                    <button-date-of-birth class="flex-cover input mb-1.5" label="Ngày sinh" />
+                </div>
                 <base-input-group class="mb-1.5" label="Điện thoại" />
                 <base-input-group class="mb-1.5" label="Email" />
                 <base-input-group class="mb-1.5" label="Địa chỉ" />
@@ -74,7 +77,7 @@
                 <base-input-group class="mb-1.5" label="Người giới thiệu" placeholderText="Khách hàng" />
                 <base-input-group-select requiredPlus @openModalAddNew="$emit('openModalNhomKhach')" class="mb-1.5" label="Nhóm khách" placeholderText="Chọn nhóm" :selectList="nhomKhachList" keywordFilter="TenNhomDoiTuong" />
                 <base-input-group-select requiredPlus @openModalAddNew="$emit('openModalTrangThaiKhach')" class="mb-1.5" label="Trạng thái khách" placeholderText="Chọn trạng thái" :selectList="trangThaiKhachList" keywordFilter="Name" />
-                <base-input-group-select-info class="mb-1.5" label="NV phụ trách" placeholderText="Chọn nhân viên" :selectList="nhanVienList" />
+                <base-input-group-select-info class="mb-1.5" label="NV phụ trách" placeholderText="Chọn nhân viên" :selectList="nhanVienList" dataTopLeft="MaNhanVien" dataTopRight="SoDienThoai" dataBottomLeft="TenNhanVien" />
             </div>
         </template>
         <template v-slot:modal-footer>
@@ -85,8 +88,6 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
-import axios from 'axios';
 import BaseModal from '../base/BaseModal.vue';
 import BaseInputGroup from '../base/BaseInputGroup.vue';
 import BaseInputGroupSelect from '../base/BaseInputGroupSelect.vue';
@@ -94,9 +95,11 @@ import BaseInputGroupSelectInfo from '../base/BaseInputGroupSelectInfo.vue';
 import BaseTextareaGroup from '../base/BaseTextareaGroup.vue';
 import ButtonCancel from '../buttons/ButtonCancel.vue';
 import ButtonSave from '../buttons/ButtonSave.vue';
+import ButtonDateOfBirth from '../buttons/ButtonDateOfBirth.vue';
 import previewImage from '/Open24/client/src/composables/usePreviewImage';
-import { computed } from '@vue/runtime-core';
 import { getProvinceList } from '/Open24/client/src/composables/useProvinceList';
+import { ref, computed } from 'vue';
+import { useStore } from 'vuex';
 export default {
     components: {
         BaseModal,
@@ -106,17 +109,32 @@ export default {
         BaseTextareaGroup,
         ButtonCancel,
         ButtonSave,
+        ButtonDateOfBirth,
     },
     props: {
         modalTitle: String,
         title: String,
-        nguonKhachList: Array,
-        nhomKhachList: Array,
-        trangThaiKhachList: Array,
-        nhanVienList: Array,
     },
-    emits: ["closeModal", "openModalNguonKhach", "openModalNhomKhach", "openModalTrangThaiKhach"],
+    emits: ['closeModal', 'openModalNguonKhach', 'openModalNhomKhach', 'openModalTrangThaiKhach'],
     setup() {
+        const store = useStore();
+        store.dispatch('getNguonKhachList');
+        store.dispatch('getNhomKhachList');
+        store.dispatch('getTrangThaiKhachList');
+        store.dispatch('getNhanVienList');
+        const nguonKhachList = computed(() => {
+            return store.getters.nguonKhachList;
+        })
+        const nhomKhachList = computed(() => {
+            return store.getters.nhomKhachList;
+        })
+        const trangThaiKhachList = computed(() => {
+            return store.getters.trangThaiKhachList;
+        })
+        const nhanVienList = computed(() => {
+            return store.getters.nhanVienList;
+        })
+
         const isPersonalCustomer = ref(true);
         const provinceList = ref([]);
 
@@ -146,6 +164,10 @@ export default {
         }
         
         return {
+            nguonKhachList,
+            nhomKhachList,
+            trangThaiKhachList,
+            nhanVienList,
             isPersonalCustomer,
             provinceList,
             districtList,

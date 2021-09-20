@@ -22,7 +22,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .button-slider, .percent-text, .vnd-text {
         @apply transition-all duration-300 ease-in-out;
     }

@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    /* PageShow used to test routes sẽ bị xóa khi các page view hoàn thiện */
     import {ref, watch} from 'vue';
     import { computed } from '@vue/runtime-core';
     import { InitHeaderMenu } from '../data/';

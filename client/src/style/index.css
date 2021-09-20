@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 /* Base layer dùng để reset stylesheet áp dụng trên mọi phần tử */
-/* Component layer chứa các custom css dùng để xử lý việc trùng lặp */
+/* Component layer chứa các css của component có thể dùng ở các trang giúp tăng sự thống nhất */
 /* Utilities layer chứa các class tiện ích áp dụng trên từng phần tử */
 /* Reference link: https://tailwindcss.com/docs/adding-base-styles */
 @layer base {
@@ -72,15 +72,6 @@
             @apply w-1.5 h-2;
         }
     }
-    .font-13 {
-        font-size: 13px;
-    }
-    .checkbox-size {
-        @apply h-4 w-4;
-    }
-    .button-distance {
-        @apply ml-2;
-    }
 }
 
 @layer components {
@@ -99,9 +90,36 @@
     .form-group__label {
         @apply w-28 text-gray-600 sm:w-32;
     }
+
+    .table-wrap {
+        @apply overflow-auto pt-4;
+    }
+    .table {
+        @apply w-full;
+    }
+    .table-th {
+        @apply bg-gray-300 h-8 px-2 whitespace-nowrap sticky top-0 border-r border-white last:border-r-0;
+    }
+    .table-td {
+        @apply h-8 px-2 border-t border-gray-300 whitespace-nowrap font-normal;
+    }
+    .table-tbody-tr:hover .table-td  {
+        @apply bg-gray-200;
+    }
+
+    .checkbox-size {
+        @apply h-4 w-4;
+    }
+    .button-distance {
+        @apply ml-2;
+    }
 }
 
 @layer utilities {
+    .font-13 {
+        font-size: 13px;
+    }
+
     .flex-cover {
         flex: 1;
     }
@@ -124,5 +142,12 @@
 
     .bg-readonly, .bg-disable {
         @apply bg-gray-100;
-    } 
+    }
+
+    .link-color {
+        @apply text-open24-main;
+    }
+    .link-color:hover {
+        @apply underline;
+    }
 }

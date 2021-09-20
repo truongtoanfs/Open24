@@ -1,15 +1,14 @@
 import { createStore } from 'vuex';
+import moduleDanhSachXe from './moduleDanhSachXe';
+import moduleKhachHang from './moduleKhachHang';
+import moduleNhanVien from './moduleNhanVien';
+import moduleChiNhanh from './moduleChiNhanh';
 
 export default createStore({
-    state() {
-        return {
-            branches: [
-                { id: 0, name: 'Ssoft Cầu giấy'},
-                { id: 1, name: 'Chi nhánh 02' },
-                { id: 2, name: 'Chi nhánh 03' },
-                { id: 3, name: 'Chi nhánh 04' },
-                { id: 4, name: 'Chi nhánh 05' },
-            ]
-        }
+    modules: {
+        moduleDanhSachXe,
+        moduleKhachHang,
+        moduleNhanVien,
+        moduleChiNhanh,
     }
 })

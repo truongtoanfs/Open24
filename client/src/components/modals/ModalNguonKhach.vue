@@ -27,6 +27,6 @@ export default {
     props: {
         modalTitle: String, 
     },
-    emits: ["closeModal"],
+    emits: ['closeModal'],
 }
 </script>
